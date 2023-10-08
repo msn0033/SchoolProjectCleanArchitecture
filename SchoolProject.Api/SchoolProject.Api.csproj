@@ -16,7 +16,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SchoolProject.Core\SchoolProject.Core.csproj" />
     <ProjectReference Include="..\SchoolProject.Infrustructure\SchoolProject.Infrustructure.csproj" />
+    <ProjectReference Include="..\SchoolProject.Service\SchoolProject.Service.csproj" />
 
   </ItemGroup>
 

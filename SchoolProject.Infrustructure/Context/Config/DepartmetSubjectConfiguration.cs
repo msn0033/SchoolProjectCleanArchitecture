@@ -7,13 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SchoolProject.Infrustructure.Config
+namespace SchoolProject.Infrustructure.Context.Config
 {
     internal class DepartmetSubjectConfiguration : IEntityTypeConfiguration<DepartmetSubject>
     {
         public void Configure(EntityTypeBuilder<DepartmetSubject> builder)
         {
-           
+
 
             builder.ToTable("DepartmetSubjects");
 

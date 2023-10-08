@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SchoolProject.Infrustructure.Config
+namespace SchoolProject.Infrustructure.Context.Config
 {
     internal class StudentSubjectConfiguration : IEntityTypeConfiguration<StudentSubject>
     {

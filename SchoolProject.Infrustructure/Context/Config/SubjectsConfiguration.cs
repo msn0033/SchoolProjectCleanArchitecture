@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SchoolProject.Infrustructure.Config
+namespace SchoolProject.Infrustructure.Context.Config
 {
     internal class SubjectConfiguration : IEntityTypeConfiguration<Subject>
     {
@@ -26,7 +26,7 @@ namespace SchoolProject.Infrustructure.Config
                 .HasColumnName("Period")
                 .IsRequired();
 
-       
+
 
             builder.ToTable("Subjects");
 

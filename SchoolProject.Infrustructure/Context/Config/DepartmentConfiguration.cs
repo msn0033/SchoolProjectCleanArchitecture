@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SchoolProject.Infrustructure.Config
+namespace SchoolProject.Infrustructure.Context.Config
 {
     internal class DepartmentConfiguration : IEntityTypeConfiguration<Department>
     {
@@ -24,19 +24,19 @@ namespace SchoolProject.Infrustructure.Config
 
             #region relationShip
 
-                #region Department -- Students
-                    builder.HasMany(d => d.Students)
-                           .WithOne(s => s.Department)
-                           .HasForeignKey(s => s.DID)
-                           .IsRequired(false);
+            #region Department -- Students
+            builder.HasMany(d => d.Students)
+                   .WithOne(s => s.Department)
+                   .HasForeignKey(s => s.DID)
+                   .IsRequired(false);
             #endregion
 
             #region Department -- Subjects
             builder.HasMany(d => d.Subjects)
                 .WithMany(sub => sub.Departments)
-                .UsingEntity<DepartmetSubject>(x=>x.HasKey(x => new {x.DepId,x.SubId}));
+                .UsingEntity<DepartmetSubject>(x => x.HasKey(x => new { x.DepId, x.SubId }));
             #endregion
-            
+
             #region ....
             #endregion
 

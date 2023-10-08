@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SchoolProject.Infrustructure.Config
+namespace SchoolProject.Infrustructure.Context.Config
 {
     internal class StudentConfiguration : IEntityTypeConfiguration<Student>
     {
@@ -36,14 +36,14 @@ namespace SchoolProject.Infrustructure.Config
             builder.HasMany(stu => stu.Subjects)
                 .WithMany(sub => sub.Students)
                 .UsingEntity<StudentSubject>();
-                   
+
 
             #endregion
 
 
             builder.ToTable("Students");
 
-  
+
 
         }
     }
