@@ -1,4 +1,4 @@
-﻿using SchoolProject.Data.Data;
+﻿using SchoolProject.Data.Entities;
 using SchoolProject.Infrustructure.Interface;
 using SchoolProject.Service.Interface;
 using System;

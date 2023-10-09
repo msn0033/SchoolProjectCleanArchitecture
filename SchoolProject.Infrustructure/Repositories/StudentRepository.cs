@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SchoolProject.Data.Data;
+using SchoolProject.Data.Entities;
 using SchoolProject.Infrustructure.Context;
 using SchoolProject.Infrustructure.Interface;
 using System;
@@ -22,7 +22,7 @@ namespace SchoolProject.Infrustructure.Repositories
 
         public async Task<IEnumerable<Student>> GetStudentsAsync()
         {
-            return await _dbContext.Students.ToListAsync();
+            return await _dbContext.Students.Include(d=>d.Department).ToListAsync();
         }
         public async Task<Student> GetById(int id)
         {

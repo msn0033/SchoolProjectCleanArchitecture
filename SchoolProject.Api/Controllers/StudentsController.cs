@@ -15,6 +15,7 @@ namespace SchoolProject.Api.Controllers
         {
             this._mediator = mediator;
         }
+
         [HttpGet("/Student/List")]
         public async Task<IActionResult> GetStudentList()
         {

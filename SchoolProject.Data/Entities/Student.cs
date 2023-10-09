@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace SchoolProject.Data.Data
+namespace SchoolProject.Data.Entities
 {
     public class Student
     {

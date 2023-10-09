@@ -1,6 +1,9 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using MediatR;
 using SchoolProject.Core.Features.Students.Queries.Models;
-using SchoolProject.Data.Data;
+using SchoolProject.Core.Features.Students.Queries.Responses;
+
+using SchoolProject.Helper.ResponseHelper;
 using SchoolProject.Service.Interface;
 using System;
 using System.Collections.Generic;
@@ -8,19 +11,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace SchoolProject.Core.Features.Students.Queries.Handlers
 {
-    public class StudentHandler : IRequestHandler<GetStudentsListQuery, IEnumerable<Student>>
+    public class StudentHandler :ResponseHandler, IRequestHandler<GetStudentsListQuery,Response< IEnumerable<StudentsResponse>>>
     {
         private readonly IStudentService _studentService;
+        private readonly IMapper _mapper;
 
-        public StudentHandler(IStudentService studentService)
+        public StudentHandler(IStudentService studentService ,IMapper mapper)
         {
             this._studentService = studentService;
+            this._mapper = mapper;
         }
-        public async Task<IEnumerable<Student>> Handle(GetStudentsListQuery request, CancellationToken cancellationToken)
+        public async Task<Response<IEnumerable<StudentsResponse>>> Handle(GetStudentsListQuery request, CancellationToken cancellationToken)
         {
-           return  await _studentService.GetStudentsAsync();
+             var students=await _studentService.GetStudentsAsync();
+            var studentsResponseMapping= _mapper.Map<IEnumerable<StudentsResponse>>(students);
+            
+            return Success(studentsResponseMapping);
         }
     }
 }

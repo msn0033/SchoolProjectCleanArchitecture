@@ -8,7 +8,11 @@ namespace SchoolProject.Core
     {
         public static IServiceCollection AddModuleCoreDependencyInjection(this IServiceCollection services)
         {
-            return services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
+            //Configuration of Mediator
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
+            //Configuration Of AutoMapper
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            return services;
         }
     }
 }
