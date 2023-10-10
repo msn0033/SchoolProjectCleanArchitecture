@@ -22,7 +22,7 @@ namespace SchoolProject.Helper.ResponseHelper
                 Message = "Deleted Successfully"
             };
         }
-        public Response<T> Success<T>(T entity, object Meta = null)
+        public Response<T> Success<T>(T entity, object Meta = null!)
         {
             return new Response<T>()
             {
@@ -42,7 +42,7 @@ namespace SchoolProject.Helper.ResponseHelper
                 Message = "UnAuthorized"
             };
         }
-        public Response<T> BadRequest<T>(string Message = null)
+        public Response<T> BadRequest<T>(string Message = null!)
         {
             return new Response<T>()
             {
@@ -52,7 +52,7 @@ namespace SchoolProject.Helper.ResponseHelper
             };
         }
 
-        public Response<T> NotFound<T>(string message = null)
+        public Response<T> NotFound<T>(string message = null!)
         {
             return new Response<T>()
             {
@@ -62,7 +62,7 @@ namespace SchoolProject.Helper.ResponseHelper
             };
         }
 
-        public Response<T> Created<T>(T entity, object Meta = null)
+        public Response<T> Created<T>(T entity, object Meta = null!)
         {
             return new Response<T>()
             {

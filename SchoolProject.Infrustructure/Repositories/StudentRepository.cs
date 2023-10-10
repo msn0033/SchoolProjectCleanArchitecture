@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SchoolProject.Data.Entities;
 using SchoolProject.Infrustructure.Context;
+using SchoolProject.Infrustructure.GenericRepository;
 using SchoolProject.Infrustructure.Interface;
 using System;
 using System.Collections.Generic;
@@ -10,37 +11,20 @@ using System.Threading.Tasks;
 
 namespace SchoolProject.Infrustructure.Repositories
 {
-    public class StudentRepository : IStudentRepository
+    public class StudentRepository : GenericRepositoryAsync<Student>, IStudentRepository
     {
-        private readonly AppDbContext _dbContext;
+        private readonly DbSet<Student> _students;
 
-        public StudentRepository(AppDbContext dbContext)
+        public StudentRepository(AppDbContext dbContext):base(dbContext)
         {
-            this._dbContext = dbContext;
+            this._students = dbContext.Set<Student>();
         }
       
 
         public async Task<IEnumerable<Student>> GetStudentsAsync()
         {
-            return await _dbContext.Students.Include(d=>d.Department).ToListAsync();
+            return await _students.Include(d=>d.Department).ToListAsync();
         }
-        public async Task<Student> GetById(int id)
-        {
-            return await _dbContext.Students.FindAsync(id);
-        }
-
-        public void Insert(Student student)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(Student student)
-        {
-            throw new NotImplementedException();
-        }
-        public void Delete(Student student)
-        {
-            throw new NotImplementedException();
-        }
+     
     }
 }
