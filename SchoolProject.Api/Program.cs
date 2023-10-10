@@ -16,7 +16,8 @@ builder.Services.AddSwaggerGen();
 //Connection SQL
 builder.Services.AddDbContext<AppDbContext>(option =>
 {
-    option.UseSqlServer(builder.Configuration.GetConnectionString("dbcontext"));
+    option.UseSqlServer(builder.Configuration.GetConnectionString("dbcontext"))
+    .LogTo(Console.WriteLine,Microsoft.Extensions.Logging.LogLevel.Information);
 });
 
 //Dependency injection

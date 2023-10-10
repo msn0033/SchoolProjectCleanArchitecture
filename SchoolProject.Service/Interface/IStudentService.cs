@@ -10,5 +10,6 @@ namespace SchoolProject.Service.Interface
     public interface IStudentService
     {
         Task<IEnumerable<Student>> GetStudentsAsync();
+        Task<Student> GetStudentById(int id);
     }
 }

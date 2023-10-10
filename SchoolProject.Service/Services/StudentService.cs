@@ -1,4 +1,5 @@
-﻿using SchoolProject.Data.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using SchoolProject.Data.Entities;
 using SchoolProject.Infrustructure.Interface;
 using SchoolProject.Service.Interface;
 using System;
@@ -17,9 +18,23 @@ namespace SchoolProject.Service.Services
         {
             this._repositoryStudent = repository;
         }
+
+      
         public async Task<IEnumerable<Student>> GetStudentsAsync()
         {
             return await _repositoryStudent.GetStudentsAsync();
         }
+
+        public async Task<Student> GetStudentById(int id)
+        {
+            var student=_repositoryStudent.GetTableNoTracking()
+                                          .Include(x=>x.Department)
+                                          .Where(x=>x.Id == id)
+                                          .FirstOrDefault();
+            
+            return student!;
+  
+        }
+
     }
 }

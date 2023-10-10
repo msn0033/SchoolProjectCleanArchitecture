@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SchoolProject.Core.Features.Students.Queries.Responses
 {
-    public class StudentsResponse
+    public class StudentsQueryResponse
     {
         public int Id { get; set; }
 
