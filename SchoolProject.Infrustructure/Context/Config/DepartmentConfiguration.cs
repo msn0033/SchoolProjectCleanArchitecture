@@ -27,8 +27,10 @@ namespace SchoolProject.Infrustructure.Context.Config
             #region Department -- Students
             builder.HasMany(d => d.Students)
                    .WithOne(s => s.Department)
-                   .HasForeignKey(s => s.DID)
-                   .IsRequired(false);
+                   .HasForeignKey(s => s.DepartmentId)
+                   .IsRequired();
+
+            
             #endregion
 
             #region Department -- Subjects

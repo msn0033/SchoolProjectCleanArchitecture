@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using SchoolProject.Core.Features.Students.Queries.Responses;
+using SchoolProject.Core.Features.Students.Commands.Models;
 using SchoolProject.Data.Entities;
 using System;
 using System.Collections.Generic;
@@ -9,12 +9,11 @@ using System.Threading.Tasks;
 
 namespace SchoolProject.Core.Mapping.StudentsMapping
 {
-    public partial class StudentProfile:Profile
+    public partial class StudentProfile : Profile
     {
-        public StudentProfile()
+       public void addStudentCommandMapping()
         {
-            GetStudentMapping();
-            addStudentCommandMapping();
+            CreateMap<StudentCommandRequest, Student>();
         }
     }
 }

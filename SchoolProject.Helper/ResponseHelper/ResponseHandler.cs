@@ -52,6 +52,7 @@ namespace SchoolProject.Helper.ResponseHelper
             };
         }
 
+   
         public Response<T> NotFound<T>(string message = null!)
         {
             return new Response<T>()
@@ -59,6 +60,16 @@ namespace SchoolProject.Helper.ResponseHelper
                 StatusCode = System.Net.HttpStatusCode.NotFound,
                 Succeeded = false,
                 Message = message == null ? "Not Found" : message
+            };
+        }
+
+        public Response<T> UnprocessableEntity<T>(string message = null!)
+        {
+            return new Response<T>()
+            {
+                StatusCode = System.Net.HttpStatusCode.UnprocessableEntity,
+                Succeeded = false,
+                Message = message == null ? "Unprocessab leEntity" : message
             };
         }
 

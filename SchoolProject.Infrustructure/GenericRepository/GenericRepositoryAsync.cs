@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SchoolProject.Infrustructure.Context;
+using SchoolProject.Data.Entities;
 
 namespace SchoolProject.Infrustructure.GenericRepository
 {

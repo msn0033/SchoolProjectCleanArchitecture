@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace SchoolProject.Infrustructure.Migrations
 {
     /// <inheritdoc />
-    public partial class Intial : Migration
+    public partial class intial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -44,16 +44,17 @@ namespace SchoolProject.Infrustructure.Migrations
                     Name = table.Column<string>(type: "NVARCHAR(50)", maxLength: 50, nullable: false),
                     Address = table.Column<string>(type: "NVARCHAR(100)", maxLength: 100, nullable: false),
                     Phone = table.Column<string>(type: "NVARCHAR(20)", maxLength: 20, nullable: false),
-                    DID = table.Column<int>(type: "int", nullable: true)
+                    DepartmentId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Students", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Students_Departments_DID",
-                        column: x => x.DID,
+                        name: "FK_Students_Departments_DepartmentId",
+                        column: x => x.DepartmentId,
                         principalTable: "Departments",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -119,9 +120,9 @@ namespace SchoolProject.Infrustructure.Migrations
                 column: "SubjectsId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Students_DID",
+                name: "IX_Students_DepartmentId",
                 table: "Students",
-                column: "DID");
+                column: "DepartmentId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_StudentSubjects_StudentId",

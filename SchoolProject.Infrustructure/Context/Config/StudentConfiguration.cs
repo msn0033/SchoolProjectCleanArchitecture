@@ -31,6 +31,7 @@ namespace SchoolProject.Infrustructure.Context.Config
                .HasMaxLength(20)
                .IsRequired();
 
+          
 
             #region Students -- Subjects
             builder.HasMany(stu => stu.Subjects)

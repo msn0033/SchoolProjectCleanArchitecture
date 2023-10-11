@@ -11,5 +11,6 @@ namespace SchoolProject.Service.Interface
     {
         Task<IEnumerable<Student>> GetStudentsAsync();
         Task<Student> GetStudentById(int id);
+        Task<string>AddStudentAsync(Student student);
     }
 }

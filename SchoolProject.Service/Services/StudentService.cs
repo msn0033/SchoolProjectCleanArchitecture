@@ -36,5 +36,18 @@ namespace SchoolProject.Service.Services
   
         }
 
+        public async Task<string> AddStudentAsync(Student student)
+        {
+            var check =_repositoryStudent.GetTableNoTracking().FirstOrDefault(x => x.Name.Equals(student.Name));
+            if (check !=null)
+                return "Exist";
+            else if (await _repositoryStudent.AddAsync(student) == null)
+                return "problem in add students to data base";
+            return "Success";
+
+
+           
+
+        }
     }
 }

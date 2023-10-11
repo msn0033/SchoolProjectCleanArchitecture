@@ -7,11 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Students\Commands\" />
-    <Folder Include="Features\Students\Commands\Handlers\" />
     <Folder Include="Features\Students\Commands\Validations\" />
-    <Folder Include="Features\Students\Commands\Models\" />
-    <Folder Include="Mapping\StudentsMapping\CommandsMapping\" />
   </ItemGroup>
 
   <ItemGroup>

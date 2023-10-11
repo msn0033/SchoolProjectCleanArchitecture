@@ -12,8 +12,8 @@ using SchoolProject.Infrustructure.Context;
 namespace SchoolProject.Infrustructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231008111750_intial")]
-    partial class Intial
+    [Migration("20231011125100_intial")]
+    partial class intial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -73,7 +73,7 @@ namespace SchoolProject.Infrustructure.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("NVARCHAR");
 
-                    b.Property<int?>("DID")
+                    b.Property<int>("DepartmentId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -88,7 +88,7 @@ namespace SchoolProject.Infrustructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DID");
+                    b.HasIndex("DepartmentId");
 
                     b.ToTable("Students", (string)null);
                 });
@@ -158,7 +158,9 @@ namespace SchoolProject.Infrustructure.Migrations
                 {
                     b.HasOne("SchoolProject.Data.Entities.Department", "Department")
                         .WithMany("Students")
-                        .HasForeignKey("DID");
+                        .HasForeignKey("DepartmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Department");
                 });
