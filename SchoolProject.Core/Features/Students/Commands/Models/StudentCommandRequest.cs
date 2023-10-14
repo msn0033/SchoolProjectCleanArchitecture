@@ -11,11 +11,11 @@ namespace SchoolProject.Core.Features.Students.Commands.Models
     public class StudentCommandRequest:IRequest<Response<string>>
     {
         public int Id { get; set; }
-        public string Name { get; set; } = string.Empty;
+        public string Name { get; set; } 
 
-        public string Address { get; set; } = string.Empty;
+        public string Address { get; set; } 
 
-        public string Phone { get; set; } = string.Empty;
+        public string Phone { get; set; } 
         public int DepartmentId { get; set; }
     }
 }

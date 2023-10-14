@@ -32,7 +32,7 @@ namespace SchoolProject.Api.Controllers
         [HttpPost(PathRoute.StudentsRoute.Create)]
         public async Task<IActionResult> CreateStudent([FromBody]StudentCommandRequest command)
         {
-            var responseaddStudent =await  _mediator.Send(command);
+            var responseaddStudent =await _mediator.Send(command);
             return NewResult(responseaddStudent);
 
         }

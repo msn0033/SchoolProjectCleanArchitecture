@@ -3,6 +3,7 @@ using SchoolProject.Infrustructure.Context;
 using SchoolProject.Infrustructure;
 using SchoolProject.Service;
 using SchoolProject.Core;
+using SchoolProject.Core.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,10 +37,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
 app.MapControllers();
+app.UseMiddleware<ErrorHandlerMiddleware>(); ;
 
 app.Run();

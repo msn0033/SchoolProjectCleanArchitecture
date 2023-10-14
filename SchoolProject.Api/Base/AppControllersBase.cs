@@ -11,7 +11,7 @@ namespace SchoolProject.Api.Base
     public class AppControllersBase : ControllerBase
     {
         private IMediator _mediatorInstance;
-        protected IMediator _mediator => _mediatorInstance ??= HttpContext.RequestServices.GetService<IMediator>();
+        protected IMediator _mediator => _mediatorInstance ??= HttpContext?.RequestServices.GetService<IMediator>()!;
 
         #region Actions
         // List يعمل مع جميع الحالات ماعدا
