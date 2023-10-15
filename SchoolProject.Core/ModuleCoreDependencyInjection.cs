@@ -22,7 +22,7 @@ namespace SchoolProject.Core
 
 
             // Get Validators
-            services.AddValidatorsFromAssembly(typeof(StudentCommandRequest).Assembly);
+            services.AddValidatorsFromAssembly(typeof(AddStudentCommand).Assembly);
             // 
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 

@@ -1,9 +1,9 @@
 using Microsoft.EntityFrameworkCore;
-using SchoolProject.Infrustructure.Context;
-using SchoolProject.Infrustructure;
-using SchoolProject.Service;
 using SchoolProject.Core;
 using SchoolProject.Core.Middleware;
+using SchoolProject.Infrustructure;
+using SchoolProject.Infrustructure.Context;
+using SchoolProject.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,7 +18,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AppDbContext>(option =>
 {
     option.UseSqlServer(builder.Configuration.GetConnectionString("dbcontext"))
-    .LogTo(Console.WriteLine,Microsoft.Extensions.Logging.LogLevel.Information);
+    .LogTo(Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Information);
 });
 
 //Dependency injection
@@ -44,6 +44,9 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-app.UseMiddleware<ErrorHandlerMiddleware>(); ;
+app.UseMiddleware<ErrorHandlerMiddleware>();
+
+
+
 
 app.Run();

@@ -1,15 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Net;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
-using SchoolProject.Helper.ResponseHelper;
+﻿using FluentValidation;
 using Microsoft.AspNetCore.Http;
-using FluentValidation;
+using Microsoft.EntityFrameworkCore;
+using SchoolProject.Helper.ResponseHelper;
+using System.Net;
+using System.Text.Json;
 
 namespace SchoolProject.Core.Middleware
 {
@@ -48,6 +42,7 @@ namespace SchoolProject.Core.Middleware
                         responseModel.Message = error.Message;
                         responseModel.StatusCode = HttpStatusCode.UnprocessableEntity;
                         response.StatusCode = (int)HttpStatusCode.UnprocessableEntity;
+                        responseModel.Errors = e.Errors.Select(x => x.PropertyName + ": " + x.ErrorMessage).ToList();
                         break;
                     case KeyNotFoundException e:
                         // not found error

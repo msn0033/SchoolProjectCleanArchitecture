@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using SchoolProject.Core.Features.Students.Commands.Models;
+using SchoolProject.Service.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,12 +9,19 @@ using System.Threading.Tasks;
 
 namespace SchoolProject.Core.Features.Students.Commands.Validatiors
 {
-    public class StudentCommandValidation : AbstractValidator<StudentCommandRequest>
+    public class AddStudentCommandValidation : AbstractValidator<AddStudentCommand>
     {
-        public StudentCommandValidation()
+        private readonly IStudentService _studentService;
+
+        public AddStudentCommandValidation( IStudentService studentService)
         {
-            ApplyValidationRule();   
+            this._studentService = studentService;
+            ApplyValidationRule();
+            ApplyCusotmValidationRule();
+           
         }
+
+      
 
         private void ApplyValidationRule()
         {
@@ -26,6 +34,13 @@ namespace SchoolProject.Core.Features.Students.Commands.Validatiors
                .NotEmpty().WithMessage(@"{PropertyName} Must not be Empty")
                .NotNull().WithMessage(@"{PropertyName} Must not be Null")
                .MaximumLength(10).WithMessage(@"{PropertyName} Max Lenght is 10");
+        }
+        private void ApplyCusotmValidationRule()
+        {
+            RuleFor(x => x.Name)
+                .MustAsync(async (key, CancellationToken) => !await _studentService.IsNameExist(key))
+                .WithMessage("الاسم موجود مسبقاً");
+
         }
     }
 }
