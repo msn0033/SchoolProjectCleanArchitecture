@@ -15,12 +15,12 @@ namespace SchoolProject.Service.Services
         }
 
 
-        public async Task<IEnumerable<Student>> GetStudentsAsync()
+        public async Task<IEnumerable<Student>> GetStudentsListwithIncludeAsync()
         {
-            return await _repositoryStudent.GetStudentsAsync();
+            return await _repositoryStudent.GetStudentsListWithIncludeAsync();
         }
 
-        public async Task<Student> GetStudentByIdAsync(int id)
+        public async Task<Student> GetStudentByIdWithIncludeAsync(int id)
         {
             var student = await _repositoryStudent.GetTableNoTracking()
                                           .Include(x => x.Department)
@@ -56,6 +56,19 @@ namespace SchoolProject.Service.Services
         {
             await _repositoryStudent.UpdateAsync(student);
             return "Edit is Success";
+        }
+
+        public async Task<Student> GetStudentByIdAsync(int id)
+        {
+            var result = await _repositoryStudent.GetByIdAsync(id);
+            return result;
+        }
+
+        public async Task<string> DeleteAsync(Student student)
+        {
+            var id = student.Id;
+            await _repositoryStudent.DeleteAsync(student);
+            return $"Delete is Success id = {id}";
         }
     }
 }

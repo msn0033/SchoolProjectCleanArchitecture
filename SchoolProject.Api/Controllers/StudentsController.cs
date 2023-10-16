@@ -20,7 +20,7 @@ namespace SchoolProject.Api.Controllers
         }
 
         [HttpGet(PathRoute.StudentsRoute.GetById)]
-        public async Task<IActionResult> GetStudnetById(int id)
+        public async Task<IActionResult> GetStudnetById([FromRoute] int id)
         {
             var responsestudent = await _mediator.Send(new StudentByIdQuery { id = id });
             if (responsestudent == null) NotFound(responsestudent);
@@ -39,6 +39,12 @@ namespace SchoolProject.Api.Controllers
         {
             var response = await _mediator.Send(editStudent);
             return NewResult<string>(response);
+        }
+        [HttpDelete(PathRoute.StudentsRoute.Delete)]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var response = await _mediator.Send(new DeleteStudentCommand(id));
+            return NewResult(response);
         }
     }
 }

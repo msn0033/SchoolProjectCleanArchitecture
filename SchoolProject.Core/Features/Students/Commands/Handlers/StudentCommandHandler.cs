@@ -9,7 +9,8 @@ namespace SchoolProject.Core.Features.Students.Commands.Handlers
 {
     public class StudentCommandHandler : ResponseHandler,
         IRequestHandler<AddStudentCommand, Response<string>>,
-        IRequestHandler<EditStudentCommand, Response<string>>
+        IRequestHandler<EditStudentCommand, Response<string>>,
+         IRequestHandler<DeleteStudentCommand, Response<string>>
     {
         private readonly IStudentService _studentService;
         private readonly IMapper _mapper;
@@ -39,7 +40,7 @@ namespace SchoolProject.Core.Features.Students.Commands.Handlers
         public async Task<Response<string>> Handle(EditStudentCommand request, CancellationToken cancellationToken)
         {
             // check item is exist
-            var student = await _studentService.GetStudentByIdAsync(request.Id);
+            var student = await _studentService.GetStudentsListwithIncludeAsync();
             //return not found if not exist
             if (student == null) return NotFound<string>("item not Found");
             //mapping
@@ -48,6 +49,19 @@ namespace SchoolProject.Core.Features.Students.Commands.Handlers
             string result = await _studentService.EditStudentAsync(studentMapping);
             //return Success
             return Created<string>(result);
+        }
+
+        public async Task<Response<string>> Handle(DeleteStudentCommand request, CancellationToken cancellationToken)
+        {
+            //check item if not found return Notfound
+            var student = await _studentService.GetStudentByIdAsync(request.Id);
+            if (student == null) return NotFound<string>("Student Not Found");
+            //service remove and return Success
+            string result = await _studentService.DeleteAsync(student);
+            return Deleted<string>(result);
+
+
+
         }
     }
 }

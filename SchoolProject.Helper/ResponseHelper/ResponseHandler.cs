@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SchoolProject.Helper.ResponseHelper
+﻿namespace SchoolProject.Helper.ResponseHelper
 {
     public class ResponseHandler
     {
@@ -13,13 +7,13 @@ namespace SchoolProject.Helper.ResponseHelper
         {
 
         }
-        public Response<T> Deleted<T>()
+        public Response<T> Deleted<T>(string Message = null!)
         {
             return new Response<T>()
             {
                 StatusCode = System.Net.HttpStatusCode.OK,
                 Succeeded = true,
-                Message = "Deleted Successfully"
+                Message = Message == null ? "Deleted Successfully" : Message
             };
         }
         public Response<T> Success<T>(T entity, object Meta = null!)
@@ -52,7 +46,7 @@ namespace SchoolProject.Helper.ResponseHelper
             };
         }
 
-   
+
         public Response<T> NotFound<T>(string message = null!)
         {
             return new Response<T>()

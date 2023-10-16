@@ -9,8 +9,8 @@ using SchoolProject.Service.Interface;
 
 namespace SchoolProject.Core.Features.Students.Queries.Handlers
 {
-    public class StudentQueryHandler : ResponseHandler, IRequestHandler<StudentsListQuery, Response<IEnumerable<StudentsQueryResponse>>>
-        , IRequestHandler<StudentByIdQuery, Response<StudentsQueryResponse>>
+    public class StudentQueryHandler : ResponseHandler, IRequestHandler<StudentsListQuery, Response<IEnumerable<StudentsListQueryResponse>>>
+        , IRequestHandler<StudentByIdQuery, Response<StudentsListQueryResponse>>
     {
         private readonly IStudentService _studentService;
         private readonly IMapper _mapper;
@@ -20,20 +20,20 @@ namespace SchoolProject.Core.Features.Students.Queries.Handlers
             this._studentService = studentService;
             this._mapper = mapper;
         }
-        public async Task<Response<IEnumerable<StudentsQueryResponse>>> Handle(StudentsListQuery request, CancellationToken cancellationToken)
+        public async Task<Response<IEnumerable<StudentsListQueryResponse>>> Handle(StudentsListQuery request, CancellationToken cancellationToken)
         {
-            var students = await _studentService.GetStudentsAsync();
-            var studentsResponseMapping = _mapper.Map<IEnumerable<StudentsQueryResponse>>(students);
+            var students = await _studentService.GetStudentsListwithIncludeAsync();
+            var studentsResponseMapping = _mapper.Map<IEnumerable<StudentsListQueryResponse>>(students);
 
             return Success(studentsResponseMapping);
         }
 
-        public async Task<Response<StudentsQueryResponse>> Handle(StudentByIdQuery request, CancellationToken cancellationToken)
+        public async Task<Response<StudentsListQueryResponse>> Handle(StudentByIdQuery request, CancellationToken cancellationToken)
         {
-            var student = await _studentService.GetStudentByIdAsync(request.id);
+            var student = await _studentService.GetStudentByIdWithIncludeAsync(request.id);
             if (student == null)
-                return NotFound<StudentsQueryResponse>();
-            var result = _mapper.Map<StudentsQueryResponse>(student);
+                return NotFound<StudentsListQueryResponse>();
+            var result = _mapper.Map<StudentsListQueryResponse>(student);
             return Success(result);
         }
     }
