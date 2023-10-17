@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SchoolProject.Data.Entities;
+using SchoolProject.Helper.Enums;
 using SchoolProject.Infrustructure.Interface;
 using SchoolProject.Service.Interface;
 
@@ -69,6 +70,36 @@ namespace SchoolProject.Service.Services
             var id = student.Id;
             await _repositoryStudent.DeleteAsync(student);
             return $"Delete is Success id = {id}";
+        }
+
+
+
+        //IQueryable<Student> GetStudents_List_ASQuerable_Search_Or_OrderBy(string search, StudentOrderByEnum order)
+        //{
+        //    return _repositoryStudent.GetTableNoTracking().Include(x => x.Department).AsQueryable();
+        //}
+
+        public IQueryable<Student> GetStudents_Include_List_ASQuerable_Search_Or_OrderBy(string? search, StudentOrderByEnum order)
+        {
+            var querable = _repositoryStudent.GetTableNoTracking().Include(x => x.Department).AsQueryable();
+            if (!string.IsNullOrEmpty(search))
+                querable = querable.Where(x => x.Name.Contains(search) || x.Address.Contains(search) || x.Phone.Contains(search) || x.Department.Name.Contains(search));
+
+            switch (order)
+            {
+                case StudentOrderByEnum.Name:
+                    querable.OrderBy(x => x.Name); break;
+                case StudentOrderByEnum.Address:
+                    querable.OrderBy(x => x.Address); break;
+                case StudentOrderByEnum.Phone:
+                    querable.OrderBy(x => x.Phone); break;
+                case StudentOrderByEnum.DepartmentName:
+                    querable.OrderBy(x => x.Department.Name); break;
+
+                default:
+                    return querable.OrderBy(x => x.Id);
+            }
+            return querable;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using SchoolProject.Data.Entities;
+using SchoolProject.Helper.Enums;
 
 namespace SchoolProject.Service.Interface
 {
@@ -12,5 +13,6 @@ namespace SchoolProject.Service.Interface
         Task<bool> IsNameExistExculdeSelf(string key, int id);
         Task<string> EditStudentAsync(Student student);
         Task<string> DeleteAsync(Student student);
+        IQueryable<Student> GetStudents_Include_List_ASQuerable_Search_Or_OrderBy(string? search, StudentOrderByEnum order);
     }
 }

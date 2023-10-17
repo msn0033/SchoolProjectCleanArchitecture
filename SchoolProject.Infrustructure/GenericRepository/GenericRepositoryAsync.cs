@@ -1,16 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore.Storage;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using SchoolProject.Infrustructure.Context;
-using SchoolProject.Data.Entities;
 
 namespace SchoolProject.Infrustructure.GenericRepository
 {
-    public class GenericRepositoryAsync<T>:IGenericRepositoryAsync<T> where T: class
+    public class GenericRepositoryAsync<T> : IGenericRepositoryAsync<T> where T : class
     {
         #region Vars / Props
 
@@ -34,7 +28,7 @@ namespace SchoolProject.Infrustructure.GenericRepository
         #region Actions
         public virtual async Task<T> GetByIdAsync(int id)
         {
-           
+
             return await _dbContext.Set<T>().FindAsync(id);
         }
 
