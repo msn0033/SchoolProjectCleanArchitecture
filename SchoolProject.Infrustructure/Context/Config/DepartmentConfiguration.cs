@@ -1,11 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SchoolProject.Data.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SchoolProject.Infrustructure.Context.Config
 {
@@ -16,7 +11,7 @@ namespace SchoolProject.Infrustructure.Context.Config
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedNever();
 
-            builder.Property(x => x.Name)
+            builder.Property(x => x.NameEn)
                 .HasColumnType("NVARCHAR")
                 .HasMaxLength(50)
                 .IsRequired();
@@ -30,7 +25,7 @@ namespace SchoolProject.Infrustructure.Context.Config
                    .HasForeignKey(s => s.DepartmentId)
                    .IsRequired();
 
-            
+
             #endregion
 
             #region Department -- Subjects

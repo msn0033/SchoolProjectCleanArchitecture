@@ -1,6 +1,8 @@
 ﻿using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Localization;
+using SchoolProject.Core.Resources;
 using SchoolProject.Helper.ResponseHelper;
 using System.Net;
 using System.Text.Json;
@@ -10,10 +12,12 @@ namespace SchoolProject.Core.Middleware
     public class ErrorHandlerMiddleware
     {
         private readonly RequestDelegate _next;
+        private readonly IStringLocalizer<ShareResources> _localizer;
 
-        public ErrorHandlerMiddleware(RequestDelegate next)
+        public ErrorHandlerMiddleware(RequestDelegate next, IStringLocalizer<ShareResources> localizer)
         {
             _next = next;
+            this._localizer = localizer;
         }
 
         public async Task Invoke(HttpContext context)
@@ -42,7 +46,11 @@ namespace SchoolProject.Core.Middleware
                         responseModel.Message = error.Message;
                         responseModel.StatusCode = HttpStatusCode.UnprocessableEntity;
                         response.StatusCode = (int)HttpStatusCode.UnprocessableEntity;
-                        responseModel.Errors = e.Errors.Select(x => x.PropertyName + ": " + x.ErrorMessage).ToList();
+                        responseModel.Errors = e.Errors.Select(x => _localizer[x.PropertyName] + " : " + _localizer[x.ErrorMessage]).ToList();
+
+
+
+
                         break;
                     case KeyNotFoundException e:
                         // not found error

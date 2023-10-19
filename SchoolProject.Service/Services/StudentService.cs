@@ -40,7 +40,7 @@ namespace SchoolProject.Service.Services
 
         public async Task<bool> IsNameExist(string name)
         {
-            var student = await _repositoryStudent.GetTableNoTracking().Where(x => x.Name == name).FirstOrDefaultAsync();
+            var student = await _repositoryStudent.GetTableNoTracking().Where(x => x.NameEn == name).FirstOrDefaultAsync();
             if (student == null) return false;
             return true;
 
@@ -48,7 +48,7 @@ namespace SchoolProject.Service.Services
 
         public async Task<bool> IsNameExistExculdeSelf(string key, int id)
         {
-            var student = await _repositoryStudent.GetTableNoTracking().Where(x => x.Name == key & !(x.Id == id)).FirstOrDefaultAsync();
+            var student = await _repositoryStudent.GetTableNoTracking().Where(x => x.NameEn == key & !(x.Id == id)).FirstOrDefaultAsync();
             if (student == null) return false;
             return true;
         }
@@ -83,18 +83,18 @@ namespace SchoolProject.Service.Services
         {
             var querable = _repositoryStudent.GetTableNoTracking().Include(x => x.Department).AsQueryable();
             if (!string.IsNullOrEmpty(search))
-                querable = querable.Where(x => x.Name.Contains(search) || x.Address.Contains(search) || x.Phone.Contains(search) || x.Department.Name.Contains(search));
+                querable = querable.Where(x => x.NameEn.Contains(search) || x.Address.Contains(search) || x.Phone.Contains(search) || x.Department.NameEn.Contains(search));
 
             switch (order)
             {
                 case StudentOrderByEnum.Name:
-                    querable.OrderBy(x => x.Name); break;
+                    querable.OrderBy(x => x.NameEn); break;
                 case StudentOrderByEnum.Address:
                     querable.OrderBy(x => x.Address); break;
                 case StudentOrderByEnum.Phone:
                     querable.OrderBy(x => x.Phone); break;
                 case StudentOrderByEnum.DepartmentName:
-                    querable.OrderBy(x => x.Department.Name); break;
+                    querable.OrderBy(x => x.Department.NameEn); break;
 
                 default:
                     return querable.OrderBy(x => x.Id);

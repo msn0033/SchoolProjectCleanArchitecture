@@ -23,7 +23,7 @@
                 Data = entity,
                 StatusCode = System.Net.HttpStatusCode.OK,
                 Succeeded = true,
-                Message = "Added Successfully",
+                Message = "Successfully",
                 Meta = Meta
             };
         }
@@ -67,14 +67,14 @@
             };
         }
 
-        public Response<T> Created<T>(T entity, object Meta = null!)
+        public Response<T> Created<T>(T entity, object Meta = null!, string message = null!)
         {
             return new Response<T>()
             {
                 Data = entity,
                 StatusCode = System.Net.HttpStatusCode.Created,
                 Succeeded = true,
-                Message = "Create", //_localizer[SharedResourcesKeys.Created],
+                Message = message, //_localizer[SharedResourcesKeys.Created],
                 Meta = Meta
             };
         }
