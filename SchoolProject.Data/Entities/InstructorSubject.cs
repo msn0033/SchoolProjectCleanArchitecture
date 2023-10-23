@@ -1,12 +1,10 @@
 ﻿namespace SchoolProject.Data.Entities
 {
-    public class StudentSubject
+    public class InstructorSubject
     {
-        public int StudentId { get; set; }
+        public int InstructorId { get; set; }
         public int SubjectId { get; set; }
-
-        public virtual Student Student { get; set; } = new();
+        public virtual Instructor Instructor { get; set; } = new();
         public virtual Subject Subject { get; set; } = new();
-
     }
 }

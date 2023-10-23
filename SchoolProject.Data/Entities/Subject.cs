@@ -14,14 +14,19 @@ namespace SchoolProject.Data.Entities
 
         public int Id { get; set; }
 
-        public string NameAr { get; set; } = string.Empty;
-        public string NameEn { get; set; } = string.Empty;
+        public string? NameAr { get; set; }
+        public string? NameEn { get; set; }
         public DateTime Period { get; set; }
-        public virtual ICollection<StudentSubject> StudentsSubjects { get; set; }
-        public virtual ICollection<DepartmetSubject> DepartmetsSubjects { get; set; }
 
-        public virtual ICollection<Department> Departments { get; set; }
-        public virtual ICollection<Student> Students { get; set; }
+        // from m to m ==> m to 1
+        public virtual ICollection<StudentSubject> StudentsSubjects { get; set; } = new HashSet<StudentSubject>();
+        public virtual ICollection<DepartmetSubject> DepartmetsSubjects { get; set; } = new HashSet<DepartmetSubject>();
+        public virtual ICollection<InstructorSubject> InstructorSubjects { get; set; } = new HashSet<InstructorSubject>();
+
+        // m to m
+        public virtual ICollection<Department> Departments { get; set; } = new HashSet<Department>();
+        public virtual ICollection<Student> Students { get; set; } = new HashSet<Student>();
+        public virtual ICollection<Instructor> Instructors { get; set; } = new HashSet<Instructor>();
     }
 }
 

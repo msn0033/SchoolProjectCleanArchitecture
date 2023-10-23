@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SchoolProject.Helper.ResponseHelper;
 using System.Net;
@@ -10,7 +9,7 @@ namespace SchoolProject.Api.Base
     [ApiController]
     public class AppControllersBase : ControllerBase
     {
-        private IMediator _mediatorInstance;
+        private IMediator? _mediatorInstance;
         protected IMediator _mediator => _mediatorInstance ??= HttpContext?.RequestServices.GetService<IMediator>()!;
 
         #region Actions

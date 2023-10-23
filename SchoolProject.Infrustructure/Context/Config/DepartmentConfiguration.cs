@@ -9,15 +9,31 @@ namespace SchoolProject.Infrustructure.Context.Config
         public void Configure(EntityTypeBuilder<Department> builder)
         {
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.Id).ValueGeneratedNever();
+            builder.Property(x => x.Id).ValueGeneratedOnAdd();
 
             builder.Property(x => x.NameEn)
                 .HasColumnType("NVARCHAR")
                 .HasMaxLength(50)
                 .IsRequired();
 
+            builder.Property(x => x.NameAr)
+              .HasColumnType("NVARCHAR")
+              .HasMaxLength(50)
+              .IsRequired();
+
+
 
             #region relationShip
+
+
+            #region 1 to 1 Instructor & Department
+            builder.HasOne(d => d.InstructorManager)
+               .WithOne(i => i.Department).
+            HasForeignKey<Department>(x => x.InstructorManagerId)
+            .IsRequired();
+
+            builder.HasIndex(x => x.InstructorManagerId).IsUnique();
+            #endregion
 
             #region Department -- Students
             builder.HasMany(d => d.Students)
@@ -28,10 +44,26 @@ namespace SchoolProject.Infrustructure.Context.Config
 
             #endregion
 
-            #region Department -- Subjects
-            builder.HasMany(d => d.Subjects)
+            #region m to m Department -- Subjects 
+            builder
+                .HasMany(d => d.Subjects)
                 .WithMany(sub => sub.Departments)
-                .UsingEntity<DepartmetSubject>(x => x.HasKey(x => new { x.DepId, x.SubId }));
+                .UsingEntity<DepartmetSubject>(
+
+                r => r.HasOne(r => r.Subjects).WithMany(r => r.DepartmetsSubjects).HasForeignKey(x => x.SubjectId),
+                l => l.HasOne(x => x.Department).WithMany(x => x.DepartmentSubjects).HasForeignKey(x => x.DepartmentId),
+                x => x.HasKey(x => new { x.SubjectId, x.DepartmentId })
+
+
+                 );
+            #endregion
+
+            #region m to 1 Instructor & Department
+            //builder.HasMany(d => d.Instructors)
+            //    .WithOne(i => i.DepartmentSuplier)
+            //    .HasForeignKey(i => i.DepartmentSuplierId)
+            //    .IsRequired(false);
+
             #endregion
 
             #region ....

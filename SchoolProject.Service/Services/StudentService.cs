@@ -83,7 +83,7 @@ namespace SchoolProject.Service.Services
         {
             var querable = _repositoryStudent.GetTableNoTracking().Include(x => x.Department).AsQueryable();
             if (!string.IsNullOrEmpty(search))
-                querable = querable.Where(x => x.NameEn.Contains(search) || x.Address.Contains(search) || x.Phone.Contains(search) || x.Department.NameEn.Contains(search));
+                querable = querable.Where(x => x.NameEn!.Contains(search) || x.Address!.Contains(search) || x.Phone!.Contains(search) || x.Department.NameEn!.Contains(search));
 
             switch (order)
             {

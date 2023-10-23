@@ -9,8 +9,7 @@ namespace SchoolProject.Infrustructure.Context.Config
         public void Configure(EntityTypeBuilder<Student> builder)
         {
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.Id).ValueGeneratedNever();
-
+            builder.Property(x => x.Id).ValueGeneratedOnAdd();
             builder.Property(x => x.NameEn)
                 .HasColumnType("NVARCHAR")
                 .HasMaxLength(50)
@@ -35,7 +34,11 @@ namespace SchoolProject.Infrustructure.Context.Config
             #region Students -- Subjects
             builder.HasMany(stu => stu.Subjects)
                 .WithMany(sub => sub.Students)
-                .UsingEntity<StudentSubject>();
+                .UsingEntity<StudentSubject>(
+                r => r.HasOne(x => x.Subject).WithMany(x => x.StudentsSubjects).HasForeignKey(x => x.SubjectId),
+                l => l.HasOne(x => x.Student).WithMany(x => x.StudentsSubjects).HasForeignKey(x => x.StudentId),
+                k => k.HasKey(x => new { x.SubjectId, x.StudentId })
+                );
 
 
             #endregion

@@ -30,15 +30,20 @@ namespace SchoolProject.Core.Features.Students.Queries.Handlers
             this._localizer = localizer;
         }
 
+        //GetStudents_List_withIncludeAsync
         public async Task<Response<IEnumerable<StudentsListQueryResponse>>> Handle(StudentsListQuery request, CancellationToken cancellationToken)
         {
             var students = await _studentService.GetStudentsListwithIncludeAsync();
 
             var studentsResponseMapping = _mapper.Map<IEnumerable<StudentsListQueryResponse>>(students);
 
-            return Success(studentsResponseMapping);
+
+            var plusMeta = Success(studentsResponseMapping);
+            plusMeta.Meta = new { count = studentsResponseMapping.Count() };
+            return plusMeta;
         }
 
+        //GetStudentByIdWithIncludeAsync
         public async Task<Response<StudentsListQueryResponse>> Handle(StudentByIdQuery request, CancellationToken cancellationToken)
         {
             var student = await _studentService.GetStudentByIdWithIncludeAsync(request.id);
@@ -46,14 +51,16 @@ namespace SchoolProject.Core.Features.Students.Queries.Handlers
                 return NotFound<StudentsListQueryResponse>(_localizer[ShareResourcesKey.NotFound]);
             var result = _mapper.Map<StudentsListQueryResponse>(student);
             return Success(result);
+
         }
 
+        //paginatedResult_Include_ASQuerable_Search_Or_OrderBy
         public async Task<PaginatedResult<GetStudentPaginatedListResponse>> Handle(GetStudentPaginatedListQuery request, CancellationToken cancellationToken)
         {
-            Expression<Func<Student, GetStudentPaginatedListResponse>> expression = e => new GetStudentPaginatedListResponse(e.Id, e.Localize(e.NameAr, e.NameEn), e.Address, e.Phone, e.Department.Localize(e.NameAr, e.NameEn));
+            Expression<Func<Student, GetStudentPaginatedListResponse>> expression = e => new GetStudentPaginatedListResponse(e.Id, e.Localize(e.NameAr!, e.NameEn!), e.Address!, e.Phone!, e.Department.Localize(e.NameAr!, e.NameEn!));
             var studentQuerable = _studentService.GetStudents_Include_List_ASQuerable_Search_Or_OrderBy(request.Search, request.OrderBy);
             var paginatedResult = await studentQuerable.Select(expression).ToPaginatedListAsync(request.PageNumber, request.PageSize);
-
+            paginatedResult.Meta = new { count = paginatedResult.Data.Count };
             return paginatedResult;
         }
     }

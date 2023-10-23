@@ -12,11 +12,26 @@ namespace SchoolProject.Data.Entities
 
         public int Id { get; set; }
 
-        public string NameAr { get; set; } = string.Empty;
-        public string NameEn { get; set; } = string.Empty;
-        public virtual ICollection<Student> Students { get; set; }
-        public virtual ICollection<DepartmetSubject> DepartmentSubjects { get; set; }
+        public string? NameAr { get; set; }
+        public string? NameEn { get; set; }
 
+
+
+        // 1 to 1
+
+        public int? InstructorManagerId { get; set; }
+        public Instructor? InstructorManager { get; set; }
+
+        //m to 1
+        public virtual ICollection<Student> Students { get; set; } = new HashSet<Student>();
+
+        // from m to m ==> m to 1
+        public virtual ICollection<DepartmetSubject> DepartmentSubjects { get; set; } = new HashSet<DepartmetSubject>();
+
+
+        //m to m
         public virtual ICollection<Subject> Subjects { get; set; } = new HashSet<Subject>();
+        public virtual ICollection<Instructor> Instructors { get; set; } = new HashSet<Instructor>();
+
     }
 }
