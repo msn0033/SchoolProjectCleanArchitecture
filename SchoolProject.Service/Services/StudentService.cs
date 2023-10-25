@@ -83,18 +83,18 @@ namespace SchoolProject.Service.Services
         {
             var querable = _repositoryStudent.GetTableNoTracking().Include(x => x.Department).AsQueryable();
             if (!string.IsNullOrEmpty(search))
-                querable = querable.Where(x => x.NameEn!.Contains(search) || x.Address!.Contains(search) || x.Phone!.Contains(search) || x.Department.NameEn!.Contains(search));
+                querable = querable.Where(x => x.Localize(x.NameAr,x.NameEn).Contains(search) || x.Address!.Contains(search) || x.Phone!.Contains(search) || x.Department.Localize(x.NameAr,x.NameEn).Contains(search));
 
             switch (order)
             {
                 case StudentOrderByEnum.Name:
-                    querable.OrderBy(x => x.NameEn); break;
+                    querable.OrderBy(x => x.Localize(x.NameAr,x.NameEn)); break;
                 case StudentOrderByEnum.Address:
                     querable.OrderBy(x => x.Address); break;
                 case StudentOrderByEnum.Phone:
                     querable.OrderBy(x => x.Phone); break;
                 case StudentOrderByEnum.DepartmentName:
-                    querable.OrderBy(x => x.Department.NameEn); break;
+                    querable.OrderBy(x => x.Localize(x.NameAr, x.NameEn)); break;
 
                 default:
                     return querable.OrderBy(x => x.Id);

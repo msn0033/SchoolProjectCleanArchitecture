@@ -20,10 +20,10 @@ namespace SchoolProject.Infrustructure.Context.Config
             .HasMaxLength(100)
             .IsRequired();
 
-            builder.Property(x => x.Period)
-                .HasColumnType("Date")
-                .HasColumnName("Period")
-                .IsRequired();
+            //builder.Property(x => x.Period)
+            //    .HasColumnType("Date")
+            //    .HasColumnName("Period")
+            //    .IsRequired();
 
             #region RelationShip
             #region m to m Subject & Instructor

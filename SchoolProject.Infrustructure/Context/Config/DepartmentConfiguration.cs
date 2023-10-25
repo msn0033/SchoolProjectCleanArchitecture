@@ -28,8 +28,8 @@ namespace SchoolProject.Infrustructure.Context.Config
 
             #region 1 to 1 Instructor & Department
             builder.HasOne(d => d.InstructorManager)
-               .WithOne(i => i.Department).
-            HasForeignKey<Department>(x => x.InstructorManagerId)
+               .WithOne(i => i.Department)
+            .HasForeignKey<Department>(x => x.InstructorManagerId)
             .IsRequired();
 
             builder.HasIndex(x => x.InstructorManagerId).IsUnique();
@@ -60,8 +60,8 @@ namespace SchoolProject.Infrustructure.Context.Config
 
             #region m to 1 Instructor & Department
             //builder.HasMany(d => d.Instructors)
-            //    .WithOne(i => i.DepartmentSuplier)
-            //    .HasForeignKey(i => i.DepartmentSuplierId)
+            //    .WithOne(i => i.Department)
+            //    .HasForeignKey(i => i.DepartmentId)
             //    .IsRequired(false);
 
             #endregion

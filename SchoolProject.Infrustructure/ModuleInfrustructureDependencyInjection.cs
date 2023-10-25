@@ -10,6 +10,7 @@ namespace SchoolProject.Infrustructure
         public static IServiceCollection AddInfrustructureDependencyInjection(this IServiceCollection services)
         {
              services.AddTransient<IStudentRepository, StudentRepository>();
+             services.AddTransient<IDepartmentsRepository, DepartmentsRepository>();
             return services;
         }
 

@@ -5,7 +5,7 @@
 namespace SchoolProject.Infrustructure.Migrations
 {
     /// <inheritdoc />
-    public partial class intial : Migration
+    public partial class Intial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -18,7 +18,7 @@ namespace SchoolProject.Infrustructure.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     NameAr = table.Column<string>(type: "NVARCHAR(100)", maxLength: 100, nullable: false),
                     NameEn = table.Column<string>(type: "NVARCHAR(100)", maxLength: 100, nullable: false),
-                    Period = table.Column<DateTime>(type: "Date", nullable: false)
+                    Period = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -33,7 +33,7 @@ namespace SchoolProject.Infrustructure.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     NameAr = table.Column<string>(type: "NVARCHAR(50)", maxLength: 50, nullable: false),
                     NameEn = table.Column<string>(type: "NVARCHAR(50)", maxLength: 50, nullable: false),
-                    InstructorManagerId = table.Column<int>(type: "int", nullable: true)
+                    InstructorManagerId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -76,7 +76,7 @@ namespace SchoolProject.Infrustructure.Migrations
                     Postion = table.Column<string>(type: "NVARCHAR(50)", maxLength: 50, nullable: false),
                     Salary = table.Column<decimal>(type: "decimal(15,2)", precision: 15, scale: 2, nullable: false),
                     DepartmentId = table.Column<int>(type: "int", nullable: true),
-                    InstructoId = table.Column<int>(type: "int", nullable: false)
+                    InstructoId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -168,8 +168,7 @@ namespace SchoolProject.Infrustructure.Migrations
                 name: "IX_Departments_InstructorManagerId",
                 table: "Departments",
                 column: "InstructorManagerId",
-                unique: true,
-                filter: "[InstructorManagerId] IS NOT NULL");
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_DepartmetSubjects_DepartmentId",
@@ -206,7 +205,8 @@ namespace SchoolProject.Infrustructure.Migrations
                 table: "Departments",
                 column: "InstructorManagerId",
                 principalTable: "Instructors",
-                principalColumn: "Id");
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Cascade);
         }
 
         /// <inheritdoc />

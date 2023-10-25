@@ -200,9 +200,8 @@ namespace SchoolProject.Infrustructure.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("NVARCHAR");
 
-                    b.Property<DateTime>("Period")
-                        .HasColumnType("Date")
-                        .HasColumnName("Period");
+                    b.Property<int>("Period")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

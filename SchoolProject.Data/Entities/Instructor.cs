@@ -1,6 +1,8 @@
-﻿namespace SchoolProject.Data.Entities
+﻿using SchoolProject.Data.Commons;
+
+namespace SchoolProject.Data.Entities
 {
-    public class Instructor
+    public class Instructor: GeneralLocalizableEntity
     {
         public int Id { get; set; }
         public string? NameAr { get; set; }
@@ -9,15 +11,17 @@
         public string? Postion { get; set; }
         public decimal Salary { get; set; }
 
+        // m to 1 Department & Instructor
         public int? DepartmentId { get; set; }
         public Department? Department { get; set; }
 
 
-        //m to 1
+        //m to 1 Instructor & Instructor
         public int? InstructoId { get; set; }
         public Instructor? Instructo { get; set; }
+        public virtual ICollection<Instructor>? Instructors { get; set; } = new HashSet<Instructor>();
 
-        public virtual ICollection<Instructor> Instructors { get; set; } = new HashSet<Instructor>();
+
         // m to m
         public virtual ICollection<Subject> Subjects { get; set; } = new HashSet<Subject>();
 

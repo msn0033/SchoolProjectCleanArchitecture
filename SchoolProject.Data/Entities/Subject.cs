@@ -16,7 +16,7 @@ namespace SchoolProject.Data.Entities
 
         public string? NameAr { get; set; }
         public string? NameEn { get; set; }
-        public DateTime Period { get; set; }
+        public int Period { get; set; }
 
         // from m to m ==> m to 1
         public virtual ICollection<StudentSubject> StudentsSubjects { get; set; } = new HashSet<StudentSubject>();

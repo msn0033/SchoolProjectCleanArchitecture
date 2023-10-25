@@ -12,8 +12,8 @@ using SchoolProject.Infrustructure.Context;
 namespace SchoolProject.Infrustructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231023103120_intial3")]
-    partial class intial3
+    [Migration("20231025071218_Intial")]
+    partial class Intial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -203,9 +203,8 @@ namespace SchoolProject.Infrustructure.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("NVARCHAR");
 
-                    b.Property<DateTime>("Period")
-                        .HasColumnType("Date")
-                        .HasColumnName("Period");
+                    b.Property<int>("Period")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
