@@ -19,9 +19,6 @@ namespace SchoolProject.Core.Features.Students.Commands.Validatiors
             ApplyCusotmValidationRule();
 
         }
-
-
-
         private void ApplyValidationRule()
         {
             RuleFor(x => x.NameEn)

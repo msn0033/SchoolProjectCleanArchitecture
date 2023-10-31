@@ -9,7 +9,7 @@ namespace SchoolProject.Helper.Extension
         {
             if (source == null) throw new ArgumentNullException("Empty");
             pageNumber = pageNumber == 0 ? 1 : pageNumber;
-            pageSize = pageSize == 0 ? 2 : pageSize;
+            pageSize = pageSize == 0 ? 10 : pageSize;
 
             int totalcount = await source.AsNoTracking().CountAsync();
             if (totalcount == 0) return PaginatedResult<T>.Success(new List<T>(), totalcount, pageNumber, pageSize);

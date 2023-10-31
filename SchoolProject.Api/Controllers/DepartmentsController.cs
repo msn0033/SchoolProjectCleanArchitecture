@@ -19,10 +19,10 @@ namespace SchoolProject.Api.Controllers
             var re =new StringBuilder( "test Departments");
             return Ok(re);
         }
-        [HttpGet("/Departments/GetById/{id}")]
-        public async Task<IActionResult> GetDepartmentByIdAsync(int id)
+        [HttpGet("/Departments/GetById/Id")]
+        public async Task<IActionResult> GetDepartmentByIdAsync([FromQuery]GetDepartmentByIdQuery query)
         {
-            var response =await _mediator.Send(new GetDepartmentByIdQuery(id));
+            var response =await _mediator.Send(query);
             return Ok(response);
         }
     }

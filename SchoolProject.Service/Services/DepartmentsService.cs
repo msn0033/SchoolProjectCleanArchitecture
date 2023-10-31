@@ -18,14 +18,13 @@ namespace SchoolProject.Service.Services
         {
             this._repository = repository;
         }
-        public async Task<Department> GetDepartmentById_Include(int id)
+        public async Task<Department> GetDepartmentById_Include_Async(int id)
         {
             var result = await _repository.GetTableNoTracking().Where(x => x.Id.Equals(id))
                 .Include(x => x.DepartmentSubjects).ThenInclude(x=>x.Subjects)
-                .Include(x => x.Students)
+                //.Include(x => x.Students)
                 .Include(x => x.Instructors).FirstOrDefaultAsync();
-            return result;
-           
+            return result!;   
         }
     }
 }

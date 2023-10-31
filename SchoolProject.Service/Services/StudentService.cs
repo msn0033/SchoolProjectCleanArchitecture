@@ -101,5 +101,12 @@ namespace SchoolProject.Service.Services
             }
             return querable;
         }
+
+        public IQueryable<Student> GetStudents_By_Dipartment_Id(int id)
+        {
+           var StudentQurablebyDepartmentId = _repositoryStudent.GetTableNoTracking().Where(x=>x.DepartmentId==id).AsQueryable();
+         
+            return StudentQurablebyDepartmentId;
+        }
     }
 }
