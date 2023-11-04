@@ -29,7 +29,7 @@ namespace SchoolProject.Core.Features.Departments.Queries.Handlers
         }
         public async Task<Response<GetDepartmentByIdResponse>> Handle(GetDepartmentByIdQuery request, CancellationToken cancellationToken)
         {
-            var result=await _departmentservice.GetDepartmentById_Include_Async(request.Id);
+            Department result=await _departmentservice.GetDepartmentById_Include_Async(request.Id);
             if (result == null) return NotFound<GetDepartmentByIdResponse>("Not Found Item");
             var maper=_mapper.Map<GetDepartmentByIdResponse>(result);
            

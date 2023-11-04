@@ -68,8 +68,22 @@ namespace SchoolProject.Service.Services
         public async Task<string> DeleteAsync(Student student)
         {
             var id = student.Id;
-            await _repositoryStudent.DeleteAsync(student);
-            return $"Delete is Success id = {id}";
+            var trans = _repositoryStudent.BeginTransaction();
+            try
+            {
+                await _repositoryStudent.DeleteAsync(student);
+                await trans.CommitAsync();
+                return $"Delete is Success id = {id}";
+            }
+            catch
+            {
+                await trans.RollbackAsync();
+                return "Falied";
+              
+            }
+
+          
+            
         }
 
 

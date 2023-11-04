@@ -10,6 +10,8 @@ namespace SchoolProject.Service.Interface
     public interface IDepartmentsService
     {
         Task<Department> GetDepartmentById_Include_Async(int id);
-       
+        Task<Department> GetDepartmentIdAsync(int id);
+        Task<bool> IsDepartmentIdIExistAsync(int departmentId);
+
     } 
 }

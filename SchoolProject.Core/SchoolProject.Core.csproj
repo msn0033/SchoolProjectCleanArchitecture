@@ -32,7 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Departments\Commands\" />
+    <Folder Include="Features\Departments\Commands\Validatiors\" />
     <Folder Include="Mapping\DepartmentsMapping\CommandsMapping\" />
   </ItemGroup>
 

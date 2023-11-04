@@ -10,7 +10,10 @@
         public string Phone { get; set; }
 
         public string DepartmentName { get; set; }
-
+        public GetStudentPaginatedListResponse()
+        {
+            
+        }
         public GetStudentPaginatedListResponse(int id, string name, string address, string phone, string departmentName)
         {
             Id = id;

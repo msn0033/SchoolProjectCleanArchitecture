@@ -33,12 +33,12 @@ namespace SchoolProject.Core.Features.Departments.Queries.Responses
     public class SubjectResponse
     {
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string? Name { get; set; }
     }
     public class InstructorResponse
     {
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string? Name { get; set; }
     }
 
 }

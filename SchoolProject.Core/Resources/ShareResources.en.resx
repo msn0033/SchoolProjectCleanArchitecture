@@ -120,6 +120,12 @@
   <data name="Add Successfully" xml:space="preserve">
     <value>Add is Successfully</value>
   </data>
+  <data name="DepartmentId" xml:space="preserve">
+    <value>Department No</value>
+  </data>
+  <data name="IsExist" xml:space="preserve">
+    <value>is Exist</value>
+  </data>
   <data name="Item Must not be Empty" xml:space="preserve">
     <value>Item Must not be Empty</value>
   </data>

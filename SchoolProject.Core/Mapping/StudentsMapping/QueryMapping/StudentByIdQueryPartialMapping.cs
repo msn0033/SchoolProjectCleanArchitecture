@@ -5,9 +5,9 @@ namespace SchoolProject.Core.Mapping.StudentsMapping
 {
     public partial class StudentProfile
     {
-        public void GetStudentsDetailsMapping()
+        public void GetStudentByIdQueryPartialMapping()
         {
-            CreateMap<Student, StudentsDetailsQueryResponse>()
+            CreateMap<Student, StudentByIdQueryResponse>()
                .ForMember(des => des.DepartmentName, op => op.MapFrom(src => src.Department.Localize(src.NameAr, src.NameEn)))
                .ForMember(des => des.Name, op => op.MapFrom(src => src.Localize(src.NameAr, src.NameEn)));
 

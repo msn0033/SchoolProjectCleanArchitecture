@@ -57,9 +57,12 @@ namespace SchoolProject.Core.Features.Students.Queries.Handlers
         //paginatedResult_Include_ASQuerable_Search_Or_OrderBy
         public async Task<PaginatedResult<GetStudentPaginatedListResponse>> Handle(GetStudentPaginatedListQuery request, CancellationToken cancellationToken)
         {
-            Expression<Func<Student, GetStudentPaginatedListResponse>> expression = e => new GetStudentPaginatedListResponse(e.Id, e.Localize(e.NameAr!, e.NameEn!), e.Address!, e.Phone!, e.Department.Localize(e.NameAr!, e.NameEn!));
+            //Expression<Func<Student, GetStudentPaginatedListResponse>> expression = e => new GetStudentPaginatedListResponse(e.Id, e.Localize(e.NameAr!, e.NameEn!), e.Address!, e.Phone!, e.Department.Localize(e.NameAr!, e.NameEn!));
+            
             var studentQuerable = _studentService.GetStudents_Include_List_ASQuerable_Search_Or_OrderBy(request.Search, request.OrderBy);
-            var paginatedResult = await studentQuerable.Select(expression).ToPaginatedListAsync(request.PageNumber, request.PageSize);
+            // var paginatedResult = await studentQuerable.Select(expression).ToPaginatedListAsync(request.PageNumber, request.PageSize);
+
+            var paginatedResult = await _mapper.ProjectTo<GetStudentPaginatedListResponse>(studentQuerable).ToPaginatedListAsync(request.PageNumber,request.PageSize);
             paginatedResult.Meta = new { count = paginatedResult.Data.Count };
             return paginatedResult;
         }

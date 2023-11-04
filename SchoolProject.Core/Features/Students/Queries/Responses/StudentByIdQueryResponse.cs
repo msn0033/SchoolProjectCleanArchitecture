@@ -1,6 +1,6 @@
 ﻿namespace SchoolProject.Core.Features.Students.Queries.Responses
 {
-    public class StudentsDetailsQueryResponse
+    public class StudentByIdQueryResponse
     {
 
         public int Id { get; set; }

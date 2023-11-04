@@ -7,9 +7,11 @@ namespace SchoolProject.Core.Mapping.StudentsMapping
         public StudentProfile()
         {
             GetStudentListMapping();
-            GetStudentsDetailsMapping();
+            GetStudentByIdQueryPartialMapping();
+            GetStudentPaginatedListQuery_Partial_Mapping();
             addStudentCommandMapping();
             EditStudentCommandMapping();
+            
         }
     }
 }

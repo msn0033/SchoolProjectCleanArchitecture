@@ -28,7 +28,16 @@ builder.Services.AddInfrustructureDependencyInjection()
                 .AddModuleCoreDependencyInjection();
 
 
-
+//Cors service
+builder.Services.AddCors(opt =>
+{
+    opt.AddPolicy(name: "Cors_service", policy =>
+    {
+        policy.AllowAnyHeader();
+        policy.AllowAnyMethod();
+        policy.AllowAnyOrigin();
+    });
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -43,10 +52,14 @@ app.UseRequestLocalization(options!.Value);
 
 app.UseHttpsRedirection();
 
+app.UseCors("Cors_service");
+
 app.UseAuthorization();
 
 app.MapControllers();
 app.UseMiddleware<ErrorHandlerMiddleware>();
+
+
 
 
 

@@ -120,6 +120,12 @@
   <data name="Add Successfully" xml:space="preserve">
     <value>تم الاضافة بنجاح</value>
   </data>
+  <data name="DepartmentId" xml:space="preserve">
+    <value>رقم القسم</value>
+  </data>
+  <data name="IsExist" xml:space="preserve">
+    <value>موجود مسبقاً</value>
+  </data>
   <data name="Item Must not be Empty" xml:space="preserve">
     <value>العنصر لا يجب يكون فاضي</value>
   </data>
