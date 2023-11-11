@@ -14,8 +14,8 @@ using System.Linq.Expressions;
 namespace SchoolProject.Core.Features.Students.Queries.Handlers
 {
     public class StudentQueryHandler : ResponseHandler,
-         IRequestHandler<StudentsListQuery, Response<IEnumerable<StudentsListQueryResponse>>>
-        , IRequestHandler<StudentByIdQuery, Response<StudentsListQueryResponse>>
+         IRequestHandler<StudentsListQuery, Response<IEnumerable<GetStudentsListQueryResponse>>>
+        , IRequestHandler<StudentByIdQuery, Response<GetStudentsListQueryResponse>>
         , IRequestHandler<GetStudentPaginatedListQuery, PaginatedResult<GetStudentPaginatedListResponse>>
 
     {
@@ -31,11 +31,11 @@ namespace SchoolProject.Core.Features.Students.Queries.Handlers
         }
 
         //GetStudents_List_withIncludeAsync
-        public async Task<Response<IEnumerable<StudentsListQueryResponse>>> Handle(StudentsListQuery request, CancellationToken cancellationToken)
+        public async Task<Response<IEnumerable<GetStudentsListQueryResponse>>> Handle(StudentsListQuery request, CancellationToken cancellationToken)
         {
             var students = await _studentService.GetStudentsListwithIncludeAsync();
 
-            var studentsResponseMapping = _mapper.Map<IEnumerable<StudentsListQueryResponse>>(students);
+            var studentsResponseMapping = _mapper.Map<IEnumerable<GetStudentsListQueryResponse>>(students);
 
 
             var plusMeta = Success(studentsResponseMapping);
@@ -44,12 +44,12 @@ namespace SchoolProject.Core.Features.Students.Queries.Handlers
         }
 
         //GetStudentByIdWithIncludeAsync
-        public async Task<Response<StudentsListQueryResponse>> Handle(StudentByIdQuery request, CancellationToken cancellationToken)
+        public async Task<Response<GetStudentsListQueryResponse>> Handle(StudentByIdQuery request, CancellationToken cancellationToken)
         {
             var student = await _studentService.GetStudentByIdWithIncludeAsync(request.id);
             if (student == null)
-                return NotFound<StudentsListQueryResponse>(_localizer[ShareResourcesKey.NotFound]);
-            var result = _mapper.Map<StudentsListQueryResponse>(student);
+                return NotFound<GetStudentsListQueryResponse>(_localizer[ShareResourcesKey.NotFound]);
+            var result = _mapper.Map<GetStudentsListQueryResponse>(student);
             return Success(result);
 
         }

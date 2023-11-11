@@ -1,8 +1,7 @@
 ﻿namespace SchoolProject.Core.Features.Students.Queries.Responses
 {
-    public class StudentByIdQueryResponse
+    public class GetStudentsListQueryResponse
     {
-
         public int Id { get; set; }
 
         public string Name { get; set; } = string.Empty;
@@ -13,4 +12,3 @@
         public string DepartmentName { get; set; } = string.Empty;
     }
 }
-

@@ -4,7 +4,7 @@ using SchoolProject.Helper.ResponseHelper;
 
 namespace SchoolProject.Core.Features.Students.Queries.Models
 {
-    public class StudentByIdQuery : IRequest<Response<StudentsListQueryResponse>>
+    public class StudentByIdQuery : IRequest<Response<GetStudentsListQueryResponse>>
     {
         public int id { get; set; }
     }

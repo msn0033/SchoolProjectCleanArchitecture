@@ -7,7 +7,7 @@ namespace SchoolProject.Core.Mapping.StudentsMapping
     {
         public void GetStudentListMapping()
         {
-            CreateMap<Student, StudentsListQueryResponse>()
+            CreateMap<Student, GetStudentsListQueryResponse>()
                .ForMember(des => des.DepartmentName, op => op.MapFrom(src => src.Department.Localize(src.NameAr, src.NameEn)))
                .ForMember(des => des.Name, op => op.MapFrom(src => src.Localize(src.NameAr, src.NameEn)));
 
