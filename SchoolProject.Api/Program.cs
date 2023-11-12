@@ -22,6 +22,7 @@ builder.Services.AddDbContext<AppDbContext>(option =>
     .LogTo(Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Information);
 });
 
+
 //Dependency injection
 builder.Services.AddInfrustructureDependencyInjection()
                 .AddServiceDependencyInjection()
