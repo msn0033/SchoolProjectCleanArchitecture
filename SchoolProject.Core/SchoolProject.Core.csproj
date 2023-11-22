@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Mapping\NewFolder\**" />
+    <EmbeddedResource Remove="Mapping\NewFolder\**" />
+    <None Remove="Mapping\NewFolder\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="FluentValidation" Version="11.7.1" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.7.1" />
@@ -23,16 +29,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Resources\ShareResources.ar.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resources\ShareResources.en.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-    </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
+    <Folder Include="Features\ApplicationUser\Commands\Validatiors\" />
+    <Folder Include="Features\ApplicationUser\Queries\Handlers\" />
+    <Folder Include="Features\ApplicationUser\Queries\Models\" />
+    <Folder Include="Features\ApplicationUser\Queries\Validatiors\" />
     <Folder Include="Features\Departments\Commands\Validatiors\" />
+    <Folder Include="Mapping\ApplicationUserMapping\QueryMapping\" />
     <Folder Include="Mapping\DepartmentsMapping\CommandsMapping\" />
   </ItemGroup>
 

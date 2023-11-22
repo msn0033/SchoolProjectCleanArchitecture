@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using Microsoft.Extensions.Localization;
 using SchoolProject.Core.Features.Students.Commands.Models;
-using SchoolProject.Core.Resources;
+using SchoolProject.Helper.Resources;
 using SchoolProject.Service.Interface;
 
 namespace SchoolProject.Core.Features.Students.Commands.Validatiors

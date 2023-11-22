@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.Extensions.Localization;
 using SchoolProject.Core.Features.Departments.Queries.Models;
 using SchoolProject.Core.Features.Departments.Queries.Responses;
 using SchoolProject.Data.Entities;
 using SchoolProject.Helper.Extension;
+using SchoolProject.Helper.Resources;
 using SchoolProject.Helper.ResponseHelper;
 using SchoolProject.Service.Interface;
 using System;
@@ -20,12 +22,14 @@ namespace SchoolProject.Core.Features.Departments.Queries.Handlers
         private readonly IMapper _mapper;
         private readonly IDepartmentsService _departmentservice;
         private readonly IStudentService _studentService;
+        private readonly IStringLocalizer<ShareResources> _localizer;
 
-        public DepartmentsHandlers(IMapper mapper ,IDepartmentsService service,IStudentService studentService)
+        public DepartmentsHandlers(IMapper mapper ,IDepartmentsService service,IStudentService studentService ,IStringLocalizer<ShareResources> localizer):base(localizer)
         {
             this._mapper = mapper;
             this._departmentservice = service;
             this._studentService = studentService;
+            this._localizer = localizer;
         }
         public async Task<Response<GetDepartmentByIdResponse>> Handle(GetDepartmentByIdQuery request, CancellationToken cancellationToken)
         {

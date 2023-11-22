@@ -1,4 +1,4 @@
-﻿namespace SchoolProject.Core.Resources
+﻿namespace SchoolProject.Helper.Resources
 {
     public class ShareResources
     {

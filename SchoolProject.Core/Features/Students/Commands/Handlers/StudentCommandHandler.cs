@@ -2,9 +2,11 @@
 using MediatR;
 using Microsoft.Extensions.Localization;
 using SchoolProject.Core.Features.Students.Commands.Models;
-using SchoolProject.Core.Resources;
+
 using SchoolProject.Data.Entities;
+using SchoolProject.Helper.Resources;
 using SchoolProject.Helper.ResponseHelper;
+
 using SchoolProject.Service.Interface;
 
 namespace SchoolProject.Core.Features.Students.Commands.Handlers
@@ -18,7 +20,7 @@ namespace SchoolProject.Core.Features.Students.Commands.Handlers
         private readonly IMapper _mapper;
         private readonly IStringLocalizer<ShareResources> _localizer;
 
-        public StudentCommandHandler(IStudentService studentService, IMapper mapper, IStringLocalizer<ShareResources> localizer)
+        public StudentCommandHandler(IStudentService studentService, IMapper mapper, IStringLocalizer<ShareResources> localizer):base(localizer)
         {
             this._studentService = studentService;
             this._mapper = mapper;
