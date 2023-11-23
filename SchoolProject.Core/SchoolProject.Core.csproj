@@ -29,7 +29,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\ApplicationUser\Commands\Validatiors\" />
     <Folder Include="Features\ApplicationUser\Queries\Handlers\" />
     <Folder Include="Features\ApplicationUser\Queries\Models\" />
     <Folder Include="Features\ApplicationUser\Queries\Validatiors\" />

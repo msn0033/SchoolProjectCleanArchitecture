@@ -12,7 +12,7 @@ namespace SchoolProject.Core.Features.Students.Commands.Validatiors
         private readonly IDepartmentsService _departmentsService;
         private readonly IStringLocalizer<ShareResources> _localizer;
 
-        public AddStudentCommandValidation(IStudentService studentService,IDepartmentsService departmentsService ,IStringLocalizer<ShareResources> localizer)
+        public AddStudentCommandValidation(IStudentService studentService, IDepartmentsService departmentsService, IStringLocalizer<ShareResources> localizer)
         {
             this._studentService = studentService;
             this._departmentsService = departmentsService;
@@ -24,30 +24,30 @@ namespace SchoolProject.Core.Features.Students.Commands.Validatiors
         private void ApplyValidationRule()
         {
             RuleFor(x => x.NameEn)
-                .NotEmpty().WithMessage(_localizer["Item Must not be Empty"])
-                .NotNull().WithMessage(_localizer["Must not be Null"]);
+                .NotEmpty().WithMessage(_localizer[ShareResourcesKey.Must_not_be_Empty])
+                .NotNull().WithMessage(_localizer[ShareResourcesKey.Must_not_be_Null]);
 
 
             RuleFor(x => x.NameAr)
-                .NotEmpty().WithMessage(_localizer["Item Must not be Empty"])
-                .NotNull().WithMessage(_localizer["Must not be Null"]);
+                 .NotEmpty().WithMessage(_localizer[ShareResourcesKey.Must_not_be_Empty])
+                .NotNull().WithMessage(_localizer[ShareResourcesKey.Must_not_be_Null]);
 
             RuleFor(x => x.Address)
-               .NotEmpty().WithMessage(_localizer["Item Must not be Empty"])
-               .NotNull().WithMessage(_localizer["Must not be Null"]);
+                .NotEmpty().WithMessage(_localizer[ShareResourcesKey.Must_not_be_Empty])
+                .NotNull().WithMessage(_localizer[ShareResourcesKey.Must_not_be_Null]);
 
 
             RuleFor(x => x.Phone)
-               .NotEmpty().WithMessage(_localizer["Item Must not be Empty"])
-               .NotNull().WithMessage(_localizer["Must not be Null"])
-               .Length(10, 10).WithMessage(_localizer["Must be is 10 numbers"]);
+               .NotEmpty().WithMessage(_localizer[ShareResourcesKey.Must_not_be_Empty])
+                .NotNull().WithMessage(_localizer[ShareResourcesKey.Must_not_be_Null])
+               .Length(10, 10).WithMessage(_localizer[ShareResourcesKey.Must_be_is_10_numbers]);
         }
         private void ApplyCusotmValidationRule()
         {
             RuleFor(x => x.NameEn)
                 .MustAsync(async (key, CancellationToken) => !await _studentService.IsNameExist(key))
                 .WithMessage(_localizer[ShareResourcesKey.IsExist]);
-               
+
             RuleFor(x => x.NameAr)
              .MustAsync(async (key, CancellationToken) => !await _studentService.IsNameExist(key))
              .WithMessage(_localizer[ShareResourcesKey.IsExist]);

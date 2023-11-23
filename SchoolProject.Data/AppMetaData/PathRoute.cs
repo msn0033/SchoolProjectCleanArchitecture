@@ -16,7 +16,11 @@
             public const string Delete = prefix + id;
             public const string Paginated = prefix + "Paginated";
 
-
+        }
+        public static class ApplicationUsersRoute
+        {
+            public const string prefix = Rule + "ApplicationUsers/";
+            public const string Create = prefix + "Create";
         }
 
     }

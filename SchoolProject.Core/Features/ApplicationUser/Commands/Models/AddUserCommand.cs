@@ -14,7 +14,7 @@ namespace SchoolProject.Core.Features.ApplicationUser.Commands.Models
         public required string UserName { get; set; }
         public required string Email { get; set; }
         public required string Password { get; set; }
-        public required string ConfirmPassword { get; set; }
+        public required string PasswordConfirm { get; set; }
         public  string? PhoneNumber { get; set; }
         public string? Address { get; set; }
         public string? City { get; set; }
