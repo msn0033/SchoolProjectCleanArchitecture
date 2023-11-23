@@ -1,7 +1,9 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using SchoolProject.Core;
 using SchoolProject.Core.Middleware;
+using SchoolProject.Data.Entities.Identity;
 using SchoolProject.Infrustructure;
 using SchoolProject.Infrustructure.Context;
 using SchoolProject.Service;
@@ -21,12 +23,15 @@ builder.Services.AddDbContext<AppDbContext>(option =>
     option.UseSqlServer(builder.Configuration.GetConnectionString("dbcontext"))
     .LogTo(Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Information);
 });
+builder.Services.AddIdentity<User, IdentityRole<int>>().AddEntityFrameworkStores<AppDbContext>();
+
 
 
 //Dependency injection
 builder.Services.AddInfrustructureDependencyInjection()
                 .AddServiceDependencyInjection()
-                .AddModuleCoreDependencyInjection();
+                .AddModuleCoreDependencyInjection()
+                .AddServiceRegisteration();
 
 
 //Cors service
@@ -48,6 +53,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 var options = app.Services.GetService<IOptions<RequestLocalizationOptions>>();
+
 app.UseRequestLocalization(options!.Value);
 
 
