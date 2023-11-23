@@ -3,9 +3,10 @@ using MediatR;
 using Microsoft.Extensions.Localization;
 using SchoolProject.Core.Features.Students.Queries.Models;
 using SchoolProject.Core.Features.Students.Queries.Responses;
-using SchoolProject.Core.Resources;
+
 using SchoolProject.Data.Entities;
 using SchoolProject.Helper.Extension;
+using SchoolProject.Helper.Resources;
 using SchoolProject.Helper.ResponseHelper;
 using SchoolProject.Helper.Wrappers;
 using SchoolProject.Service.Interface;
@@ -23,7 +24,7 @@ namespace SchoolProject.Core.Features.Students.Queries.Handlers
         private readonly IMapper _mapper;
         private readonly IStringLocalizer<ShareResources> _localizer;
 
-        public StudentQueryHandler(IStudentService studentService, IMapper mapper, IStringLocalizer<ShareResources> localizer)
+        public StudentQueryHandler(IStudentService studentService, IMapper mapper, IStringLocalizer<ShareResources> localizer):base(localizer)
         {
             this._studentService = studentService;
             this._mapper = mapper;

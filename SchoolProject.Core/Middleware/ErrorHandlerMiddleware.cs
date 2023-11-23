@@ -2,7 +2,8 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
-using SchoolProject.Core.Resources;
+
+using SchoolProject.Helper.Resources;
 using SchoolProject.Helper.ResponseHelper;
 using System.Net;
 using System.Text.Json;
