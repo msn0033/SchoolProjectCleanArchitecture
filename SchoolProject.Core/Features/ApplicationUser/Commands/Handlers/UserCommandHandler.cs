@@ -14,9 +14,9 @@ namespace SchoolProject.Core.Features.ApplicationUser.Commands.Handlers
     {
         private readonly IMapper _mapper;
         private readonly UserManager<User> _userManager;
-        private readonly IStringLocalizer<ShareResources> _localizer;
+        private readonly IStringLocalizer<UserCommandHandler> _localizer;
 
-        public UserCommandHandler(IMapper mapper,UserManager<User> userManager,IStringLocalizer<ShareResources> localizer):base(localizer)
+        public UserCommandHandler(IMapper mapper,UserManager<User> userManager,IStringLocalizer<UserCommandHandler> localizer):base(localizer)
         {
             _mapper = mapper;
             this._userManager = userManager;
@@ -36,13 +36,14 @@ namespace SchoolProject.Core.Features.ApplicationUser.Commands.Handlers
             var user=_mapper.Map<User>(request);
             //Create -add
             var result =await _userManager.CreateAsync(user, request.Password);
-            //Success
-            if (result.Succeeded) 
-                return Created<string>(_localizer[ShareResourcesKey.Created]);
+
             //Filed
-            return Failed<string>(_localizer[ShareResourcesKey.Failed]);
-            
-           
+            if (!result.Succeeded)
+                return Failed<string>(_localizer[ShareResourcesKey.Failed]);
+
+            //Success
+            return Created<string>(_localizer[ShareResourcesKey.Created]);
+ 
         }
     }
 }

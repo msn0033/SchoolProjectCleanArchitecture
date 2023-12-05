@@ -22,13 +22,15 @@ namespace SchoolProject.Core.Features.Students.Queries.Handlers
     {
         private readonly IStudentService _studentService;
         private readonly IMapper _mapper;
-        private readonly IStringLocalizer<ShareResources> _localizer;
 
-        public StudentQueryHandler(IStudentService studentService, IMapper mapper, IStringLocalizer<ShareResources> localizer):base(localizer)
+        private readonly IStringLocalizer<StudentQueryHandler> _localizer;
+
+        public StudentQueryHandler(IStudentService studentService, IMapper mapper, IStringLocalizer<StudentQueryHandler> localizer):base(localizer)
         {
             this._studentService = studentService;
             this._mapper = mapper;
             this._localizer = localizer;
+      
         }
 
         //GetStudents_List_withIncludeAsync
@@ -49,7 +51,7 @@ namespace SchoolProject.Core.Features.Students.Queries.Handlers
         {
             var student = await _studentService.GetStudentByIdWithIncludeAsync(request.id);
             if (student == null)
-                return NotFound<GetStudentsListQueryResponse>(_localizer[ShareResourcesKey.NotFound]);
+                return NotFound<GetStudentsListQueryResponse>(_localizer["welcome"]);
             var result = _mapper.Map<GetStudentsListQueryResponse>(student);
             return Success(result);
 

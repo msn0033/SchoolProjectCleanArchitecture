@@ -12,6 +12,7 @@ namespace SchoolProject.Core.Mapping.ApplicationUserMapping
         public UserProfile()
         {
             AddUserCommandMapping();
+            GetUsersPaginatedListResponseMapping();
         }
     }
 }

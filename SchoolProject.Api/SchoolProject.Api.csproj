@@ -7,6 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Resources\ar-EG.json" />
+    <Content Remove="Resources\de-DE.json" />
+    <Content Remove="Resources\en-US.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Resources\ar-EG.json" />
+    <None Include="Resources\de-DE.json" />
+    <None Include="Resources\en-US.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.11">
       <PrivateAssets>all</PrivateAssets>
@@ -16,6 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\LocalizationLanguage\LocalizationLanguage.csproj" />
     <ProjectReference Include="..\SchoolProject.Core\SchoolProject.Core.csproj" />
     <ProjectReference Include="..\SchoolProject.Infrustructure\SchoolProject.Infrustructure.csproj" />
     <ProjectReference Include="..\SchoolProject.Service\SchoolProject.Service.csproj" />

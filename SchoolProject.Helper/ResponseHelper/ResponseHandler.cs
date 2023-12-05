@@ -5,10 +5,10 @@ namespace SchoolProject.Helper.ResponseHelper;
 
 public class ResponseHandler
 {
-    private readonly IStringLocalizer<ShareResources> _localizer;
+    private readonly IStringLocalizer<ResponseHandler> _localizer;
 
-    public ResponseHandler() { }
-    public ResponseHandler( IStringLocalizer<ShareResources> localizer)
+   // public ResponseHandler() { }
+    public ResponseHandler( IStringLocalizer<ResponseHandler> localizer)
     {
         this._localizer = localizer;
     }
