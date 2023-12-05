@@ -18,9 +18,9 @@ namespace SchoolProject.Core.Features.Students.Commands.Handlers
     {
         private readonly IStudentService _studentService;
         private readonly IMapper _mapper;
-        private readonly IStringLocalizer<ShareResources> _localizer;
+        private readonly IStringLocalizer<StudentCommandHandler> _localizer;
 
-        public StudentCommandHandler(IStudentService studentService, IMapper mapper, IStringLocalizer<ShareResources> localizer):base(localizer)
+        public StudentCommandHandler(IStudentService studentService, IMapper mapper, IStringLocalizer<StudentCommandHandler> localizer):base(localizer)
         {
             this._studentService = studentService;
             this._mapper = mapper;
@@ -48,11 +48,11 @@ namespace SchoolProject.Core.Features.Students.Commands.Handlers
         public async Task<Response<string>> Handle(EditStudentCommand request, CancellationToken cancellationToken)
         {
             // check item is exist
-            var student = await _studentService.GetStudentsListwithIncludeAsync();
+            var student = await _studentService.GetStudentByIdAsync(request.Id);
             //return not found if not exist
             if (student == null) return NotFound<string>("item not Found");
             //mapping
-            var studentMapping = _mapper.Map<Student>(request);
+            var studentMapping = _mapper.Map(request,student);
             //service Edit
             string result = await _studentService.EditStudentAsync(studentMapping);
             //return Success

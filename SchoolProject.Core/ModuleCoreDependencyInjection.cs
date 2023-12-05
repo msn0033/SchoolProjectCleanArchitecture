@@ -22,28 +22,10 @@ namespace SchoolProject.Core
 
             //Configuration  Flent Validation
 
-
-            // Get Validators
             services.AddValidatorsFromAssembly(typeof(AddStudentCommand).Assembly);
-            // 
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
-            // Localization
-            services.AddLocalization();
-            services.Configure<RequestLocalizationOptions>(options =>
-            {
-                List<CultureInfo> supportedCultures = new List<CultureInfo>
-                        {
-                            new CultureInfo("en-US"),
-                            new CultureInfo("de-DE"),
-                            new CultureInfo("fr-FR"),
-                            new CultureInfo("ar-SA")
-                        };
-                options.DefaultRequestCulture = new RequestCulture("ar-SA");
-                options.SupportedCultures = supportedCultures;
-                options.SupportedUICultures = supportedCultures;
-            });
-
+          
             return services;
         }
     }

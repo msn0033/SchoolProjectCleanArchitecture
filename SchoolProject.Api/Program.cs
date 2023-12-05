@@ -1,3 +1,4 @@
+using LocalizationLanguage;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -7,6 +8,7 @@ using SchoolProject.Data.Entities.Identity;
 using SchoolProject.Infrustructure;
 using SchoolProject.Infrustructure.Context;
 using SchoolProject.Service;
+using LocalizationLanguage.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,7 +33,8 @@ builder.Services.AddIdentity<User, IdentityRole<int>>().AddEntityFrameworkStores
 builder.Services.AddInfrustructureDependencyInjection()
                 .AddServiceDependencyInjection()
                 .AddModuleCoreDependencyInjection()
-                .AddServiceRegisteration();
+                .AddServiceRegisteration()
+                .AddLocalizationLanguageDependencyInjection();
 
 
 //Cors service
@@ -56,7 +59,7 @@ var options = app.Services.GetService<IOptions<RequestLocalizationOptions>>();
 
 app.UseRequestLocalization(options!.Value);
 
-
+app.UseRequestCulture();
 app.UseHttpsRedirection();
 
 app.UseCors("Cors_service");

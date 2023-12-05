@@ -26,6 +26,8 @@ namespace SchoolProject.Infrustructure
                 op.Password.RequiredLength = 3;
                 op.Password.RequiredUniqueChars = 0;
                 op.SignIn.RequireConfirmedEmail = false;
+
+
             });
             return services;
         }

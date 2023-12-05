@@ -3,6 +3,7 @@ using MediatR;
 using Microsoft.Extensions.Localization;
 using SchoolProject.Core.Features.Departments.Queries.Models;
 using SchoolProject.Core.Features.Departments.Queries.Responses;
+using SchoolProject.Core.Features.Students.Commands.Handlers;
 using SchoolProject.Data.Entities;
 using SchoolProject.Helper.Extension;
 using SchoolProject.Helper.Resources;
@@ -22,15 +23,16 @@ namespace SchoolProject.Core.Features.Departments.Queries.Handlers
         private readonly IMapper _mapper;
         private readonly IDepartmentsService _departmentservice;
         private readonly IStudentService _studentService;
-        private readonly IStringLocalizer<ShareResources> _localizer;
+        private readonly IStringLocalizer<DepartmentsHandlers> _localizer;
 
-        public DepartmentsHandlers(IMapper mapper ,IDepartmentsService service,IStudentService studentService ,IStringLocalizer<ShareResources> localizer):base(localizer)
+        public DepartmentsHandlers(IMapper mapper ,IDepartmentsService service,IStudentService studentService ,IStringLocalizer<DepartmentsHandlers> localizer):base(localizer)
         {
             this._mapper = mapper;
             this._departmentservice = service;
             this._studentService = studentService;
             this._localizer = localizer;
         }
+        //ById
         public async Task<Response<GetDepartmentByIdResponse>> Handle(GetDepartmentByIdQuery request, CancellationToken cancellationToken)
         {
             Department result=await _departmentservice.GetDepartmentById_Include_Async(request.Id);
