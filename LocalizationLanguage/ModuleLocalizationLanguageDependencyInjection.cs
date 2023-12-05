@@ -31,7 +31,7 @@ namespace LocalizationLanguage
                 var supportedCultures = new[]
                 {
                     new CultureInfo("en-US"),
-                    new CultureInfo("ar-sa"),
+                    new CultureInfo("ar-SA"),
                     new CultureInfo("de-DE")
                 };
 

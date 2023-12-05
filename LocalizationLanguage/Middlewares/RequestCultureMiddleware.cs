@@ -25,7 +25,7 @@ namespace JsonBasedLocalization.Web.Middlewares
                 switch (browserLanguage)
                 {
                     case "ar":
-                        culture = "ar-sa";
+                        culture = "ar-SA";
                         break;
 
                     case "de":

@@ -9,6 +9,7 @@ using SchoolProject.Infrustructure;
 using SchoolProject.Infrustructure.Context;
 using SchoolProject.Service;
 using LocalizationLanguage.Middlewares;
+using JsonBasedLocalization.Web.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -55,11 +56,14 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-var options = app.Services.GetService<IOptions<RequestLocalizationOptions>>();
 
+#region localization
+//localization
+var options = app.Services.GetService<IOptions<RequestLocalizationOptions>>();
 app.UseRequestLocalization(options!.Value);
 
-app.UseRequestCulture();
+app.UseRequestCulture();//localization extension
+#endregion
 app.UseHttpsRedirection();
 
 app.UseCors("Cors_service");
