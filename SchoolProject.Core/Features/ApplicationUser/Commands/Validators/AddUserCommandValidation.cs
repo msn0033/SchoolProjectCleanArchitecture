@@ -4,7 +4,7 @@ using SchoolProject.Core.Features.ApplicationUser.Commands.Models;
 using SchoolProject.Helper.Resources;
 
 
-namespace SchoolProject.Core.Features.ApplicationUser.Commands.Validatiors
+namespace SchoolProject.Core.Features.ApplicationUser.Commands.Validators
 {
     public class AddUserCommandValidation:AbstractValidator<AddUserCommand>
     {

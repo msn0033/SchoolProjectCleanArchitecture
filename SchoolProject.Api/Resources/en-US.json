@@ -10,5 +10,31 @@
   "create": "Create",
   "save": "Save",
   "name": "Name",
-  "required":  "Required field"
+  "required": "Required field",
+
+  "Must not be Empty": "Must not be Empty .......",
+  "Must not be Null": "Must not be Null",
+  "Must be is 10 numbers": "Must be is 10 numbers",
+
+  "Is Exist": "Is Exist",
+
+  "Not Found": "Not Found",
+  "Deleted Successfully": "Deleted Successfully",
+  "Created Successfully": "Created Successfully",
+  "Successfully": "Successfully",
+  "Add Successfully": "Add Successfully",
+  "UnAuthorized": "UnAuthorized",
+  "Bad Request": "Bad Request",
+  "Failed": "Failed",
+  "Unprocessab leEntity": "Unprocessab leEntity",
+
+
+
+  "Incorrect password": "Incorrect password ...",
+  "User Is Not Exist": "User Is Not Exist",
+  "Incorrect username & password": "Incorrect username & password",
+  "password does not match": "password does not match"
+
+
+
 }

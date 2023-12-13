@@ -8,8 +8,9 @@ using SchoolProject.Data.Entities.Identity;
 using SchoolProject.Infrustructure;
 using SchoolProject.Infrustructure.Context;
 using SchoolProject.Service;
-using LocalizationLanguage.Middlewares;
+
 using JsonBasedLocalization.Web.Middlewares;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,7 +27,8 @@ builder.Services.AddDbContext<AppDbContext>(option =>
     option.UseSqlServer(builder.Configuration.GetConnectionString("dbcontext"))
     .LogTo(Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Information);
 });
-builder.Services.AddIdentity<User, IdentityRole<int>>().AddEntityFrameworkStores<AppDbContext>();
+builder.Services.AddIdentity<User, IdentityRole<int>>(o => { }).AddEntityFrameworkStores<AppDbContext>();
+
 
 
 
@@ -34,9 +36,8 @@ builder.Services.AddIdentity<User, IdentityRole<int>>().AddEntityFrameworkStores
 builder.Services.AddInfrustructureDependencyInjection()
                 .AddServiceDependencyInjection()
                 .AddModuleCoreDependencyInjection()
-                .AddServiceRegisteration()
+                .AddServiceRegisteration(builder.Configuration)
                 .AddLocalizationLanguageDependencyInjection();
-
 
 //Cors service
 builder.Services.AddCors(opt =>
@@ -68,7 +69,9 @@ app.UseHttpsRedirection();
 
 app.UseCors("Cors_service");
 
+app.UseAuthentication();
 app.UseAuthorization();
+
 
 app.MapControllers();
 app.UseMiddleware<ErrorHandlerMiddleware>();

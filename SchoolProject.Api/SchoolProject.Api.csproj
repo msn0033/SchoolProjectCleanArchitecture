@@ -13,7 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Resources\ar-EG.json" />
     <None Include="Resources\de-DE.json" />
     <None Include="Resources\en-US.json" />
   </ItemGroup>

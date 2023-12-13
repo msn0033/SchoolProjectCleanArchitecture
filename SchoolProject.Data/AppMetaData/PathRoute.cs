@@ -23,6 +23,12 @@
             public const string Create = prefix + "Create";
             public const string Paginated = prefix + "Paginated";
         }
+        public static class AuthenticationRoute
+        {
+            public const string prefix = Rule + "Authentication/";
+           
+            public const string sigin = prefix + "sigin";
+        }
 
     }
 }

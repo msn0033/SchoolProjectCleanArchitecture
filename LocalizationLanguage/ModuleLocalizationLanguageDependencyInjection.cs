@@ -16,7 +16,7 @@ namespace LocalizationLanguage
             services.AddSingleton<IStringLocalizerFactory, JsonStringLocalizerFactory>();
 
             services.AddLocalization();//localization
-            services.AddDistributedMemoryCache();//cach
+            services.AddDistributedMemoryCache();//caching
           
 
             services.AddMvc()

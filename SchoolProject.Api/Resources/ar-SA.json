@@ -10,5 +10,14 @@
   "create": "إضافة",
   "save": "حفظ",
   "name": "الاسم",
-  "required": "حقل مطلوب"
+  "required": "حقل مطلوب",
+  "Must not be Empty": "يجب لايكون فارغ",
+  "Must not be Null": "يجب لايكون قيمة null",
+  "Must be is 10 numbers": "يجب يكون 10 ارقام",
+  "Incorrect password": "كلمة المرور خطاء",
+  "User Is Not Exist": "السمتخدم غير موجود",
+  "Incorrect username & password": "اسم المستخدم او كلمة المرور خطاء",
+  "password does not match": "كلمة المرور غير متطابقة"
+
+
 }
