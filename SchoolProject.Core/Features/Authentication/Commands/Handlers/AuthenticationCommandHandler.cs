@@ -42,7 +42,7 @@ namespace SchoolProject.Core.Features.Authentication.Commands.Handlers
             {
                 return BadRequest<string>(_localizer[ShareResourcesKey.Incorrect_password]);
             }
-            var accesstoken=await _authenticationService.GetJWTTokenAsync(user);
+            var accesstoken=await _authenticationService.GetJWTToken(user);
             return Success(accesstoken);
         }
     }

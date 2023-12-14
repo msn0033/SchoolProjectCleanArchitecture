@@ -9,6 +9,6 @@ namespace SchoolProject.Service.Interface
 {
     public interface IAuthenticationService
     {
-        Task<string> GetJWTTokenAsync(User user);
+        Task<string> GetJWTToken(User user);
     }
 }

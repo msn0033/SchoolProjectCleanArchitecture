@@ -58,13 +58,22 @@ namespace SchoolProject.Infrustructure
 
             //JWT Authentication
             var jwtsettings = new JwtSettings();
+           
 
-            configuration.GetSection(nameof(jwtsettings)).Bind(jwtsettings);
+           configuration.GetSection(nameof(jwtsettings)).Bind(jwtsettings);
+
             services.AddSingleton(jwtsettings);
 
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
                     .AddJwtBearer(options =>
                      {
+                         options.RequireHttpsMetadata = false;
+                         options.SaveToken = true;
+                        
                          options.TokenValidationParameters = new TokenValidationParameters
                          {
                              ValidateIssuer = jwtsettings.ValidateIssure,
@@ -73,7 +82,7 @@ namespace SchoolProject.Infrustructure
                              ValidateIssuerSigningKey = jwtsettings.ValidateIssuerSigningKey,
                              ValidIssuer = jwtsettings.Issuer,
                              ValidAudience = jwtsettings.Audience,
-                             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtsettings.Secret))
+                             IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtsettings.Secret))
                          };
                     });
             //Jwt configuration ends here

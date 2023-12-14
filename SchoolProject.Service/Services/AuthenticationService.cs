@@ -20,19 +20,20 @@ namespace SchoolProject.Service.Services
         {
             this._jwtSettings = jwtSettings;
         }
-        public Task<string> GetJWTTokenAsync(User user)
+        public Task<string> GetJWTToken(User user)
         {
             var Claims = new List<Claim>() 
             {
-                new Claim(nameof(UserClaimModel.UserName), user.UserName),
+                new Claim("UserName", user.UserName),
                 new Claim(nameof(UserClaimModel.Email), user.Email),
                 new Claim(nameof(UserClaimModel.PhoneNumber), user.PhoneNumber),
             };
             var jwtToken=new JwtSecurityToken(_jwtSettings.Issuer,
-                _jwtSettings.Audience,
+               audience: _jwtSettings.Audience,
                 claims:Claims,
                 expires:DateTime.Now.AddDays(90),
                 signingCredentials :new SigningCredentials(new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_jwtSettings.Secret)),SecurityAlgorithms.HmacSha256Signature));
+           
             var accessToken = new JwtSecurityTokenHandler().WriteToken(jwtToken);
             var result= Task.FromResult(accessToken);
             return result;
