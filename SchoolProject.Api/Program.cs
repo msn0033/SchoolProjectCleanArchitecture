@@ -30,9 +30,6 @@ builder.Services.AddDbContext<AppDbContext>(option =>
 });
 builder.Services.AddIdentity<User, IdentityRole<int>>(o => { }).AddEntityFrameworkStores<AppDbContext>();
 
-
-
-
 //Dependency injection
 builder.Services.AddInfrustructureDependencyInjection()
                 .AddServiceDependencyInjection()
@@ -51,7 +48,7 @@ builder.Services.AddCors(opt =>
     });
 });
 
-//
+//AddSwaggerGen
 builder.Services.AddSwaggerGen(opt =>
 {
     opt.SwaggerDoc("v1", new OpenApiInfo { Title = "School", Version = "v1" });

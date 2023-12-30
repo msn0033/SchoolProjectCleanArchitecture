@@ -20,6 +20,8 @@ namespace SchoolProject.Infrustructure.Context
         public DbSet<InstructorSubject> InstructorSubjects { get; set; }
         public DbSet<StudentSubject> StudentSubjects { get; set; }
 
+        //Identity
+        public DbSet<UserRefreshToken> UserRefreshTokens { get; set; }
 
 
 

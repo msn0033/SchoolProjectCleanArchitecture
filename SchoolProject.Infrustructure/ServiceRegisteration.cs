@@ -57,7 +57,7 @@ namespace SchoolProject.Infrustructure
 
 
             //JWT Authentication
-            var jwtsettings = new JwtSettings();
+            var jwtsettings = new Jwtsettings();
            
 
            configuration.GetSection(nameof(jwtsettings)).Bind(jwtsettings);
@@ -82,7 +82,7 @@ namespace SchoolProject.Infrustructure
                              ValidateIssuerSigningKey = jwtsettings.ValidateIssuerSigningKey,
                              ValidIssuer = jwtsettings.Issuer,
                              ValidAudience = jwtsettings.Audience,
-                             IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtsettings.Secret))
+                             IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtsettings?.Secret!))
                          };
                     });
             //Jwt configuration ends here

@@ -29,7 +29,7 @@ namespace SchoolProject.Infrustructure.GenericRepository
         public virtual async Task<T> GetByIdAsync(int id)
         {
 
-            return await _dbContext.Set<T>().FindAsync(id);
+            return (await _dbContext.Set<T>().FindAsync(id))!;
         }
 
 

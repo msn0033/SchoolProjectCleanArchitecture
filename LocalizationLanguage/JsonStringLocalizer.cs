@@ -48,10 +48,10 @@ namespace LocalizationLanguage
                 if (reader.TokenType != JsonToken.PropertyName)
                     continue;
 
-                var key = reader.Value as string;
+                string? key = reader.Value as string;
                 reader.Read();
                 var value = _serializer.Deserialize<string>(reader);
-                yield return new LocalizedString(key, value);
+                yield return new LocalizedString(key!, value);
             }
         }
 
@@ -97,7 +97,8 @@ namespace LocalizationLanguage
                 }
             }
 
-            return string.Empty;
+            return propertyName;
+            //return string.Empty;
         }
     }
 }

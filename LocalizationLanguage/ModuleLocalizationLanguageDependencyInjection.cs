@@ -22,8 +22,8 @@ namespace LocalizationLanguage
             services.AddMvc()
                 .AddDataAnnotationsLocalization(options =>
                 {
-                    options.DataAnnotationLocalizerProvider = (type, factory) =>
-                        factory.Create(typeof(JsonStringLocalizerFactory));
+                   options.DataAnnotationLocalizerProvider = (type, factory) =>
+                   factory.Create(typeof(JsonStringLocalizerFactory));
                 });
 
             services.Configure<RequestLocalizationOptions>(options =>

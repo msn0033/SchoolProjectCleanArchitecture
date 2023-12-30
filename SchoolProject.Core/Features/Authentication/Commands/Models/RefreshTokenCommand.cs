@@ -9,10 +9,9 @@ using System.Threading.Tasks;
 
 namespace SchoolProject.Core.Features.Authentication.Commands.Models
 {
-    public class SignInUserCommand:IRequest<Response<JwtAuthResponse>>
+    public class RefreshTokenCommand:IRequest<Response<JwtAuthResponse>>
     {
-        public required string UserName { get; set; }
-        public required string Password { get; set; }
-        public bool IsPersistent { get; set; }
+        public required string AccessToken { get; set; }
+        public required string RefreshTokenString { get; set; }
     }
 }

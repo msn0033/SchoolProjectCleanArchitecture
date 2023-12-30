@@ -21,7 +21,7 @@
   "Not Found": "Not Found",
   "Deleted Successfully": "Deleted Successfully",
   "Created Successfully": "Created Successfully",
-  "Successfully": "Successfully",
+  //"Successfully": "Successfully --",
   "Add Successfully": "Add Successfully",
   "UnAuthorized": "UnAuthorized",
   "Bad Request": "Bad Request",

@@ -17,7 +17,23 @@
   "Incorrect password": "كلمة المرور خطاء",
   "User Is Not Exist": "السمتخدم غير موجود",
   "Incorrect username & password": "اسم المستخدم او كلمة المرور خطاء",
-  "password does not match": "كلمة المرور غير متطابقة"
+  "password does not match": "كلمة المرور غير متطابقة",
+
+  "Is Exist": "Is Exist",
+
+  "Not Found": "Not Found",
+  "Deleted Successfully": "Deleted Successfully",
+  "Created Successfully": "Created Successfully",
+  "Successfully": "تم العملية بنجاح",
+  "Add Successfully": "Add Successfully",
+  "UnAuthorized": "UnAuthorized",
+  "Bad Request": "Bad Request",
+  "Failed": "Failed",
+  "Unprocessab leEntity": "Unprocessab leEntity"
+
+
+
+
 
 
 }

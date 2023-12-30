@@ -13,9 +13,14 @@ namespace SchoolProject.Api.Controllers
         [HttpPost(PathRoute.AuthenticationRoute.sigin)]
         public async Task<IActionResult> SignInUser([FromBody]SignInUserCommand request)
         {
-            var w = Request.Path;
-            var s = PathRoute.AuthenticationRoute.sigin;
+         
             var result =await _mediator.Send(request);
+            return NewResult(result);
+        }
+        [HttpPost(PathRoute.AuthenticationRoute.RefreshToken)]
+        public async Task<IActionResult> RefreshToken([FromQuery] RefreshTokenCommand request)
+        {
+           var result=await _mediator.Send(request);
             return NewResult(result);
         }
     }

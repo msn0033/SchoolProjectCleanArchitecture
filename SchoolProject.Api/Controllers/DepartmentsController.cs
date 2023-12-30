@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using SchoolProject.Api.Base;
 using SchoolProject.Core.Features.Departments.Queries.Models;
 using SchoolProject.Core.Features.Students.Queries.Models;
+using System.Net;
 using System.Text;
 
 namespace SchoolProject.Api.Controllers
@@ -18,6 +19,7 @@ namespace SchoolProject.Api.Controllers
         [HttpGet("/Departments/List")]
         public  IActionResult GetDepartments()
         {
+        
             var re =new StringBuilder( "test Departments");
             return Ok(re);
         }

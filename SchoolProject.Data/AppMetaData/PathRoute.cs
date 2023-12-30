@@ -27,7 +27,8 @@
         {
             public const string prefix = Rule + "Authentication/";
            
-            public const string sigin = prefix + "sigin";
+            public const string sigin = prefix + "sigin"; 
+            public const string RefreshToken = prefix + "Refresh-Token";
         }
 
     }
