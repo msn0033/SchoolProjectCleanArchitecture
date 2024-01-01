@@ -1,4 +1,4 @@
-﻿namespace SchoolProject.Helper.Resources
+﻿namespace LocalizationLanguage
 {
     public static class ShareResourcesKey
     {

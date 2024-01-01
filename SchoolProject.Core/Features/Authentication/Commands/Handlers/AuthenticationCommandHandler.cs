@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using LocalizationLanguage;
+using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Localization;
 using SchoolProject.Core.Features.Authentication.Commands.Models;

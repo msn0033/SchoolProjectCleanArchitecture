@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using LocalizationLanguage;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Localization;

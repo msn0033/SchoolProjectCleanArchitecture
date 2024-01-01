@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using LocalizationLanguage;
 using Microsoft.Extensions.Localization;
 using SchoolProject.Core.Features.ApplicationUser.Commands.Models;
 using SchoolProject.Helper.Resources;

@@ -30,6 +30,14 @@
             public const string sigin = prefix + "sigin"; 
             public const string RefreshToken = prefix + "Refresh-Token";
         }
+        public static class AuthorizationRoute
+        {
+            public const string prefix = Rule + "Authorization/";
+
+            public const string Create = prefix + "Create";
+            
+        }
+
 
     }
 }
