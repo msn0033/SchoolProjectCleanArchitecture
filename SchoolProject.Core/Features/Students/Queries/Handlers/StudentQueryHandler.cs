@@ -16,7 +16,7 @@ namespace SchoolProject.Core.Features.Students.Queries.Handlers
 {
     public class StudentQueryHandler : ResponseHandler,
          IRequestHandler<StudentsListQuery, Response<IEnumerable<GetStudentsListQueryResponse>>>
-        , IRequestHandler<StudentByIdQuery, Response<GetStudentsListQueryResponse>>
+        , IRequestHandler<StudentByIdQuery, Response<GetStudentByIdQueryResponse>>
         , IRequestHandler<GetStudentPaginatedListQuery, PaginatedResult<GetStudentPaginatedListResponse>>
 
     {
@@ -47,12 +47,12 @@ namespace SchoolProject.Core.Features.Students.Queries.Handlers
         }
 
         //GetStudentByIdWithIncludeAsync
-        public async Task<Response<GetStudentsListQueryResponse>> Handle(StudentByIdQuery request, CancellationToken cancellationToken)
+        public async Task<Response<GetStudentByIdQueryResponse>> Handle(StudentByIdQuery request, CancellationToken cancellationToken)
         {
             var student = await _studentService.GetStudentByIdWithIncludeAsync(request.id);
             if (student == null)
-                return NotFound<GetStudentsListQueryResponse>(_localizer["welcome"]);
-            var result = _mapper.Map<GetStudentsListQueryResponse>(student);
+                return NotFound<GetStudentByIdQueryResponse>(_localizer["welcome"]);
+            var result = _mapper.Map<GetStudentByIdQueryResponse>(student);
             return Success(result);
 
         }

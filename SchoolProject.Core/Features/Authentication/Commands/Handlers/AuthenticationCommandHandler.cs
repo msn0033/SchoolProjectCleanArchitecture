@@ -66,7 +66,7 @@ namespace SchoolProject.Core.Features.Authentication.Commands.Handlers
 
             if(message== "success")
             {
-                JwtAuthResponse response = await _authenticationService.GetRefreshTokenAsync(user,userRefreshToken);
+                JwtAuthResponse response = await _authenticationService.GetRefreshTokenAsync(user!,userRefreshToken);
                 if (response.message == "success")
                     return Success(response);
                 else return Unauthorized<JwtAuthResponse>(response?.message!);

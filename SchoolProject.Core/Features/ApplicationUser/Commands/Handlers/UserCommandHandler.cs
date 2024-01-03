@@ -42,9 +42,25 @@ namespace SchoolProject.Core.Features.ApplicationUser.Commands.Handlers
             if (!result.Succeeded)
                 return Failed<string>(_localizer[ShareResourcesKey.Failed]);
 
+            // add user to role
+            var userscount = _userManager.Users.Count();
+            if(userscount>=0)
+            {
+                await _userManager.AddToRoleAsync(user, "User");
+            }
+            else
+            {
+                await _userManager.AddToRoleAsync(user, "Admin");
+            }
             //Success
             return Created<string>(_localizer[ShareResourcesKey.Created]);
  
         }
+
+        //ُEdit User
+
+        //Delete User
+
+        //Details User
     }
 }

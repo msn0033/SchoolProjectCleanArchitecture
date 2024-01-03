@@ -12,6 +12,7 @@ using SchoolProject.Service;
 using JsonBasedLocalization.Web.Middlewares;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.OpenApi.Models;
+using SchoolProject.Infrustructure.Seeding;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -79,6 +80,15 @@ builder.Services.AddSwaggerGen(opt =>
 });
 //
 var app = builder.Build();
+
+
+using(var scop=app.Services.CreateScope())
+{
+    var rloemanager = scop.ServiceProvider.GetRequiredService<RoleManager<Role>>();
+    var usermanager=scop.ServiceProvider.GetRequiredService<UserManager<User>>();
+    await RoleSeeding.RoleAddAsync(rloemanager);
+    await UserSeeding.addUserAsync(usermanager);
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

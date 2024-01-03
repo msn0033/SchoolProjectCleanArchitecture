@@ -1,8 +1,13 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Net.Http.Headers;
 using SchoolProject.Api.Base;
 using SchoolProject.Core.Features.Authentication.Commands.Models;
 using SchoolProject.Data.AppMetaData;
+using System.Linq;
+using System.Security.Claims;
 
 namespace SchoolProject.Api.Controllers
 {
@@ -15,6 +20,8 @@ namespace SchoolProject.Api.Controllers
         {
          
             var result =await _mediator.Send(request);
+            // HttpContext.Response.Cookies.Append("token", result.Data.AccessToken);
+           
             return NewResult(result);
         }
         [HttpPost(PathRoute.AuthenticationRoute.RefreshToken)]

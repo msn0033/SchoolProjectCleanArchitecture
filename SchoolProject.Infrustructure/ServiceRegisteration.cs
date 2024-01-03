@@ -22,13 +22,14 @@ namespace SchoolProject.Infrustructure
             services.Configure<IdentityOptions>(options =>
             {
                 // Password settings.
-                options.Password.RequireDigit = true;
+                options.Password.RequireDigit = false;
                 options.Password.RequireLowercase = false;
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireUppercase = false;
                 options.Password.RequiredLength = 3;
                 options.Password.RequiredUniqueChars = 0;
                 options.SignIn.RequireConfirmedEmail = false;
+                
 
                 // Lockout settings.
                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
@@ -44,11 +45,11 @@ namespace SchoolProject.Infrustructure
             });
             //services.ConfigureApplicationCookie(options =>
             //{
-            //    options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+            //    //options.AccessDeniedPath = "/Identity/Account/AccessDenied";
             //    options.Cookie.Name = "YourAppCookieName";
             //    options.Cookie.HttpOnly = true;
             //    options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
-            //    options.LoginPath = "/Identity/Account/Login";
+            //   // options.LoginPath = "/Identity/Account/Login";
             //    // ReturnUrlParameter requires 
             //    //using Microsoft.AspNetCore.Authentication.Cookies;
             //    options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;

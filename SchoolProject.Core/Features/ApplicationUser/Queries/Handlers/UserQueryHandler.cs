@@ -39,7 +39,8 @@ namespace SchoolProject.Core.Features.ApplicationUser.Queries.Handlers
             var users = _userManager.Users.AsQueryable();
 
             //mapper & Paginated
-            var result=await _mapper.ProjectTo<GetUsersPaginatedListResponse>(users).ToPaginatedListAsync(request.pageNumber, request.pageSize);
+            var result=await _mapper.ProjectTo<GetUsersPaginatedListResponse>(users)
+                                    .ToPaginatedListAsync(request.pageNumber, request.pageSize);
           
             return Success(result);
 

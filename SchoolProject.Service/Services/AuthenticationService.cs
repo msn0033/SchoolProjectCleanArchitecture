@@ -1,10 +1,12 @@
 ﻿using Azure.Core;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using SchoolProject.Data.Entities.Identity;
 using SchoolProject.Helper.ModelsHelper;
 using SchoolProject.Infrustructure.Interface;
+using SchoolProject.Infrustructure.Migrations;
 using SchoolProject.Service.Interface;
 using System;
 using System.Collections.Concurrent;
@@ -40,8 +42,8 @@ namespace SchoolProject.Service.Services
                 throw new ArgumentNullException("user is not found");
             }
 
-            var claims = GetClaims(user);
-            var (accessToken, jwtSecurityToken) = GenerateAccessToken(user);
+            //var claims = GetClaims(user);
+            var (accessToken, jwtSecurityToken) =await GenerateAccessTokenAsync(user);
             var refreshtoken = GetRandomRefreshToken(user);
 
             var usertoken = new UserRefreshToken
@@ -87,20 +89,21 @@ namespace SchoolProject.Service.Services
         }
         //
         #region private
-        private static List<Claim> GetClaims(User? user)
+        private  async Task< List<Claim>> GetClaimsAsync(User user)
         {
+            string? roles = (await _userManager.GetRolesAsync(user)).ToString();
             var claims = new List<Claim>()
             {
-                new Claim("UserName", user?.UserName!),
-                new Claim(nameof(UserClaimModel.Email), user?.Email!),
-                new Claim(nameof(UserClaimModel.PhoneNumber), user?.PhoneNumber!),
-                new Claim(nameof(UserClaimModel.UserId), user!.Id.ToString())
+                new Claim(ClaimTypes.Name,user.UserName!),
+                new Claim(ClaimTypes.Email,user.Email!),
+                new Claim(ClaimTypes.Role,roles!),
+                new Claim(ClaimTypes.NameIdentifier,user.Id.ToString()), 
             };
             return claims;
         }
-        private (string, JwtSecurityToken) GenerateAccessToken(User? user)
+        private  async Task<(string, JwtSecurityToken)> GenerateAccessTokenAsync(User user)
         {
-            var claims = GetClaims(user);
+            var claims = await GetClaimsAsync(user);
             var jwtSecurityToken = new JwtSecurityToken(_jwtsettings.Issuer,
               audience: _jwtsettings.Audience,
                claims: claims,
@@ -108,6 +111,7 @@ namespace SchoolProject.Service.Services
                signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_jwtsettings?.Secret!)), SecurityAlgorithms.HmacSha256Signature));
 
             var accessToken = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken);
+
 
             return (accessToken, jwtSecurityToken);
             // return Task.FromResult(accessToken);
@@ -228,9 +232,9 @@ namespace SchoolProject.Service.Services
         }
 
 
-        public async Task<JwtAuthResponse> GetRefreshTokenAsync(User? user ,UserRefreshToken? userRefreshToken)
+        public async Task<JwtAuthResponse> GetRefreshTokenAsync(User user ,UserRefreshToken? userRefreshToken)
         {
-            var (NewAccessToken, jwtsecurityToken) = GenerateAccessToken(user);
+            var (NewAccessToken, jwtsecurityToken) = await GenerateAccessTokenAsync(user);
 
 
             if (user == null)
