@@ -13,9 +13,9 @@ namespace SchoolProject.Core.Features.Departments.Queries.Responses
         public int? Id { get; set; }
         public string? Name { get; set; }
         public string? NameManger { get; set; }
-        public PaginatedResult<StudentResponse>? StudentList { get; set; }
-        public List<SubjectResponse> ?SubjecttList { get; set; }
-        public List<InstructorResponse> ?InstructorList { get; set; }
+        public PaginatedResult<StudentResponse>? StudentList { get; set; }//expression in DeparementsHandlers
+        public List<SubjectResponse> ?SubjecttList { get; set; }//mapper
+        public List<InstructorResponse> ?InstructorList { get; set; }//mapper
 
     }
 

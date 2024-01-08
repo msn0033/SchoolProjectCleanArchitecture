@@ -9,7 +9,7 @@ namespace SchoolProject.Api.Controllers
 {
     //[Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class StudentsController : AppControllersBase
     {
 
@@ -17,14 +17,14 @@ namespace SchoolProject.Api.Controllers
         [HttpGet(PathRoute.StudentsRoute.List)]
         public async Task<IActionResult> GetStudentList()
         {
-            var response = await _mediator.Send(new StudentsListQuery());
+            var response = await _mediator.Send(new StudentsListQueryRequest());
             return Ok(response);
         }
 
         [HttpGet(PathRoute.StudentsRoute.GetById)]
         public async Task<IActionResult> GetStudnetById([FromRoute] int id)
         {
-            var responsestudent = await _mediator.Send(new StudentByIdQuery { id = id });
+            var responsestudent = await _mediator.Send(new StudentByIdQueryRequest { id = id });
             if (responsestudent == null) NotFound(responsestudent);
             return NewResult(responsestudent!);
         }
@@ -49,7 +49,7 @@ namespace SchoolProject.Api.Controllers
             return NewResult(response);
         }
         [HttpGet(PathRoute.StudentsRoute.Paginated)]
-        public async Task<IActionResult> Paginated([FromQuery] GetStudentPaginatedListQuery query)
+        public async Task<IActionResult> Paginated([FromQuery] GetStudentPaginatedListQueryRequest query)
         {
             var response = await _mediator.Send(query);
             return Ok(response);

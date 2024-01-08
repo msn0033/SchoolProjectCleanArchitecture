@@ -43,16 +43,8 @@ namespace SchoolProject.Core.Features.ApplicationUser.Commands.Handlers
                 return Failed<string>(_localizer[ShareResourcesKey.Failed]);
 
             // add user to role
-            var userscount = _userManager.Users.Count();
-            if(userscount>=0)
-            {
-                await _userManager.AddToRoleAsync(user, "User");
-            }
-            else
-            {
-                await _userManager.AddToRoleAsync(user, "Admin");
-            }
-            //Success
+            await _userManager.AddToRoleAsync(user, "User");
+           //Success
             return Created<string>(_localizer[ShareResourcesKey.Created]);
  
         }

@@ -40,7 +40,7 @@ namespace SchoolProject.Infrustructure
                 options.User.AllowedUserNameCharacters =
                 "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
                 options.User.RequireUniqueEmail = false;
-
+                
 
             });
             //services.ConfigureApplicationCookie(options =>
@@ -59,22 +59,21 @@ namespace SchoolProject.Infrustructure
 
             //JWT Authentication
             var jwtsettings = new Jwtsettings();
-           
-
            configuration.GetSection(nameof(jwtsettings)).Bind(jwtsettings);
-
             services.AddSingleton(jwtsettings);
 
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            
             })
                     .AddJwtBearer(options =>
                      {
-                         options.RequireHttpsMetadata = false;
-                         options.SaveToken = true;
-                        
+                         //options.RequireHttpsMetadata = false;
+                        // options.SaveToken = true;
+
+                         var keySecret = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtsettings.Secret!));
                          options.TokenValidationParameters = new TokenValidationParameters
                          {
                              ValidateIssuer = jwtsettings.ValidateIssure,
@@ -83,8 +82,20 @@ namespace SchoolProject.Infrustructure
                              ValidateIssuerSigningKey = jwtsettings.ValidateIssuerSigningKey,
                              ValidIssuer = jwtsettings.Issuer,
                              ValidAudience = jwtsettings.Audience,
-                             IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtsettings?.Secret!))
+                             IssuerSigningKey = keySecret
                          };
+
+                         //read from cookie
+                         options.Events = new JwtBearerEvents
+                         {
+                             OnMessageReceived = context =>
+                             {
+                                 var token = context.Request.Cookies["token"];
+                                 context.Token = token;
+                                 return Task.CompletedTask;
+                             }
+                         };
+                         
                     });
             //Jwt configuration ends here
 

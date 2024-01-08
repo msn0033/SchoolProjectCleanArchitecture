@@ -35,6 +35,10 @@
             public const string prefix = Rule + "Authorization/";
 
             public const string Create = prefix + "Create";
+            public const string RolesPaginated = prefix + "RolesPaginated";
+            public const string GetRoleById = prefix + "GetRoleById";
+            public const string GetRoleByName = prefix + "GetRoleByName";
+
             
         }
 

@@ -11,6 +11,7 @@ using SchoolProject.Service.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -50,17 +51,25 @@ namespace SchoolProject.Core.Features.Authentication.Commands.Handlers
             {
                 return BadRequest<JwtAuthResponse>(_localizer[ShareResourcesKey.Incorrect_password]);
             }
+           
             var accesstoken=await _authenticationService.GetJWTTokenBySignInUserAsync(user!);
+          
             return Success(accesstoken);
         }
 
         //RefreshToken
         public async Task<Response<JwtAuthResponse>> Handle(RefreshTokenCommand request, CancellationToken cancellationToken)
         {
-         
-            var (ReadjwtSecurityToken,Notvalid) = _authenticationService.ReadJWTToken(request.AccessToken);
+
+            //var v1 = new Claim("aa", "bb");
+            //var lis = new List<Claim>();
+            //lis.Add(v1);
+            //var v2 = new ClaimsIdentity(lis);
+            //var v3 = new ClaimsPrincipal(v2);
+           
+            var (ReadjwtSecurityToken,messageReadtoken) = _authenticationService.ReadJWTToken(request.AccessToken);
             if (ReadjwtSecurityToken == null) 
-                return Unauthorized<JwtAuthResponse>("Read Token is Null : " + Notvalid);
+                return Unauthorized<JwtAuthResponse>("Read Token is Null : " + messageReadtoken);
 
             var (message,user,userRefreshToken) = await _authenticationService.ValidateDeatails(ReadjwtSecurityToken, request.AccessToken, request.RefreshTokenString);
 
@@ -69,7 +78,8 @@ namespace SchoolProject.Core.Features.Authentication.Commands.Handlers
                 JwtAuthResponse response = await _authenticationService.GetRefreshTokenAsync(user!,userRefreshToken);
                 if (response.message == "success")
                     return Success(response);
-                else return Unauthorized<JwtAuthResponse>(response?.message!);
+                else 
+                    return Unauthorized<JwtAuthResponse>(response?.message!);
             }
             return Unauthorized<JwtAuthResponse>(message);
 

@@ -91,27 +91,37 @@ namespace SchoolProject.Service.Services
         #region private
         private  async Task< List<Claim>> GetClaimsAsync(User user)
         {
-            string? roles = (await _userManager.GetRolesAsync(user)).ToString();
+            
             var claims = new List<Claim>()
             {
                 new Claim(ClaimTypes.Name,user.UserName!),
                 new Claim(ClaimTypes.Email,user.Email!),
-                new Claim(ClaimTypes.Role,roles!),
                 new Claim(ClaimTypes.NameIdentifier,user.Id.ToString()), 
             };
+           
+            var claimuser=await _userManager.GetClaimsAsync(user);
+            claims.AddRange(claimuser);
+
+            var roles = await _userManager.GetRolesAsync(user);
+            foreach (var role in roles)
+            {
+                claims.Add(new Claim(ClaimTypes.Role, role));
+            }
             return claims;
         }
         private  async Task<(string, JwtSecurityToken)> GenerateAccessTokenAsync(User user)
         {
             var claims = await GetClaimsAsync(user);
-            var jwtSecurityToken = new JwtSecurityToken(_jwtsettings.Issuer,
-              audience: _jwtsettings.Audience,
-               claims: claims,
-               expires: DateTime.UtcNow.AddDays(_jwtsettings.AccessTokenExpire),
-               signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_jwtsettings?.Secret!)), SecurityAlgorithms.HmacSha256Signature));
+            var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_jwtsettings?.Secret!));
+            var signIn = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);
+
+            var jwtSecurityToken = new JwtSecurityToken(_jwtsettings?.Issuer,
+                                      audience: _jwtsettings?.Audience,
+                                       claims: claims,
+                                       expires: DateTime.UtcNow.AddDays(_jwtsettings!.AccessTokenExpire),
+                                       signingCredentials: signIn);
 
             var accessToken = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken);
-
 
             return (accessToken, jwtSecurityToken);
             // return Task.FromResult(accessToken);
@@ -141,48 +151,16 @@ namespace SchoolProject.Service.Services
         }
         #endregion
         //
-
-        public (string,bool) ValidateToken(string accesstoken)
-        {
-            //validator token
-            var paramaters = new TokenValidationParameters
-            {
-                ValidateIssuer = _jwtsettings.ValidateIssure,
-                ValidateAudience = _jwtsettings.ValidateAudience,
-                ValidateLifetime = _jwtsettings.ValidateLifetime,
-                ValidateIssuerSigningKey = _jwtsettings.ValidateIssuerSigningKey,
-                ValidIssuer = _jwtsettings.Issuer,
-                ValidAudience = _jwtsettings.Audience,
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_jwtsettings?.Secret!))
-            };
-            try
-            {
-                var handler = new JwtSecurityTokenHandler();
-                var validator = handler.ValidateToken(accesstoken, paramaters, out SecurityToken validateToken);
-
-                if (validator == null)
-                {
-                    return (string.Empty,false);
-                }
-                return ("true", true);
-
-            }
-            catch (Exception ex)
-            {
-  
-              return ($"Invalid Token TokenValidationParameters + {ex.Message + ex?.InnerException?.Message}",false);
-            }
-        }
         public (JwtSecurityToken?,string) ReadJWTToken(string accesstoken)
         {
-            var (notValid,valid) = ValidateToken(accesstoken);
-            if (valid)
+            var (message,condition) = ValidateToken(accesstoken);
+            if (condition)
             { //decode accesstoken
             var handler = new JwtSecurityTokenHandler();
             var jwtSecurityToken = handler.ReadJwtToken(accesstoken);
-            return (jwtSecurityToken, notValid);
+            return (jwtSecurityToken, message);
             }
-            return (null, notValid);
+            return (null, message);
         }
 
         public async Task<(string,User?,UserRefreshToken?)> ValidateDeatails(JwtSecurityToken ReadjwtSecurityToken, string accessToken, string refreshTokenString)
@@ -231,7 +209,37 @@ namespace SchoolProject.Service.Services
             return ("success",user,userRefreshToken);
         }
 
+        public (string, bool) ValidateToken(string accesstoken)
+        {
+            //validator token
+            var paramaters = new TokenValidationParameters
+            {
+                ValidateIssuer = _jwtsettings.ValidateIssure,
+                ValidateAudience = _jwtsettings.ValidateAudience,
+                ValidateLifetime = _jwtsettings.ValidateLifetime,
+                ValidateIssuerSigningKey = _jwtsettings.ValidateIssuerSigningKey,
+                ValidIssuer = _jwtsettings.Issuer,
+                ValidAudience = _jwtsettings.Audience,
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_jwtsettings?.Secret!))
+            };
+            try
+            {
+                var handler = new JwtSecurityTokenHandler();
+                var validator = handler.ValidateToken(accesstoken, paramaters, out SecurityToken validateToken);
 
+                if (validator == null)
+                {
+                    return ("ValidateToken is false", false);
+                }
+                return ("ValidateToken is true", true);
+
+            }
+            catch (Exception ex)
+            {
+
+                return ($"Invalid Token TokenValidationParameters + {ex.Message + ex?.InnerException?.Message}", false);
+            }
+        }
         public async Task<JwtAuthResponse> GetRefreshTokenAsync(User user ,UserRefreshToken? userRefreshToken)
         {
             var (NewAccessToken, jwtsecurityToken) = await GenerateAccessTokenAsync(user);

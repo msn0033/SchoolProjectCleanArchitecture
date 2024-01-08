@@ -35,9 +35,9 @@ namespace SchoolProject.Core.Features.Departments.Queries.Handlers
         //ById
         public async Task<Response<GetDepartmentByIdResponse>> Handle(GetDepartmentByIdQuery request, CancellationToken cancellationToken)
         {
-            Department result=await _departmentservice.GetDepartmentById_Include_Async(request.Id);
-            if (result == null) return NotFound<GetDepartmentByIdResponse>("Not Found Item");
-            var maper=_mapper.Map<GetDepartmentByIdResponse>(result);
+            Department DepartmentById = await _departmentservice.GetDepartmentById_Include_Async(request.Id);
+            if (DepartmentById == null) return NotFound<GetDepartmentByIdResponse>("Not Found Item");
+            var maper=_mapper.Map<GetDepartmentByIdResponse>(DepartmentById);
            
             Expression<Func<Student, StudentResponse>> expression = e => new StudentResponse(e);
              var StudentQuarableByDepartmentId = _studentService.GetStudents_By_Dipartment_Id(request.Id);

@@ -15,12 +15,12 @@ namespace SchoolProject.Service.Services
     public class AuthorizationService : IAuthorizationService
     {
         private readonly RoleManager<Role> _roleManager;
-        private readonly AppDbContext _appDbContext;
+        private readonly UserManager<User> _userManager;
 
-        public AuthorizationService(RoleManager<Role> roleManager,AppDbContext appDbContext)
+        public AuthorizationService(RoleManager<Role> roleManager,UserManager<User> userManager)
         {
             this._roleManager = roleManager;
-            this._appDbContext = appDbContext ;
+            this._userManager = userManager;
         }
         public async Task<bool> AddRoleAsync(string NameEn, string NameAr)
         {
@@ -38,11 +38,39 @@ namespace SchoolProject.Service.Services
             return false;
         }
 
+        public Task<IQueryable<Role>> GetAllRoles()
+        {
+            var roles = _roleManager.Roles;
+
+            return Task.FromResult(roles);
+        }
+        public async Task<Role> GetRoleByIdAsync(int id)
+        {
+            var role=await _roleManager.FindByIdAsync(id.ToString());
+            return role!;
+        }
+
+        public async Task<Role> GetRoleByNameAsync(string name)
+        {
+            var role = await _roleManager.Roles.AsNoTracking()
+            .FirstOrDefaultAsync(x => x.NameAr.Contains(name) || x.NameEn.Contains(name));
+            return role!;
+        }
+
+        public async Task<IList<string>> GetRolesByUserAsync(int id)
+        {
+            var user= await _userManager.FindByIdAsync(id.ToString());
+            if (user != null)
+            {
+                var roles = await _userManager.GetRolesAsync(user);
+                return roles;
+            }
+            return null!;
+        }
+
         public async Task<bool> IsExistRoleAsync(string search)
         {
-          
-
-            var result = await _appDbContext.Roles
+            var result = await _roleManager.Roles
                 .FirstOrDefaultAsync(x => x.NameEn.Contains(search) || x.NameAr.Contains(search));
             if (result != null)
                 return true;

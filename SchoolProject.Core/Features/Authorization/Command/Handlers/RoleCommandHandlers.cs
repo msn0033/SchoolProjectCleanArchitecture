@@ -23,6 +23,8 @@ namespace SchoolProject.Core.Features.Authorization.Command.Handlers
             this._authorizationService = authorizationService;
             this._Localizer = stringLocalizer;
         }
+
+        //add Role
         public async Task<Response<string>> Handle(AddRoleCommand request, CancellationToken cancellationToken)
         {
             if (await _authorizationService.AddRoleAsync(request.NameEn, request.NameAr))

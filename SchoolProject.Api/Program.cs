@@ -29,6 +29,7 @@ builder.Services.AddDbContext<AppDbContext>(option =>
     option.UseSqlServer(builder.Configuration.GetConnectionString("dbcontext"))
     .LogTo(Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Information);
 });
+
 builder.Services.AddIdentity<User, Role>(o => { }).AddEntityFrameworkStores<AppDbContext>();
 
 //Dependency injection
@@ -96,6 +97,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
 
 #region localization
 //localization

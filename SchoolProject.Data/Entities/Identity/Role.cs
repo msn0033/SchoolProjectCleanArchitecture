@@ -17,14 +17,14 @@ namespace SchoolProject.Data.Entities.Identity
         {
             Name = NameEn;
         }
-        public string Localize(string? TextAr, string? TextEn)
+        public string? Localize(string? TextAr, string? TextEn)
         {
             CultureInfo culture = Thread.CurrentThread.CurrentCulture;
             if (culture.TwoLetterISOLanguageName.ToLower().Equals("ar"))
             {
-                return TextAr!;
+                return TextAr;
             }
-            return TextEn!;
+            return TextEn;
         }
 
     }
