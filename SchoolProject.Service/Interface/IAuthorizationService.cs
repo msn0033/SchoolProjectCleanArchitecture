@@ -15,6 +15,9 @@ namespace SchoolProject.Service.Interface
         Task<Role> GetRoleByNameAsync(string name);
         Task<IList<string>> GetRolesByUserAsync(int id);
         Task<IQueryable<Role>> GetAllRoles();
+
+       // Task<IList<string>> GetManageUserRolesData(User user);
+      
         
     }
 }

@@ -60,10 +60,11 @@ namespace SchoolProject.Service.Services
         public async Task<IList<string>> GetRolesByUserAsync(int id)
         {
             var user= await _userManager.FindByIdAsync(id.ToString());
+
             if (user != null)
             {
-                var roles = await _userManager.GetRolesAsync(user);
-                return roles;
+                var rolesbyuser =await _userManager.GetRolesAsync(user);
+                return rolesbyuser;
             }
             return null!;
         }
