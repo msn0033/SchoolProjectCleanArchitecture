@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SchoolProject.Data.ModelsHelper;
 
-namespace SchoolProject.Helper.ModelsHelper
+namespace SchoolProject.Data.DTOs
 {
     public class JwtAuthResponse
     {

@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Localization;
 using SchoolProject.Core.Features.ApplicationUser.Commands.Models;
 using SchoolProject.Data.Entities.Identity;
-using SchoolProject.Helper.Resources;
 using SchoolProject.Helper.ResponseHelper;
 
 

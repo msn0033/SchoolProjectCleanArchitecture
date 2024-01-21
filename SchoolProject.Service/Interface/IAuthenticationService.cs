@@ -1,5 +1,6 @@
-﻿using SchoolProject.Data.Entities.Identity;
-using SchoolProject.Helper.ModelsHelper;
+﻿using SchoolProject.Data.DTOs;
+using SchoolProject.Data.Entities.Identity;
+
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;

@@ -3,8 +3,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using SchoolProject.Data.DTOs;
 using SchoolProject.Data.Entities.Identity;
-using SchoolProject.Helper.ModelsHelper;
+using SchoolProject.Data.ModelsHelper;
 using SchoolProject.Infrustructure.Interface;
 using SchoolProject.Infrustructure.Migrations;
 using SchoolProject.Service.Interface;
@@ -39,7 +40,10 @@ namespace SchoolProject.Service.Services
         {
             if (user == null)
             {
-                throw new ArgumentNullException("user is not found");
+               
+                JwtAuthResponse jwtAuthResponse_ = new JwtAuthResponse();
+                jwtAuthResponse_.message = "user is not found";
+                return jwtAuthResponse_;
             }
 
             //var claims = GetClaims(user);

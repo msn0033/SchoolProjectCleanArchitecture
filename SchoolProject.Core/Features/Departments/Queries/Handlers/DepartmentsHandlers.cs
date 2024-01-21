@@ -6,7 +6,7 @@ using SchoolProject.Core.Features.Departments.Queries.Responses;
 using SchoolProject.Core.Features.Students.Commands.Handlers;
 using SchoolProject.Data.Entities;
 using SchoolProject.Helper.Extension;
-using SchoolProject.Helper.Resources;
+
 using SchoolProject.Helper.ResponseHelper;
 using SchoolProject.Service.Interface;
 using System;

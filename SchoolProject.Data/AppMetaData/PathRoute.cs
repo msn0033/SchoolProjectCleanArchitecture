@@ -38,7 +38,8 @@
             public const string RolesPaginated = prefix + "RolesPaginated";
             public const string GetRoleById = prefix + "GetRoleById";
             public const string GetRoleByName = prefix + "GetRoleByName";
-            public const string ManageUserRoles = prefix + "ManageUserRoles";
+            public const string ManageUserRoles = prefix + "ManageUserRoles"; 
+            public const string UpdateUserRoles = prefix + "UpdateUserRoles";
 
             
         }

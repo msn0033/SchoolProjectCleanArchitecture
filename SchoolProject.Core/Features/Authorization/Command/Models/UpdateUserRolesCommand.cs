@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using SchoolProject.Data.DTOs;
 using SchoolProject.Helper.ResponseHelper;
 using System;
 using System.Collections.Generic;
@@ -8,8 +9,7 @@ using System.Threading.Tasks;
 
 namespace SchoolProject.Core.Features.Authorization.Command.Models
 {
-    public class AddRoleCommand:IRequest<Response<string>>
+    public class UpdateUserRolesCommand: UpdateUserRolesRequest, IRequest<Response<string>>
     {
-        public required string Name { get; set; } 
     }
 }

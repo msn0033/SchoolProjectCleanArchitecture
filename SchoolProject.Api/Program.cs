@@ -82,7 +82,7 @@ builder.Services.AddSwaggerGen(opt =>
 //
 var app = builder.Build();
 
-
+//Data Seeding
 using(var scop=app.Services.CreateScope())
 {
     var rloemanager = scop.ServiceProvider.GetRequiredService<RoleManager<Role>>();

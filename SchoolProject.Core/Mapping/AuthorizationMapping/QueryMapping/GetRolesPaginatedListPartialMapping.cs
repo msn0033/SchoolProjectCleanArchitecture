@@ -12,9 +12,7 @@ namespace SchoolProject.Core.Mapping.AuthorizationMapping
     {
         public void GetRolesPaginatedListPartialMapping()
         {
-            CreateMap<Role, GetRolesPaginatedListQueryResponse>()
-           .ForMember(des => des.Id, src => src.MapFrom(x => x.Id))
-           .ForMember(des => des.Name, src => src.MapFrom(x => x.Localize(x.NameAr, x.NameEn)));
+            CreateMap<Role, GetRolesPaginatedListQueryResponse>();
 
         }
     }

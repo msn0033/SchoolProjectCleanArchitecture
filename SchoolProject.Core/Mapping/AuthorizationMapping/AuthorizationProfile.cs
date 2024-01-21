@@ -14,8 +14,6 @@ namespace SchoolProject.Core.Mapping.AuthorizationMapping
             GetRoleByIdQuery();
             GetRoleByNameQueryPartialMapping();
             GetRolesPaginatedListPartialMapping();
-
-            ManageUserRolesPartialMapping();
         }
     }
 }

@@ -6,7 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using SchoolProject.Data.Entities.Identity;
-using SchoolProject.Helper.ModelsHelper;
+using SchoolProject.Data.ModelsHelper;
 using SchoolProject.Infrustructure.Context;
 using System.Text;
 

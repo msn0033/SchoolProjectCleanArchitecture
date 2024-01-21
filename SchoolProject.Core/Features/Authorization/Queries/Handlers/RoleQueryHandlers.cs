@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
 using LocalizationLanguage;
 using MediatR;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 using SchoolProject.Core.Features.Authorization.Queries.Models;
 using SchoolProject.Core.Features.Authorization.Queries.Responses;
+using SchoolProject.Data.DTOs;
 using SchoolProject.Data.Entities.Identity;
 using SchoolProject.Helper.Extension;
 using SchoolProject.Helper.ResponseHelper;
@@ -22,19 +24,23 @@ namespace SchoolProject.Core.Features.Authorization.Queries.Handlers
         ,IRequestHandler<GetRoleByIdQueryRequest, Response<GetRoleByIdQueryResponse>>
         ,IRequestHandler<GetRoleByNameQueryRequest, Response<GetRoleByNameQueryResponse>>
         ,IRequestHandler<GetRolesPaginatedListQuery,Response<PaginatedResult<GetRolesPaginatedListQueryResponse>>>
-        ,IRequestHandler<ManageUserRolesQueryRequest,Response<ManageUserRolesQueryResponse>>
+        ,IRequestHandler<ManageUserRolesQueryRequest,Response<ManageUserRolesDTOsResponse>>
+   
        
     {
         private readonly IAuthorizationService _authorization;
         private readonly IMapper _mapper;
+        private readonly UserManager<User> _userManager;
         private readonly IStringLocalizer<RoleQueryHandlers> _localizer;
 
         public RoleQueryHandlers(IAuthorizationService authorization
             , IMapper mapper
+            ,UserManager<User> userManager
             , IStringLocalizer<RoleQueryHandlers> localizer) : base(localizer)
         {
             this._authorization = authorization;
             this._mapper = mapper;
+            this._userManager = userManager;
             this._localizer = localizer;
         }
         // role by id
@@ -60,7 +66,7 @@ namespace SchoolProject.Core.Features.Authorization.Queries.Handlers
         // roles  paginated
         public async Task<Response<PaginatedResult<GetRolesPaginatedListQueryResponse>>> Handle(GetRolesPaginatedListQuery request, CancellationToken cancellationToken)
         {
-            var roles= await _authorization.GetAllRoles();
+            var roles= await _authorization.GetAllRolesAsync();
             if (roles == null) 
                 return NotFound<PaginatedResult<GetRolesPaginatedListQueryResponse>>(_localizer[ShareResourcesKey.NotFound]);
 
@@ -70,33 +76,12 @@ namespace SchoolProject.Core.Features.Authorization.Queries.Handlers
             return Success(result);
         }
 
-        public async Task<Response<ManageUserRolesQueryResponse>> Handle(ManageUserRolesQueryRequest request, CancellationToken cancellationToken)
+        public async Task<Response<ManageUserRolesDTOsResponse>> Handle(ManageUserRolesQueryRequest request, CancellationToken cancellationToken)
         {
-            //var GetManageUserRolesData
-            var manage =new  ManageUserRolesQueryResponse();
-            var roles=await _authorization.GetAllRoles();
-            var rolesByUser = await _authorization.GetRolesByUserAsync(request.UserId);
-            var mapper = _mapper.Map<List<RoleByUser>>(roles);   
-           
-            mapper.ForEach(x => {
-                foreach (var item in rolesByUser)
-                {
-                    if (item == x.Name)
-                    {
-                        x.IsActive = true;
-                    }
-                }
-            });
-            manage.UserId = request.UserId;
-            manage.RolesByUser = mapper;
-
-           // manage.RolesByUser = 
-          
-            return Success(manage);
-            
-            
-
-
+            var user=await _userManager.FindByIdAsync(request.UserId.ToString());
+            if(user == null) return NotFound<ManageUserRolesDTOsResponse>(_localizer[ShareResourcesKey.NotFound]);
+            var result = await _authorization.GetManageUserRolesDataAsync(user);
+            return Success(result);
         }
     }
 }

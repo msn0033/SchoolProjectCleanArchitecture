@@ -14,11 +14,8 @@ namespace LocalizationLanguage
         {
 
             services.AddSingleton<IStringLocalizerFactory, JsonStringLocalizerFactory>();
-
             services.AddLocalization();//localization
             services.AddDistributedMemoryCache();//caching
-          
-
             services.AddMvc()
                 .AddDataAnnotationsLocalization(options =>
                 {
@@ -32,7 +29,6 @@ namespace LocalizationLanguage
                 {
                     new CultureInfo("en-US"),
                     new CultureInfo("ar-SA"),
-                    new CultureInfo("de-DE")
                 };
 
                 options.DefaultRequestCulture = new RequestCulture(culture: supportedCultures[0]);

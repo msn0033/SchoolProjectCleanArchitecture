@@ -12,8 +12,8 @@ namespace SchoolProject.Core.Mapping.AuthorizationMapping
     {
         public void GetRoleByIdQuery()
         {
-            CreateMap<Role, GetRoleByIdQueryResponse>()
-                .ForMember(des => des.Name, src => src.MapFrom(x => x.Localize(x.NameAr, x.NameEn)));
+            CreateMap<Role, GetRoleByIdQueryResponse>();
+                
         }
     }
 }

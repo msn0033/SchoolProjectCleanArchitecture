@@ -51,5 +51,11 @@ namespace SchoolProject.Api.Controllers
             var result = await _mediator.Send(request);
             return NewResult(result);
         }
+        [HttpPost(PathRoute.AuthorizationRoute.UpdateUserRoles)]
+        public async Task<IActionResult> UpdateUserRoles(UpdateUserRolesCommand command)
+        {
+           var response=await _mediator.Send(command);
+            return NewResult(response);
+        }
     }
 }

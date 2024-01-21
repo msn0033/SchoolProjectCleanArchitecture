@@ -15,8 +15,8 @@ namespace SchoolProject.Infrustructure.Seeding
         {
             if(!await _roleManager.Roles.AnyAsync())
             {
-                await _roleManager.CreateAsync(new Role { NameAr = "المسؤال", NameEn = "Admin",Name="Admin" });
-                await _roleManager.CreateAsync(new Role { NameAr = "المستخدم", NameEn = "User",Name="User" });
+                await _roleManager.CreateAsync(new Role {Name="Admin" });
+                await _roleManager.CreateAsync(new Role {Name="User" });
             }
 
         }

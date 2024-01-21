@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SchoolProject.Data.Entities;
-using SchoolProject.Helper.Enums;
+using SchoolProject.Data.ModelsHelper.Enums;
 using SchoolProject.Infrustructure.Interface;
 using SchoolProject.Service.Interface;
 

@@ -6,7 +6,6 @@ using SchoolProject.Core.Features.ApplicationUser.Queries.Models;
 using SchoolProject.Core.Features.ApplicationUser.Queries.Responses;
 using SchoolProject.Data.Entities.Identity;
 using SchoolProject.Helper.Extension;
-using SchoolProject.Helper.Resources;
 using SchoolProject.Helper.ResponseHelper;
 using SchoolProject.Helper.Wrappers;
 using System;

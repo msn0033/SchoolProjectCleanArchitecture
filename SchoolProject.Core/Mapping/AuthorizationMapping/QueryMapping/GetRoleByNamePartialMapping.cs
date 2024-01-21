@@ -12,8 +12,7 @@ namespace SchoolProject.Core.Mapping.AuthorizationMapping
     {
         public void GetRoleByNameQueryPartialMapping()
         {
-            CreateMap<Role, GetRoleByNameQueryResponse>()
-                .ForMember(des => des.name, src => src.MapFrom(x => x.Localize(x.NameAr,x.NameEn)));
+            CreateMap<Role, GetRoleByNameQueryResponse>();
 
         }
     }

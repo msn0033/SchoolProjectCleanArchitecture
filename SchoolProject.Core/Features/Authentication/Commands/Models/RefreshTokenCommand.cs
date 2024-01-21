@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using SchoolProject.Helper.ModelsHelper;
+using SchoolProject.Data.DTOs;
 using SchoolProject.Helper.ResponseHelper;
 using System;
 using System.Collections.Generic;

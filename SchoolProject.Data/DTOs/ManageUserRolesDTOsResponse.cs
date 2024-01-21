@@ -4,19 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SchoolProject.Core.Features.Authorization.Queries.Responses
+namespace SchoolProject.Data.DTOs
 {
-    public class ManageUserRolesQueryResponse
+    public class ManageUserRolesDTOsResponse
     {
         public int UserId { get; set; }
-        public IList<RoleByUser>? RolesByUser { get; set; }
+        public IList<UserRoles>? UserRoles { get; set; }
     }
-    public class RoleByUser
+    public class UserRoles
     {
         public int Id { get; set; }
         public string? Name { get; set; }
-        public string? NameEn { get; set; }
-        public string? NameAr { get; set; }
         public bool IsActive { get; set; } = false;
     }
 }

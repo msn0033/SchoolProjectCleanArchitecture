@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using SchoolProject.Core.Features.Students.Queries.Responses;
-using SchoolProject.Helper.Enums;
+using SchoolProject.Data.ModelsHelper.Enums;
 using SchoolProject.Helper.Wrappers;
 
 namespace SchoolProject.Core.Features.Students.Queries.Models
