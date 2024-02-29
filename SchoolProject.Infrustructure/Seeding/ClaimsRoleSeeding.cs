@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SchoolProject.Data.DTOs
+namespace SchoolProject.Infrustructure.Seeding
 {
-    public class UpdateUserRolesRequest: ManageUserRolesDTOsResponse
+    public class ClaimsRoleSeeding
     {
+
     }
 }

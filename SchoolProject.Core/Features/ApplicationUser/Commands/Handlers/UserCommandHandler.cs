@@ -42,7 +42,7 @@ namespace SchoolProject.Core.Features.ApplicationUser.Commands.Handlers
                 return Failed<string>(_localizer[ShareResourcesKey.Failed]);
 
             // add user to role
-            await _userManager.AddToRoleAsync(user, "User");
+            await _userManager.AddToRoleAsync(user, "Basic");
            //Success
             return Created<string>(_localizer[ShareResourcesKey.Created]);
  

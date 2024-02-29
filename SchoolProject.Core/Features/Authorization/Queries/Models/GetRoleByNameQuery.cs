@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 
 namespace SchoolProject.Core.Features.Authorization.Queries.Models
 {
-    public class GetRoleByIdQueryRequest : IRequest<Response<GetRoleByIdQueryResponse>>
+    public class GetRoleByNameQuery : IRequest<Response<GetRoleByNameQueryResponse>>
     {
-        public int Id { get; set; }
+        public string? SearchName { get; set; }
     }
 }

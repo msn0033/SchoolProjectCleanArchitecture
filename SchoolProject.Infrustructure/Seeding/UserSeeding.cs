@@ -1,35 +1,64 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+
 using SchoolProject.Data.Entities.Identity;
+using SchoolProject.Data.Enums;
+using SchoolProject.Data.Permission;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
+using System.Threading.Channels;
 using System.Threading.Tasks;
 
 namespace SchoolProject.Infrustructure.Seeding
 {
     public static class UserSeeding
     {
-        public static async Task addUserAsync(UserManager<User> _userManager)
+        public static async Task addUserSuperAdminAsync(UserManager<User> _userManager, RoleManager<Role> _roleManager)
         {
-            if (!await _userManager.Users.AnyAsync())
+            try
             {
-                var user = new User
+                if (!await _userManager.Users.AnyAsync())
                 {
-                    FullName = "admin",
-                    UserName = "admin",
-                    Email = "admin@admin.com",
-                    EmailConfirmed = true,
-                    PhoneNumberConfirmed = true,
-                   
-                    
-                };
+                    var UserSuperAdmin = new User
+                    {
+                        FullName = Permission.FullNameSuperAdmin,
+                        UserName = Permission.UserNameSuperAdmin,
+                        Email = Permission.EmailSuperAdmin,
+                        EmailConfirmed = true,
+                        PhoneNumberConfirmed = true,
+                    };
+                    //Create UserSuperAdmin
+                    await _userManager.CreateAsync(UserSuperAdmin, Permission.PasswordSuperAdmin);
 
-                await _userManager.CreateAsync(user,"admin");
-                await _userManager.AddToRoleAsync(user, "Admin");
-               await _userManager.AddToRoleAsync(user, "User");
+                    //add role SuperAdmin for UserSuperAdmin
+                    await _userManager.AddToRoleAsync(UserSuperAdmin, RolesEnum.SuperAdmin.ToString());
+
+                    // role by name
+                    var role = await _roleManager.FindByNameAsync(RolesEnum.SuperAdmin.ToString());
+                    //AllCalims by role
+                    var AllCalimsByRole = await _roleManager.GetClaimsAsync(role);
+
+                    //Permission Generate
+                    var PermissionList = Permission.PermissionList();
+
+                    foreach (var PermissionValue in PermissionList)
+                    {
+                        if (!AllCalimsByRole.Any(x => x.Type == CustomClaimTypes.Permission && x.Value == PermissionValue))
+                        {
+                            await _roleManager.AddClaimAsync(role, new Claim(CustomClaimTypes.Permission, PermissionValue));
+                        }
+                    }
+                }
             }
+            catch (Exception ex )
+            {
+
+                throw ex.InnerException;
+            }
+          
         }
     }
 }

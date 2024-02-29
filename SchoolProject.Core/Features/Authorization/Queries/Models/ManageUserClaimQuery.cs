@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using SchoolProject.Core.Features.Authorization.Queries.Responses;
+using SchoolProject.Data.Result;
 using SchoolProject.Helper.ResponseHelper;
 using System;
 using System.Collections.Generic;
@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 
 namespace SchoolProject.Core.Features.Authorization.Queries.Models
 {
-    public class GetRoleByNameQueryRequest : IRequest<Response<GetRoleByNameQueryResponse>>
+    public class ManageUserClaimQuery:IRequest<Response<ManageUserClaimsResult>>
     {
-        public string? SearchName { get; set; }
+        public int UserId { get; set; }
     }
 }

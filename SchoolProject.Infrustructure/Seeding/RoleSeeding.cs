@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SchoolProject.Data.Entities.Identity;
+using SchoolProject.Data.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,8 +16,9 @@ namespace SchoolProject.Infrustructure.Seeding
         {
             if(!await _roleManager.Roles.AnyAsync())
             {
-                await _roleManager.CreateAsync(new Role {Name="Admin" });
-                await _roleManager.CreateAsync(new Role {Name="User" });
+                await _roleManager.CreateAsync(new Role {Name=RolesEnum.SuperAdmin.ToString()});
+                await _roleManager.CreateAsync(new Role { Name = RolesEnum.Admin.ToString() });
+                await _roleManager.CreateAsync(new Role { Name = RolesEnum.Basic.ToString() });
             }
 
         }

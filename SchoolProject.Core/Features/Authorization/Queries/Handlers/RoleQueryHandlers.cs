@@ -6,8 +6,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 using SchoolProject.Core.Features.Authorization.Queries.Models;
 using SchoolProject.Core.Features.Authorization.Queries.Responses;
-using SchoolProject.Data.DTOs;
 using SchoolProject.Data.Entities.Identity;
+using SchoolProject.Data.Result;
 using SchoolProject.Helper.Extension;
 using SchoolProject.Helper.ResponseHelper;
 using SchoolProject.Helper.Wrappers;
@@ -21,10 +21,10 @@ using System.Threading.Tasks;
 namespace SchoolProject.Core.Features.Authorization.Queries.Handlers
 {
     public class RoleQueryHandlers : ResponseHandler
-        ,IRequestHandler<GetRoleByIdQueryRequest, Response<GetRoleByIdQueryResponse>>
-        ,IRequestHandler<GetRoleByNameQueryRequest, Response<GetRoleByNameQueryResponse>>
+        ,IRequestHandler<GetRoleByIdQuery, Response<GetRoleByIdQueryResponse>>
+        ,IRequestHandler<GetRoleByNameQuery, Response<GetRoleByNameQueryResponse>>
         ,IRequestHandler<GetRolesPaginatedListQuery,Response<PaginatedResult<GetRolesPaginatedListQueryResponse>>>
-        ,IRequestHandler<ManageUserRolesQueryRequest,Response<ManageUserRolesDTOsResponse>>
+        ,IRequestHandler<ManageUserRolesQuery,Response<ManageUserRolesResult>>
    
        
     {
@@ -44,7 +44,7 @@ namespace SchoolProject.Core.Features.Authorization.Queries.Handlers
             this._localizer = localizer;
         }
         // role by id
-        public async Task<Response<GetRoleByIdQueryResponse>> Handle(GetRoleByIdQueryRequest request, CancellationToken cancellationToken)
+        public async Task<Response<GetRoleByIdQueryResponse>> Handle(GetRoleByIdQuery request, CancellationToken cancellationToken)
         {
             var role = await _authorization.GetRoleByIdAsync(request.Id);
             if (role == null) 
@@ -53,7 +53,7 @@ namespace SchoolProject.Core.Features.Authorization.Queries.Handlers
             return Success(result);
         }
         // role by name
-        public async Task<Response<GetRoleByNameQueryResponse>> Handle(GetRoleByNameQueryRequest request, CancellationToken cancellationToken)
+        public async Task<Response<GetRoleByNameQueryResponse>> Handle(GetRoleByNameQuery request, CancellationToken cancellationToken)
         {
             var role= await _authorization.GetRoleByNameAsync(request.SearchName!);
             if (role == null) 
@@ -76,10 +76,11 @@ namespace SchoolProject.Core.Features.Authorization.Queries.Handlers
             return Success(result);
         }
 
-        public async Task<Response<ManageUserRolesDTOsResponse>> Handle(ManageUserRolesQueryRequest request, CancellationToken cancellationToken)
+        //ManageUserRoles
+        public async Task<Response<ManageUserRolesResult>> Handle(ManageUserRolesQuery request, CancellationToken cancellationToken)
         {
             var user=await _userManager.FindByIdAsync(request.UserId.ToString());
-            if(user == null) return NotFound<ManageUserRolesDTOsResponse>(_localizer[ShareResourcesKey.NotFound]);
+            if(user == null) return NotFound<ManageUserRolesResult>(_localizer[ShareResourcesKey.NotFound]);
             var result = await _authorization.GetManageUserRolesDataAsync(user);
             return Success(result);
         }

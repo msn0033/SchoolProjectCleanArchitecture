@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SchoolProject.Data.DTOs
+namespace SchoolProject.Data.Result
 {
-    public class ManageUserRolesDTOsResponse
+    public class ManageUserRolesResult
     {
         public int UserId { get; set; }
         public IList<UserRoles>? UserRoles { get; set; }
@@ -15,6 +15,6 @@ namespace SchoolProject.Data.DTOs
     {
         public int Id { get; set; }
         public string? Name { get; set; }
-        public bool IsActive { get; set; } = false;
+        public bool IsSelected { get; set; } = false;
     }
 }

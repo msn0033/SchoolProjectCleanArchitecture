@@ -2,7 +2,6 @@
 using MediatR;
 using Microsoft.Extensions.Localization;
 using SchoolProject.Core.Features.Authorization.Command.Models;
-using SchoolProject.Data.DTOs;
 using SchoolProject.Helper.ResponseHelper;
 using SchoolProject.Service.Interface;
 using System;
@@ -34,7 +33,7 @@ namespace SchoolProject.Core.Features.Authorization.Command.Handlers
                 return Created<string>(_Localizer[ShareResourcesKey.Created]);
                     return BadRequest<string>(_Localizer[ShareResourcesKey.Failed]);
         }
-
+        //update Role
         public async Task<Response<string>> Handle(UpdateUserRolesCommand request, CancellationToken cancellationToken)
         {
             var reslut = await _authorizationService.UpdateUserRolesAsync(request);

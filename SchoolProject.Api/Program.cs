@@ -53,6 +53,7 @@ builder.Services.AddCors(opt =>
 //AddSwaggerGen
 builder.Services.AddSwaggerGen(opt =>
 {
+    opt.EnableAnnotations();
     opt.SwaggerDoc("v1", new OpenApiInfo { Title = "School", Version = "v1" });
     opt.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
@@ -85,10 +86,10 @@ var app = builder.Build();
 //Data Seeding
 using(var scop=app.Services.CreateScope())
 {
-    var rloemanager = scop.ServiceProvider.GetRequiredService<RoleManager<Role>>();
+    var rolemanager = scop.ServiceProvider.GetRequiredService<RoleManager<Role>>();
     var usermanager=scop.ServiceProvider.GetRequiredService<UserManager<User>>();
-    await RoleSeeding.RoleAddAsync(rloemanager);
-    await UserSeeding.addUserAsync(usermanager);
+    await RoleSeeding.RoleAddAsync(rolemanager);
+    await UserSeeding.addUserSuperAdminAsync(usermanager,rolemanager);
 }
 
 // Configure the HTTP request pipeline.

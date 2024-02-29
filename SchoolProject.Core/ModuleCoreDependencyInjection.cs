@@ -16,6 +16,7 @@ namespace SchoolProject.Core
         {
             //Configuration of Mediator
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
+           
             //Configuration Of AutoMapper
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 

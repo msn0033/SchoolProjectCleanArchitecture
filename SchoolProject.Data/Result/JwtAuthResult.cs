@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using SchoolProject.Data.ModelsHelper;
 
-namespace SchoolProject.Data.DTOs
+namespace SchoolProject.Data.Result
 {
-    public class JwtAuthResponse
+    public class JwtAuthResult
     {
         public string? AccessToken { get; set; }
         public RefreshToken? RefreshToken { get; set; }

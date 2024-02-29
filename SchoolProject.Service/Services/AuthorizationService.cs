@@ -1,13 +1,17 @@
 ﻿
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using SchoolProject.Data.DTOs;
 using SchoolProject.Data.Entities.Identity;
+using SchoolProject.Data.ModelsHelper;
+using SchoolProject.Data.Request;
+using SchoolProject.Data.Result;
 using SchoolProject.Infrustructure.Context;
 using SchoolProject.Service.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,11 +21,15 @@ namespace SchoolProject.Service.Services
     {
         private readonly RoleManager<Role> _roleManager;
         private readonly UserManager<User> _userManager;
+        private readonly AppDbContext _dbContext;
 
-        public AuthorizationService(RoleManager<Role> roleManager, UserManager<User> userManager)
+        public AuthorizationService(RoleManager<Role> roleManager
+            , UserManager<User> userManager
+            , AppDbContext dbContext)
         {
             this._roleManager = roleManager;
             this._userManager = userManager;
+            this._dbContext = dbContext;
         }
         public async Task<bool> AddRoleAsync(string Name)
         {
@@ -75,32 +83,33 @@ namespace SchoolProject.Service.Services
                 return false;
             return true;
         }
-        public async Task<ManageUserRolesDTOsResponse> GetManageUserRolesDataAsync(User user)
+        public async Task<ManageUserRolesResult> GetManageUserRolesDataAsync(User user)
         {
-            var respons = new ManageUserRolesDTOsResponse();
-            var roleslist = new List<UserRoles>();
+            var respons = new ManageUserRolesResult();
+            var newroleslist = new List<UserRoles>();
             //roles
-            var roles = await GetAllRolesAsync();
-            foreach (var role in roles.ToList())
+            //var roles = await GetAllRolesAsync();
+            var roles =await _roleManager.Roles.ToListAsync();
+            foreach (var role in roles)
             {
                 if (role.Name != null)
                 {
                     var userrole = new UserRoles();
                     userrole.Id = role.Id;
                     userrole.Name = role.Name;
-      
-                    if (await _userManager.IsInRoleAsync(user, role.Name))
+                    var check = await _userManager.IsInRoleAsync(user, role.Name.ToString());
+                    if (check)
                     {
-                        userrole.IsActive = true;
+                        userrole.IsSelected = true;
                     }
-                    else 
-                        userrole.IsActive = false;
+                    else
+                        userrole.IsSelected = false;
 
-                    roleslist.Add(userrole);
+                    newroleslist.Add(userrole);
                 }
             }
             respons.UserId = user.Id;
-            respons.UserRoles = roleslist;
+            respons.UserRoles = newroleslist;
 
             return respons;
 
@@ -118,13 +127,79 @@ namespace SchoolProject.Service.Services
             {
                 return "error on Removeing old Roles";
             }
-            var newRoles = request.UserRoles?.Where(x => x.IsActive).Select(x => x.Name);
+            var newRoles = request.UserRoles?.Where(x => x.IsSelected).Select(x => x.Name);
             var result = await _userManager.AddToRolesAsync(user, newRoles!);
             if (!result.Succeeded)
             {
                 return "error on add new Roles";
             }
             return "Success";
+        }
+
+        //Get all claims and selected on claims by user
+        //manage claims
+        public async Task<ManageUserClaimsResult> GetManageUserClaimsDataAsync(User user)
+        {
+            var response = new ManageUserClaimsResult();
+            var ListNewuserClaims = new List<UserClaim>();
+            //Get Claims by user
+            var Claims = await _userManager.GetClaimsAsync(user);// edit
+            if (Claims == null)
+                return null;
+
+
+            foreach (var item in ClaimsStore.Claims)//Create Edti Delete Details
+            {
+                var userclaim = new UserClaim();
+                userclaim.Type = item.Type;
+                if (Claims.Any(x => x.Type == item.Type))
+                {
+                    userclaim.Value = true;
+                }
+                else
+                {
+                    userclaim.Value = false;
+                }
+                ListNewuserClaims.Add(userclaim);
+            }
+            response.UserId = user.Id;
+            response.UserClaims = ListNewuserClaims;
+            return response;
+        }
+
+        //update claims
+        public async Task<string> UpdateUserClaimsAsync(UpdateUserClaimsRequest request)
+        {
+            var transaction = _dbContext.Database.BeginTransaction();
+            try
+            {
+                var user = await _userManager.FindByIdAsync(request.UserId.ToString());
+                if (user == null)
+                    return "UserIsNull";
+                var userclaims = await _userManager.GetClaimsAsync(user);
+                var removeClaims = await _userManager.RemoveClaimsAsync(user, userclaims);
+
+                if (!removeClaims.Succeeded)
+                    return "FailedToRemoveOldClaimsByUser";
+
+                var AddnewUserClaims = request.UserClaims
+                    .Where(x => x.Value == true)
+                    .Select(x => new Claim(x.Type, x.Value.ToString()));
+
+                var result = await _userManager.AddClaimsAsync(user, AddnewUserClaims);
+                if (!result.Succeeded)
+                    return "FailedToAddNewClaims";
+
+                await transaction.CommitAsync();
+                return "Success";
+            }
+            catch (Exception ex)
+            {
+                transaction.Rollback();
+                return $"FailedToUpdateClaims => exception :{ex.Message}";
+
+            }
+
         }
     }
 }

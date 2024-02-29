@@ -22,7 +22,10 @@ namespace SchoolProject.Api.Controllers
             var result = await _mediator.Send(request);
             if (result?.Data?.AccessToken != null)
             {
-                HttpContext.Response.Cookies.Append("token", result.Data.AccessToken, new CookieOptions { HttpOnly = true });
+                HttpContext
+                    .Response
+                    .Cookies
+                    .Append("token", result.Data.AccessToken, new CookieOptions { HttpOnly = true });
             }
             return NewResult(result!);
         }

@@ -1,6 +1,7 @@
 ﻿
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,7 +30,7 @@ namespace SchoolProject.Infrustructure
                 options.Password.RequiredLength = 3;
                 options.Password.RequiredUniqueChars = 0;
                 options.SignIn.RequireConfirmedEmail = false;
-                
+
 
                 // Lockout settings.
                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
@@ -40,7 +41,7 @@ namespace SchoolProject.Infrustructure
                 options.User.AllowedUserNameCharacters =
                 "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
                 options.User.RequireUniqueEmail = false;
-                
+
 
             });
             //services.ConfigureApplicationCookie(options =>
@@ -59,71 +60,50 @@ namespace SchoolProject.Infrustructure
 
             //JWT Authentication
             var jwtsettings = new Jwtsettings();
-           configuration.GetSection(nameof(jwtsettings)).Bind(jwtsettings);
+            configuration.GetSection(nameof(jwtsettings)).Bind(jwtsettings);
             services.AddSingleton(jwtsettings);
+
 
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            
+
             })
-                    .AddJwtBearer(options =>
-                     {
-                         //options.RequireHttpsMetadata = false;
-                        // options.SaveToken = true;
+            .AddJwtBearer(options =>
+            {
+                    var keySecret = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtsettings.Secret!));
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = jwtsettings.ValidateIssure,
+                        ValidateAudience = jwtsettings.ValidateAudience,
+                        ValidateLifetime = jwtsettings.ValidateLifetime,
+                        ValidateIssuerSigningKey = jwtsettings.ValidateIssuerSigningKey,
+                        ValidIssuer = jwtsettings.Issuer,
+                        ValidAudience = jwtsettings.Audience,
+                        IssuerSigningKey = keySecret
+                    };
 
-                         var keySecret = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtsettings.Secret!));
-                         options.TokenValidationParameters = new TokenValidationParameters
-                         {
-                             ValidateIssuer = jwtsettings.ValidateIssure,
-                             ValidateAudience = jwtsettings.ValidateAudience,
-                             ValidateLifetime = jwtsettings.ValidateLifetime,
-                             ValidateIssuerSigningKey = jwtsettings.ValidateIssuerSigningKey,
-                             ValidIssuer = jwtsettings.Issuer,
-                             ValidAudience = jwtsettings.Audience,
-                             IssuerSigningKey = keySecret
-                         };
+                    //read from cookie
+                    options.Events = new JwtBearerEvents
+                    {
+                        OnMessageReceived = context =>
+                        {
+                            var token = context.Request.Cookies["token"];
+                            context.Token = token;
+                            return Task.CompletedTask;
+                        }
+                    };
 
-                         //read from cookie
-                         options.Events = new JwtBearerEvents
-                         {
-                             OnMessageReceived = context =>
-                             {
-                                 var token = context.Request.Cookies["token"];
-                                 context.Token = token;
-                                 return Task.CompletedTask;
-                             }
-                         };
-                         
-                    });
+             });
+
+            services.AddAuthorization(option => 
+            {
+                option.AddPolicy("Create-Student", policy => policy.RequireClaim("Create Student"));
+
+            });
+
             //Jwt configuration ends here
-
-            //services.AddAuthentication(options =>
-            //{
-
-            //    // options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-            //    // options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-
-            //    // options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-            //    // options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-            //});
-            // //.AddJwtBearer(options =>
-            // //   {
-
-            // //   })
-
-            // //.AddCookie(options =>
-            // //   {
-            // //       // Cookie settings
-            // //       options.Cookie.HttpOnly = true;
-            // //       options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
-
-            // //       options.LoginPath = "/Identity/Account/Login";
-            // //       options.AccessDeniedPath = "/Identity/Account/AccessDenied";
-            // //       options.SlidingExpiration = true;
-            // //   });
-
             return services;
         }
 

@@ -9,7 +9,7 @@ namespace SchoolProject.Api.Controllers
 {
     //[Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize(Policy = "Create-Student")]
     public class StudentsController : AppControllersBase
     {
 

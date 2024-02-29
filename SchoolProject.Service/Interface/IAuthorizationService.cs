@@ -1,5 +1,6 @@
-﻿using SchoolProject.Data.DTOs;
-using SchoolProject.Data.Entities.Identity;
+﻿using SchoolProject.Data.Entities.Identity;
+using SchoolProject.Data.Request;
+using SchoolProject.Data.Result;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,8 +18,13 @@ namespace SchoolProject.Service.Interface
         Task<IList<string>> GetRolesByUserIdAsync(int id);
         Task<IQueryable<Role>> GetAllRolesAsync();
 
-       Task<ManageUserRolesDTOsResponse> GetManageUserRolesDataAsync(User user);
+       Task<ManageUserRolesResult> GetManageUserRolesDataAsync(User user);
         Task<string> UpdateUserRolesAsync(UpdateUserRolesRequest request);
+
+        //Claims
+        Task<ManageUserClaimsResult> GetManageUserClaimsDataAsync(User user);
+        Task<string> UpdateUserClaimsAsync(UpdateUserClaimsRequest request);
+
 
 
 
