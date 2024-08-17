@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SchoolProject.Infrustructure.Context;
 
@@ -11,9 +12,11 @@ using SchoolProject.Infrustructure.Context;
 namespace SchoolProject.Infrustructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240707121001_Edit Roles")]
+    partial class EditRoles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -275,20 +278,6 @@ namespace SchoolProject.Infrustructure.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-                });
-
-            modelBuilder.Entity("SchoolProject.Data.Entities.Identity.UserPermission", b =>
-                {
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Permission")
-                        .HasMaxLength(100)
-                        .HasColumnType("NVARCHAR");
-
-                    b.HasKey("UserId", "Permission");
-
-                    b.ToTable("UserPermissions", (string)null);
                 });
 
             modelBuilder.Entity("SchoolProject.Data.Entities.Identity.UserRefreshToken", b =>
@@ -553,17 +542,6 @@ namespace SchoolProject.Infrustructure.Migrations
                     b.Navigation("Subjects");
                 });
 
-            modelBuilder.Entity("SchoolProject.Data.Entities.Identity.UserPermission", b =>
-                {
-                    b.HasOne("SchoolProject.Data.Entities.Identity.User", "User")
-                        .WithMany("UserPermission")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("SchoolProject.Data.Entities.Identity.UserRefreshToken", b =>
                 {
                     b.HasOne("SchoolProject.Data.Entities.Identity.User", "User")
@@ -646,8 +624,6 @@ namespace SchoolProject.Infrustructure.Migrations
 
             modelBuilder.Entity("SchoolProject.Data.Entities.Identity.User", b =>
                 {
-                    b.Navigation("UserPermission");
-
                     b.Navigation("UserRefreshTokens");
                 });
 

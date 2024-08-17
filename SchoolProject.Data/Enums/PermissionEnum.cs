@@ -6,10 +6,13 @@ using System.Threading.Tasks;
 
 namespace SchoolProject.Data.Enums
 {
-    public enum RolesEnum
+    public enum PermissionEnum
     {
-        SuperAdmin = 0,
-        Admin=1,
-        Basic=2,
+      
+        Create=1,
+        read=2,
+        edit=3,
+        Delete=4
+
     }
 }

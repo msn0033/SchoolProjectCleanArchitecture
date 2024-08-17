@@ -15,6 +15,7 @@ namespace SchoolProject.Api.Controllers
     [ApiController]
     public class AuthorizationController : AppControllersBase
     {
+        #region Role
         [HttpPost(PathRoute.AuthorizationRoute.Create)]
         public async Task<IActionResult> Create([FromForm]AddRoleCommand request)
         {
@@ -22,7 +23,8 @@ namespace SchoolProject.Api.Controllers
             var result=await _mediator.Send(request);
             return NewResult(result);
         }
-
+        //====================================================================
+       
         [HttpGet(PathRoute.AuthorizationRoute.RolesPaginated)]
         public async Task<IActionResult> GetRolesPaginated([FromQuery] GetRolesPaginatedListQuery request)
         {
@@ -30,6 +32,7 @@ namespace SchoolProject.Api.Controllers
             var result = await _mediator.Send(request);
             return NewResult(result);
         }
+        //====================================================================
 
         [HttpGet(PathRoute.AuthorizationRoute.GetRoleById)]
         public async Task<IActionResult> GetRoleById([FromQuery] GetRoleByIdQuery request)
@@ -38,6 +41,9 @@ namespace SchoolProject.Api.Controllers
             var result = await _mediator.Send(request);
             return NewResult(result);
         }
+       
+        //====================================================================
+
         [HttpGet(PathRoute.AuthorizationRoute.GetRoleByName)]
         public async Task<IActionResult> GetRoleByName([FromQuery] GetRoleByNameQuery request)
         {
@@ -45,6 +51,8 @@ namespace SchoolProject.Api.Controllers
             var result = await _mediator.Send(request);
             return NewResult(result);
         }
+        
+        //====================================================================
 
         [HttpGet(PathRoute.AuthorizationRoute.ManageUserRoles)]
          public async Task<IActionResult> ManageUserRoles([FromQuery] ManageUserRolesQuery request)
@@ -53,7 +61,9 @@ namespace SchoolProject.Api.Controllers
             var result = await _mediator.Send(request);
             return NewResult(result);
         }
-        
+       
+        //====================================================================
+
         [SwaggerOperation(Summary = "تعديل  صلاحيات المستخدم ", OperationId = "UpdateUserRoles")]
         [HttpPut(PathRoute.AuthorizationRoute.UpdateUserRoles)]
         public async Task<IActionResult> UpdateUserRoles(UpdateUserRolesCommand command)
@@ -62,6 +72,11 @@ namespace SchoolProject.Api.Controllers
             return NewResult(response);
         }
 
+
+        #endregion
+        //====================================================================
+
+        #region Claims
         //claims
         [SwaggerOperation(Summary="ادارة صلاحيات المستخدم Claims",OperationId= "ManageUserClaims")]
         [HttpGet(PathRoute.AuthorizationRoute.ManageUserClaims)]
@@ -71,6 +86,8 @@ namespace SchoolProject.Api.Controllers
             return NewResult(response);
         }
 
+       
+        //====================================================================
         [SwaggerOperation(Summary = "تعديل  صلاحيات Calims ", OperationId = "UpdateUserRoles")]
         [HttpPut(PathRoute.AuthorizationRoute.UpdateUserClaims)]
         public async Task<IActionResult> UpdateUserClaims(UpdateUserClaimsCommand command)
@@ -78,5 +95,9 @@ namespace SchoolProject.Api.Controllers
             var response = await _mediator.Send(command);
             return NewResult(response);
         }
+        #endregion
+
+        //====================================================================
     }
+
 }

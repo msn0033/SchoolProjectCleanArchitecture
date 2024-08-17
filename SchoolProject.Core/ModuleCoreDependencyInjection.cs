@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.DependencyInjection;
 using SchoolProject.Core.Behaviors;
 using SchoolProject.Core.Features.Students.Commands.Models;
+using SchoolProject.Core.Filters;
 using System.Globalization;
 using System.Reflection;
 
@@ -26,6 +27,11 @@ namespace SchoolProject.Core
             services.AddValidatorsFromAssembly(typeof(AddStudentCommand).Assembly);
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
+           //add filters
+            services.AddControllers(op => 
+            {
+                op.Filters.Add<PermissionBasedAuthorizationFilter>();
+            });
           
             return services;
         }

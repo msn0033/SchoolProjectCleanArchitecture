@@ -11,5 +11,7 @@ namespace SchoolProject.Service.AuthServices.Interfaces
     {
         int UserId();
         Task<User> GetUserAsync();
+        bool IsAuthenticated();
+        Task<List<string>> GetRolesByCurrentUserAsync();
     }
 }

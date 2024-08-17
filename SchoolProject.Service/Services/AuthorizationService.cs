@@ -144,8 +144,8 @@ namespace SchoolProject.Service.Services
             var ListNewuserClaims = new List<UserClaim>();
             //Get Claims by user
             var Claims = await _userManager.GetClaimsAsync(user);// edit
-            if (Claims == null)
-                return null;
+            if (Claims.Count ==0)
+                return null ;
 
 
             foreach (var item in ClaimsStore.Claims)//Create Edti Delete Details

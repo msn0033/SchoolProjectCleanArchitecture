@@ -12,11 +12,11 @@ namespace SchoolProject.Infrustructure.Seeding
 {
     public static class RoleSeeding
     {
-        public static async Task RoleAddAsync(RoleManager<Role> _roleManager)
+        public static async Task SeedRoleAddAsync(RoleManager<Role> _roleManager)
         {
-            if(!await _roleManager.Roles.AnyAsync())
+            if (!await _roleManager.Roles.AnyAsync())
             {
-                await _roleManager.CreateAsync(new Role {Name=RolesEnum.SuperAdmin.ToString()});
+                await _roleManager.CreateAsync(new Role { Name = RolesEnum.SuperAdmin.ToString() });
                 await _roleManager.CreateAsync(new Role { Name = RolesEnum.Admin.ToString() });
                 await _roleManager.CreateAsync(new Role { Name = RolesEnum.Basic.ToString() });
             }

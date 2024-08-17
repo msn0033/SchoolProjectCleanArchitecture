@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace SchoolProject.Data.Enums
 {
-    public enum PermissionModuleName
+    public enum ModuleEnum
     {
-        ApplicationUser,
-        Authentication,
-        Authorization,
-        Culture,
+        Students,
         Departments,
-        Students
+        Culture,
+        Authorization,
+        Authentication
     }
 }

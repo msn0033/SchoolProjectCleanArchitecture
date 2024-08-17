@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using SchoolProject.Data.Entities.Identity;
 using SchoolProject.Data.Enums;
 using SchoolProject.Data.Permission;
+using SchoolProject.Infrustructure.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,12 +12,15 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Channels;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace SchoolProject.Infrustructure.Seeding
 {
     public static class UserSeeding
     {
-        public static async Task addUserSuperAdminAsync(UserManager<User> _userManager, RoleManager<Role> _roleManager)
+
+
+        public static  async Task SeedSuperAdminUserAsync(UserManager<User> _userManager, RoleManager<Role> _roleManager,AppDbContext _dbContext)
         {
             try
             {
@@ -24,41 +28,77 @@ namespace SchoolProject.Infrustructure.Seeding
                 {
                     var UserSuperAdmin = new User
                     {
-                        FullName = Permission.FullNameSuperAdmin,
-                        UserName = Permission.UserNameSuperAdmin,
-                        Email = Permission.EmailSuperAdmin,
+                        FullName = Permission.FullNameSuperAdmin.ToLower(),
+                        UserName = Permission.UserNameSuperAdmin.ToLower(),
+                        Email = Permission.EmailSuperAdmin.ToLower(),
                         EmailConfirmed = true,
                         PhoneNumberConfirmed = true,
                     };
                     //Create UserSuperAdmin
-                    await _userManager.CreateAsync(UserSuperAdmin, Permission.PasswordSuperAdmin);
+                     var result = await _userManager.CreateAsync(UserSuperAdmin, Permission.PasswordSuperAdmin);
 
-                    //add role SuperAdmin for UserSuperAdmin
-                    await _userManager.AddToRoleAsync(UserSuperAdmin, RolesEnum.SuperAdmin.ToString());
-
-                    // role by name
-                    var role = await _roleManager.FindByNameAsync(RolesEnum.SuperAdmin.ToString());
-                    //AllCalims by role
-                    var AllCalimsByRole = await _roleManager.GetClaimsAsync(role);
-
-                    //Permission Generate
-                    var PermissionList = Permission.PermissionList();
-
-                    foreach (var PermissionValue in PermissionList)
+                    if (!result.Succeeded)
                     {
-                        if (!AllCalimsByRole.Any(x => x.Type == CustomClaimTypes.Permission && x.Value == PermissionValue))
-                        {
-                            await _roleManager.AddClaimAsync(role, new Claim(CustomClaimTypes.Permission, PermissionValue));
-                        }
+                        new Exception("error in Create User SuperAdmin");
                     }
+                   // bind role  for UserSuperAdmin
+                      await _userManager.AddToRoleAsync(UserSuperAdmin, RolesEnum.SuperAdmin.ToString());
+                      await _userManager.AddToRoleAsync(UserSuperAdmin, RolesEnum.Admin.ToString());
+                      await _userManager.AddToRoleAsync(UserSuperAdmin, RolesEnum.Basic.ToString());
+
+                    #region Permission Generate 
+
+                   
+                    List<string> modules=new List<string>();
+                    foreach (var module in Enum.GetNames(typeof(ModuleEnum)))
+                    {
+                        modules.AddRange( Permission.GeneratePermissionsForModule(module));//Create.NameController
+                    }
+                    
+                    var user = await _userManager.FindByNameAsync(Permission.UserNameSuperAdmin);
+                    //var claims_by_user = await _userManager.GetClaimsAsync(user);
+
+                   
+                   
+
+
+                    foreach (var item in modules)
+                    {
+                        await _dbContext.Set<UserPermission>().AddAsync(new UserPermission { UserId = user.Id, Permission = item });
+                    };
+                   await  _dbContext.SaveChangesAsync();
+                   
+
+                    
+                 
+
+
+                    #endregion
+                    #region Permission Generate Role
+                    //role by name
+                    var role = await _roleManager.FindByNameAsync(RolesEnum.SuperAdmin.ToString());
+                   // AllCalims by role
+                     var AllCalimsByRole = await _roleManager.GetClaimsAsync(role);
+
+                   // Permission Generate
+                    //var PermissionList = Permission.PermissionList();
+
+                    //foreach (var PermissionValue in PermissionList)
+                    //{
+                    //    if (!AllCalimsByRole.Any(x => x.Type == CustomClaimTypes.Permission && x.Value == PermissionValue))
+                    //    {
+                    //        await _roleManager.AddClaimAsync(role, new Claim(CustomClaimTypes.Permission, PermissionValue));
+                    //    }
+                    //}
+                    #endregion
                 }
             }
-            catch (Exception ex )
+            catch (Exception ex)
             {
 
                 throw ex.InnerException;
             }
-          
+
         }
     }
 }

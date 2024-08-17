@@ -8,7 +8,7 @@ namespace SchoolProject.Api.Controllers
 {
     //[Route("api/[controller]")]
     [ApiController]
-    [Authorize("Roles")]
+   
     public class CultureController : ControllerBase
     {
 

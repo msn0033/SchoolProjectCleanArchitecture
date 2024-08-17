@@ -13,12 +13,16 @@ using JsonBasedLocalization.Web.Middlewares;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.OpenApi.Models;
 using SchoolProject.Infrustructure.Seeding;
+using SchoolProject.Core.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(op =>
+{
+    op.Filters.Add<PermissionBasedAuthorizationFilter>();
+});
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -31,6 +35,10 @@ builder.Services.AddDbContext<AppDbContext>(option =>
 });
 
 builder.Services.AddIdentity<User, Role>(o => { }).AddEntityFrameworkStores<AppDbContext>();
+
+//Register Filter
+//builder.Services.AddTransient<AuthRolesFilter>();
+
 
 //Dependency injection
 builder.Services.AddInfrustructureDependencyInjection()
@@ -88,8 +96,10 @@ using(var scop=app.Services.CreateScope())
 {
     var rolemanager = scop.ServiceProvider.GetRequiredService<RoleManager<Role>>();
     var usermanager=scop.ServiceProvider.GetRequiredService<UserManager<User>>();
-    await RoleSeeding.RoleAddAsync(rolemanager);
-    await UserSeeding.addUserSuperAdminAsync(usermanager,rolemanager);
+    var dbcontext = scop.ServiceProvider.GetRequiredService<AppDbContext>();
+    //var dbcontext2 = scop.ServiceProvider.GetService<AppDbContext>();
+    await RoleSeeding.SeedRoleAddAsync(rolemanager);
+    await  UserSeeding.SeedSuperAdminUserAsync(usermanager,rolemanager, dbcontext);
 }
 
 // Configure the HTTP request pipeline.

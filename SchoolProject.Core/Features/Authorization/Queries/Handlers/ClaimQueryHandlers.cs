@@ -44,6 +44,8 @@ namespace SchoolProject.Core.Features.Authorization.Queries.Handlers
                 return NotFound<ManageUserClaimsResult>(_localizer[ShareResourcesKey.NotFound]);
 
             var response = await _authorization.GetManageUserClaimsDataAsync(user);
+            if(response == null)
+                return NotFound<ManageUserClaimsResult>(_localizer[ShareResourcesKey.NotFound]);
             return Success(response);
 
         }

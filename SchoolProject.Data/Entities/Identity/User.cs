@@ -14,6 +14,7 @@ namespace SchoolProject.Data.Entities.Identity
         public string? Address { get; set; }
         public string? City { get; set; }
         public ICollection<UserRefreshToken>? UserRefreshTokens { get; set; }
-       
+        public ICollection<UserPermission>? UserPermission { get; set; }
+
     }
 }

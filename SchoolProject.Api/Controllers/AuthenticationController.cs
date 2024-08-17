@@ -29,6 +29,7 @@ namespace SchoolProject.Api.Controllers
             }
             return NewResult(result!);
         }
+       
         [HttpPost(PathRoute.AuthenticationRoute.RefreshToken)]
         public async Task<IActionResult> RefreshToken([FromQuery] RefreshTokenCommand request)
         {

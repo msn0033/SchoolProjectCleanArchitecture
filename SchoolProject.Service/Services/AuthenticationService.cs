@@ -1,5 +1,4 @@
-﻿using Azure.Core;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -69,7 +68,7 @@ namespace SchoolProject.Service.Services
                 UserId = user?.Id,
                 IsActive = true,
                 IsRevoked = false,
-                JwtSecurityTokenId = jwtSecurityToken.Id,
+               
                 Id = _refreshTokenRepository.GetTableNoTracking().Count() + 1
             };
 
@@ -105,15 +104,18 @@ namespace SchoolProject.Service.Services
         #region private
         private async Task<List<Claim>> GetClaimsAsync(User user)
         {
-            //get claims
+            //Create  claims
             var claims = new List<Claim>()
             {
                 new Claim(ClaimTypes.Name,user.UserName!),
                 new Claim(ClaimTypes.Email,user.Email!),
                 new Claim(ClaimTypes.NameIdentifier,user.Id.ToString()),
+               
+               
             };
             //add cliams by user to new claims
             var claimuser = await _userManager.GetClaimsAsync(user);
+            
             claims.AddRange(claimuser);
 
             //get Roles by user
@@ -134,7 +136,22 @@ namespace SchoolProject.Service.Services
             var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_jwtsettings?.Secret!));
             var signIn = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);
 
-            var jwtSecurityToken = new JwtSecurityToken(_jwtsettings?.Issuer,
+            //var tokenDescriptor = new SecurityTokenDescriptor
+            //{
+            //    Issuer = _jwtsettings?.Issuer,
+            //    Audience = _jwtsettings?.Audience,
+            //    Subject = new ClaimsIdentity(claims),
+            //    Expires = DateTime.UtcNow.AddDays(_jwtsettings!.AccessTokenExpire),
+            //    SigningCredentials = signIn,
+            //};
+            //var tokenHandler = new JwtSecurityTokenHandler();
+            //var securityToken = tokenHandler.CreateToken(tokenDescriptor);
+            //var accessToken = tokenHandler.WriteToken(securityToken);
+
+            //return (accessToken, tokenDescriptor);
+            //==========or====================
+
+            var jwtSecurityToken = new JwtSecurityToken(issuer: _jwtsettings?.Issuer,
                                       audience: _jwtsettings?.Audience,
                                        claims: claims,
                                        expires: DateTime.UtcNow.AddDays(_jwtsettings!.AccessTokenExpire),
@@ -143,6 +160,7 @@ namespace SchoolProject.Service.Services
             var accessToken = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken);
 
             return (accessToken, jwtSecurityToken);
+
             // return Task.FromResult(accessToken);
         }
         private static string GetRandomNumberGenerate()
@@ -228,6 +246,7 @@ namespace SchoolProject.Service.Services
             return ("success", user, userRefreshToken);
         }
 
+       
         public (string, bool) ValidateToken(string accesstoken)
         {
             //validator token
@@ -259,6 +278,7 @@ namespace SchoolProject.Service.Services
                 return ($"Invalid Token TokenValidationParameters + {ex.Message + ex?.InnerException?.Message}", false);
             }
         }
+        
         public async Task<JwtAuthResult> GetRefreshTokenAsync(User user, UserRefreshToken? userRefreshToken)
         {
             var (NewAccessToken, jwtsecurityToken) = await GenerateAccessTokenAsync(user);
@@ -279,7 +299,7 @@ namespace SchoolProject.Service.Services
             var refreshtoken = new RefreshToken
             {
                 RefreshTokenString = userRefreshToken.RefreshTokenString,
-                UserName = jwtsecurityToken?.Claims?.FirstOrDefault(x => x.Type == nameof(UserClaimModel.UserName))?.Value,
+                UserName = jwtsecurityToken?.Claims?.FirstOrDefault(x =>x.Type == nameof(UserClaimModel.UserName))?.Value,
                 ExpaireAt = userRefreshToken.ExpireAt
             };
             var response = new JwtAuthResult

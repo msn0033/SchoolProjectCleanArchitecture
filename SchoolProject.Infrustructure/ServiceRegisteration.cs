@@ -66,8 +66,8 @@ namespace SchoolProject.Infrustructure
 
             services.AddAuthentication(options =>
             {
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;//"Bearer"
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;//"Bearer"
 
             })
             .AddJwtBearer(options =>
@@ -99,7 +99,10 @@ namespace SchoolProject.Infrustructure
 
             services.AddAuthorization(option => 
             {
-                option.AddPolicy("Create-Student", policy => policy.RequireClaim("Create Student"));
+                option.AddPolicy("Create.Student", policy => policy.RequireClaim("Create.Students"));
+                option.AddPolicy("View.Student", policy => policy.RequireClaim("View.Students"));
+                option.AddPolicy("Edit.Student", policy => policy.RequireClaim("Edit.Students"));
+               // option.AddPolicy("Delete.Student", policy => policy.RequireClaim("Delete.Students"));
 
             });
 

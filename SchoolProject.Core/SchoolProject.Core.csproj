@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
@@ -31,6 +31,7 @@
     <Folder Include="Features\Departments\Commands\Validators\" />
     <Folder Include="Mapping\AuthorizationMapping\CommandMapping\" />
     <Folder Include="Mapping\DepartmentsMapping\CommandsMapping\" />
+    <Folder Include="NewFolder\" />
   </ItemGroup>
 
 </Project>

@@ -3,17 +3,22 @@ using Microsoft.AspNetCore.Mvc;
 using SchoolProject.Api.Base;
 using SchoolProject.Core.Features.Students.Commands.Models;
 using SchoolProject.Core.Features.Students.Queries.Models;
+using SchoolProject.Core.Filters;
 using SchoolProject.Data.AppMetaData;
+using SchoolProject.Data.Permission;
 
 namespace SchoolProject.Api.Controllers
 {
     //[Route("api/[controller]")]
     [ApiController]
-    [Authorize(Policy = "Create-Student")]
+
+    //[Authorize(Roles = "SuperAdmin")]
+    [Authorize]
     public class StudentsController : AppControllersBase
     {
 
-
+        // [Authorize(Roles = "User")]
+        [CheckPermission(Permission.Students.View)]
         [HttpGet(PathRoute.StudentsRoute.List)]
         public async Task<IActionResult> GetStudentList()
         {
@@ -21,6 +26,7 @@ namespace SchoolProject.Api.Controllers
             return Ok(response);
         }
 
+       // [CheckPermission(Permission.Students.View)]
         [HttpGet(PathRoute.StudentsRoute.GetById)]
         public async Task<IActionResult> GetStudnetById([FromRoute] int id)
         {
@@ -29,6 +35,7 @@ namespace SchoolProject.Api.Controllers
             return NewResult(responsestudent!);
         }
 
+        [Authorize(policy: "Create.Student")]
         [HttpPost(PathRoute.StudentsRoute.Create)]
         public async Task<IActionResult> CreateStudent([FromBody] AddStudentCommand command)
         {
@@ -36,18 +43,24 @@ namespace SchoolProject.Api.Controllers
             return NewResult(responseaddStudent);
 
         }
+      
+        
         [HttpPut(PathRoute.StudentsRoute.Edit)]
         public async Task<IActionResult> EditStudent([FromBody] EditStudentCommand editStudent)
         {
             var response = await _mediator.Send(editStudent);
             return NewResult<string>(response);
         }
+       
+        
         [HttpDelete(PathRoute.StudentsRoute.Delete)]
         public async Task<IActionResult> Delete(int id)
         {
             var response = await _mediator.Send(new DeleteStudentCommand(id));
             return NewResult(response);
         }
+
+
         [HttpGet(PathRoute.StudentsRoute.Paginated)]
         public async Task<IActionResult> Paginated([FromQuery] GetStudentPaginatedListQueryRequest query)
         {
