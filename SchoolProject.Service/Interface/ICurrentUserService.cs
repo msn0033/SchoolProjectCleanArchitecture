@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SchoolProject.Service.AuthServices.Interfaces
+namespace SchoolProject.Service.Interface
 {
     public interface ICurrentUserService
     {

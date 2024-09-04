@@ -31,7 +31,6 @@
     <Folder Include="Features\Departments\Commands\Validators\" />
     <Folder Include="Mapping\AuthorizationMapping\CommandMapping\" />
     <Folder Include="Mapping\DepartmentsMapping\CommandsMapping\" />
-    <Folder Include="NewFolder\" />
   </ItemGroup>
 
 </Project>

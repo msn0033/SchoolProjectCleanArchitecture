@@ -83,7 +83,7 @@ namespace SchoolProject.Service.Services
                 return false;
             return true;
         }
-        public async Task<ManageUserRolesResult> GetManageUserRolesDataAsync(User user)
+        public async Task<ManageUserRolesResult> GetManageRolesByUserIdAsync(User user)
         {
             var respons = new ManageUserRolesResult();
             var newroleslist = new List<UserRoles>();
@@ -114,7 +114,7 @@ namespace SchoolProject.Service.Services
             return respons;
 
         }
-        public async Task<string> UpdateUserRolesAsync(UpdateUserRolesRequest request)
+        public async Task<string> UpdateManageRolesByUserIdAsync(UpdateUserRolesRequest request)
         {
             var user = await _userManager.FindByIdAsync(request.UserId.ToString());
             if (user == null)

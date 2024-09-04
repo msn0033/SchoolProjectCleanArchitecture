@@ -1,9 +1,6 @@
 ﻿
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.DependencyInjection;
-
-using SchoolProject.Service.AuthServices.implementations;
-using SchoolProject.Service.AuthServices.Interfaces;
 using SchoolProject.Service.Interface;
 using SchoolProject.Service.Services;
 

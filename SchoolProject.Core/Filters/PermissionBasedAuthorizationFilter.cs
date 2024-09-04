@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using SchoolProject.Data.Entities.Identity;
@@ -27,7 +28,7 @@ namespace SchoolProject.Core.Filters
                 var claimIdentity = context.HttpContext.User.Identity as ClaimsIdentity;
                 if (claimIdentity == null || !claimIdentity.IsAuthenticated)
                 {
-                    context.Result = new ObjectResult("Not Authenticated ") { StatusCode=StatusCodes.Status401Unauthorized};
+                    context.Result = new ObjectResult("Not Authenticated pls SignIn  ") { StatusCode=StatusCodes.Status401Unauthorized};
                 }
                 else
                 {
@@ -36,7 +37,9 @@ namespace SchoolProject.Core.Filters
                         .Any(x => x.UserId == userId && x.Permission == attribute.Permission);
                     if (!hasPermission)
                     {
-                        context.Result = new ForbidResult();
+                       // context.Result = new ForbidResult();
+                        context.Result = new ObjectResult($"Not Authorization not hasPermission {attribute.Permission}") { StatusCode = StatusCodes.Status403Forbidden };
+
                     }
 
                 }

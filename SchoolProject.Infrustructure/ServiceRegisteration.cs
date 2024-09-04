@@ -97,14 +97,14 @@ namespace SchoolProject.Infrustructure
 
              });
 
-            services.AddAuthorization(option => 
-            {
-                option.AddPolicy("Create.Student", policy => policy.RequireClaim("Create.Students"));
-                option.AddPolicy("View.Student", policy => policy.RequireClaim("View.Students"));
-                option.AddPolicy("Edit.Student", policy => policy.RequireClaim("Edit.Students"));
-               // option.AddPolicy("Delete.Student", policy => policy.RequireClaim("Delete.Students"));
+            //services.AddAuthorization(option => 
+            //{
+            //    option.AddPolicy("Create.Student", policy => policy.RequireClaim("Create.Students"));
+            //    option.AddPolicy("View.Student", policy => policy.RequireClaim("View.Students"));
+            //    option.AddPolicy("Edit.Student", policy => policy.RequireClaim("Edit.Students"));
+            //   // option.AddPolicy("Delete.Student", policy => policy.RequireClaim("Delete.Students"));
 
-            });
+            //});
 
             //Jwt configuration ends here
             return services;

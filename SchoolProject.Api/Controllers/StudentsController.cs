@@ -13,12 +13,12 @@ namespace SchoolProject.Api.Controllers
     [ApiController]
 
     //[Authorize(Roles = "SuperAdmin")]
-    [Authorize]
+
     public class StudentsController : AppControllersBase
     {
 
-        // [Authorize(Roles = "User")]
         [CheckPermission(Permission.Students.View)]
+        [Authorize(Roles ="Sales")]
         [HttpGet(PathRoute.StudentsRoute.List)]
         public async Task<IActionResult> GetStudentList()
         {
@@ -26,7 +26,8 @@ namespace SchoolProject.Api.Controllers
             return Ok(response);
         }
 
-       // [CheckPermission(Permission.Students.View)]
+        [CheckPermission(Permission.Students.View)]
+        [Authorize(Policy = "CityFromJeddah")]
         [HttpGet(PathRoute.StudentsRoute.GetById)]
         public async Task<IActionResult> GetStudnetById([FromRoute] int id)
         {
@@ -35,7 +36,7 @@ namespace SchoolProject.Api.Controllers
             return NewResult(responsestudent!);
         }
 
-        [Authorize(policy: "Create.Student")]
+        [CheckPermission(Permission.Students.Create+"2")]
         [HttpPost(PathRoute.StudentsRoute.Create)]
         public async Task<IActionResult> CreateStudent([FromBody] AddStudentCommand command)
         {
@@ -43,16 +44,16 @@ namespace SchoolProject.Api.Controllers
             return NewResult(responseaddStudent);
 
         }
-      
-        
+
+        [Authorize(Roles ="Admin")]
         [HttpPut(PathRoute.StudentsRoute.Edit)]
         public async Task<IActionResult> EditStudent([FromBody] EditStudentCommand editStudent)
         {
             var response = await _mediator.Send(editStudent);
             return NewResult<string>(response);
         }
-       
-        
+
+        [Authorize(Roles = "Admin")]
         [HttpDelete(PathRoute.StudentsRoute.Delete)]
         public async Task<IActionResult> Delete(int id)
         {

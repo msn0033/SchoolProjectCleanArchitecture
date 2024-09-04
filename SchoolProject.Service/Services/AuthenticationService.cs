@@ -49,13 +49,10 @@ namespace SchoolProject.Service.Services
         {
             if (user == null)
             {
-
                 JwtAuthResult jwtAuthResponse_ = new JwtAuthResult();
                 jwtAuthResponse_.message = "user is not found";
                 return jwtAuthResponse_;
             }
-
-            //var claims = GetClaims(user);
             var (accessToken, jwtSecurityToken) = await GenerateAccessTokenAsync(user);
             var refreshtoken = GetRandomRefreshToken(user);
 
@@ -102,7 +99,7 @@ namespace SchoolProject.Service.Services
         }
         //
         #region private
-        private async Task<List<Claim>> GetClaimsAsync(User user)
+        private async Task<List<Claim>> Get_Claims_Role_Async(User user)
         {
             //Create  claims
             var claims = new List<Claim>()
@@ -131,7 +128,7 @@ namespace SchoolProject.Service.Services
         }
         private async Task<(string, JwtSecurityToken)> GenerateAccessTokenAsync(User user)
         {
-            var claims = await GetClaimsAsync(user);
+            var claims = await Get_Claims_Role_Async(user);
 
             var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_jwtsettings?.Secret!));
             var signIn = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);

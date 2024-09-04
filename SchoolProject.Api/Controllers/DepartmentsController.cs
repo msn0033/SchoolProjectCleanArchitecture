@@ -12,7 +12,7 @@ namespace SchoolProject.Api.Controllers
 {
   //  [Route("api/[controller]")]
     [ApiController]
-
+    [Authorize]
     public class DepartmentsController : AppControllersBase
     {
 

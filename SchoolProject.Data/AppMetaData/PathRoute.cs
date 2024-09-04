@@ -40,13 +40,13 @@
             public const string RolesPaginated = Roles + "RolesPaginated";
             public const string GetRoleById = Roles + "GetRoleById";
             public const string GetRoleByName = Roles + "GetRoleByName";
-            public const string ManageUserRoles = Roles + "ManageUserRoles"; 
-            public const string UpdateUserRoles = Roles + "UpdateUserRoles";
+            public const string Get_Manage_Roles_By_UserId = Roles + "Get_Manage_Roles_By_UserId"; 
+            public const string Update_Manage_Roles_By_UserId = Roles + "Update_Manage_Roles_By_UserId";
 
             //claims
             public const string Claims = prefix + "Claims/";
-            public const string ManageUserClaims = Claims + "ManageUserClaims/"+id;
-            public const string UpdateUserClaims = Claims + "UpdateUserClaims/";
+            public const string Get_Manage_Claims_By_UserId = Claims + "Get_Manage_Claims_By_UserId/" + id;
+            public const string Update_Manage_Claims_By_UserId = Claims + "Update_Manage_Claims_By_UserId/";
 
 
         }

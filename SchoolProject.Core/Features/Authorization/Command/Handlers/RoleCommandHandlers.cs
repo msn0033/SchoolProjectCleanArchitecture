@@ -36,7 +36,7 @@ namespace SchoolProject.Core.Features.Authorization.Command.Handlers
         //update Role
         public async Task<Response<string>> Handle(UpdateUserRolesCommand request, CancellationToken cancellationToken)
         {
-            var reslut = await _authorizationService.UpdateUserRolesAsync(request);
+            var reslut = await _authorizationService.UpdateManageRolesByUserIdAsync(request);
             return Success(reslut);
         }
     }

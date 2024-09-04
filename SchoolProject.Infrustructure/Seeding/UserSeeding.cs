@@ -47,8 +47,6 @@ namespace SchoolProject.Infrustructure.Seeding
                       await _userManager.AddToRoleAsync(UserSuperAdmin, RolesEnum.Basic.ToString());
 
                     #region Permission Generate 
-
-                   
                     List<string> modules=new List<string>();
                     foreach (var module in Enum.GetNames(typeof(ModuleEnum)))
                     {
@@ -57,10 +55,6 @@ namespace SchoolProject.Infrustructure.Seeding
                     
                     var user = await _userManager.FindByNameAsync(Permission.UserNameSuperAdmin);
                     //var claims_by_user = await _userManager.GetClaimsAsync(user);
-
-                   
-                   
-
 
                     foreach (var item in modules)
                     {

@@ -14,6 +14,8 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.OpenApi.Models;
 using SchoolProject.Infrustructure.Seeding;
 using SchoolProject.Core.Filters;
+using Microsoft.AspNetCore.Authorization;
+using SchoolProject.Core.policy;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -41,7 +43,7 @@ builder.Services.AddIdentity<User, Role>(o => { }).AddEntityFrameworkStores<AppD
 
 
 //Dependency injection
-builder.Services.AddInfrustructureDependencyInjection()
+ builder.Services.AddInfrustructureDependencyInjectionAsync().Result
                 .AddServiceDependencyInjection()
                 .AddModuleCoreDependencyInjection()
                 .AddServiceRegisteration(builder.Configuration)
@@ -88,19 +90,21 @@ builder.Services.AddSwaggerGen(opt =>
         }
     });
 });
-//
+
+
+
 var app = builder.Build();
 
-//Data Seeding
-using(var scop=app.Services.CreateScope())
-{
-    var rolemanager = scop.ServiceProvider.GetRequiredService<RoleManager<Role>>();
-    var usermanager=scop.ServiceProvider.GetRequiredService<UserManager<User>>();
-    var dbcontext = scop.ServiceProvider.GetRequiredService<AppDbContext>();
-    //var dbcontext2 = scop.ServiceProvider.GetService<AppDbContext>();
-    await RoleSeeding.SeedRoleAddAsync(rolemanager);
-    await  UserSeeding.SeedSuperAdminUserAsync(usermanager,rolemanager, dbcontext);
-}
+////Data Seeding
+//using(var scop=app.Services.CreateScope())
+//{
+//    var rolemanager = scop.ServiceProvider.GetRequiredService<RoleManager<Role>>();
+//    var usermanager=scop.ServiceProvider.GetRequiredService<UserManager<User>>();
+//    var dbcontext = scop.ServiceProvider.GetRequiredService<AppDbContext>();
+//    //var dbcontext2 = scop.ServiceProvider.GetService<AppDbContext>();
+//    await RoleSeeding.SeedRoleAddAsync(rolemanager);
+//    await  UserSeeding.SeedSuperAdminUserAsync(usermanager,rolemanager, dbcontext);
+//}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -126,11 +130,5 @@ app.UseAuthorization();
 
 
 app.MapControllers();
-app.UseMiddleware<ErrorHandlerMiddleware>();
-
-
-
-
-
-
+app.UseMiddleware<ErrorHandlerMiddleware>();//global Exception
 app.Run();

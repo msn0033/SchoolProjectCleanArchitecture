@@ -18,8 +18,8 @@ namespace SchoolProject.Service.Interface
         Task<IList<string>> GetRolesByUserIdAsync(int id);
         Task<IQueryable<Role>> GetAllRolesAsync();
 
-       Task<ManageUserRolesResult> GetManageUserRolesDataAsync(User user);
-        Task<string> UpdateUserRolesAsync(UpdateUserRolesRequest request);
+       Task<ManageUserRolesResult> GetManageRolesByUserIdAsync(User user);
+        Task<string> UpdateManageRolesByUserIdAsync(UpdateUserRolesRequest request);
 
         //Claims
         Task<ManageUserClaimsResult> GetManageUserClaimsDataAsync(User user);

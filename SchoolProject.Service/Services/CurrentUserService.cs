@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using SchoolProject.Data.Entities.Identity;
-using SchoolProject.Service.AuthServices.Interfaces;
+using SchoolProject.Service.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SchoolProject.Service.AuthServices.implementations
+namespace SchoolProject.Service.Services
 {
     public class CurrentUserService : ICurrentUserService
     {
@@ -21,8 +21,8 @@ namespace SchoolProject.Service.AuthServices.implementations
         #region ctor
         public CurrentUserService(IHttpContextAccessor httpContextAccessor, UserManager<User> userManager)
         {
-            this._httpContextAccessor = httpContextAccessor;
-            this._userManager = userManager;
+            _httpContextAccessor = httpContextAccessor;
+            _userManager = userManager;
         }
 
         #endregion
@@ -43,19 +43,19 @@ namespace SchoolProject.Service.AuthServices.implementations
             var userid = UserId().ToString();
             var user = await _userManager.FindByIdAsync(userid);
             if (user == null)
-               throw new UnauthorizedAccessException();
+                throw new UnauthorizedAccessException();
             return user;
 
         }
 
         public bool IsAuthenticated()
         {
-           return  _httpContextAccessor.HttpContext!.User.Identity!.IsAuthenticated ? true : false;
+            return _httpContextAccessor.HttpContext!.User.Identity!.IsAuthenticated ? true : false;
         }
 
         public async Task<List<string>> GetRolesByCurrentUserAsync()
         {
-            var user =await GetUserAsync();
+            var user = await GetUserAsync();
             var roles = await _userManager.GetRolesAsync(user);
             return roles.ToList();
         }

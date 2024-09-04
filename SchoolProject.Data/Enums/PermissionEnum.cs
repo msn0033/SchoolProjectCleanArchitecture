@@ -9,7 +9,7 @@ namespace SchoolProject.Data.Enums
     public enum PermissionEnum
     {
       
-        Create=1,
+        ssCreate=1,
         read=2,
         edit=3,
         Delete=4
