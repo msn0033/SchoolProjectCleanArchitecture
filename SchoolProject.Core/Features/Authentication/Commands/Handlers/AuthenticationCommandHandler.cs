@@ -1,23 +1,24 @@
-﻿using MediatR;
+﻿using LocalizationLanguage;
+using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Localization;
 using SchoolProject.Core.Features.Authentication.Commands.Models;
 using SchoolProject.Data.Entities.Identity;
-using SchoolProject.Helper.ModelsHelper;
-using SchoolProject.Helper.Resources;
+using SchoolProject.Data.Result;
 using SchoolProject.Helper.ResponseHelper;
 using SchoolProject.Service.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace SchoolProject.Core.Features.Authentication.Commands.Handlers
 {
     public class AuthenticationCommandHandler : ResponseHandler,
-        IRequestHandler<SignInUserCommand, Response<JwtAuthResponse>>,
-        IRequestHandler<RefreshTokenCommand, Response<JwtAuthResponse>>
+        IRequestHandler<SignInUserCommand, Response<JwtAuthResult>>,
+        IRequestHandler<RefreshTokenCommand, Response<JwtAuthResult>>
     {
         private readonly IStringLocalizer<AuthenticationCommandHandler> _localizer;
         private readonly SignInManager<User> _signInManager;
@@ -34,43 +35,52 @@ namespace SchoolProject.Core.Features.Authentication.Commands.Handlers
             this._authenticationService = authenticationService;
         }
         //SignInUser
-        public async Task<Response<JwtAuthResponse>> Handle(SignInUserCommand request, CancellationToken cancellationToken)
+        public async Task<Response<JwtAuthResult>> Handle(SignInUserCommand request, CancellationToken cancellationToken)
         {
         
             User? user=(await _signInManager.UserManager.FindByNameAsync(request.UserName!));
 
             if (user == null)
             {
-                return BadRequest<JwtAuthResponse>(_localizer[ShareResourcesKey.Incorrect_username_password]);
+                return BadRequest<JwtAuthResult>(_localizer[ShareResourcesKey.Incorrect_username_password]);
             }
 
             var result=await _signInManager.CheckPasswordSignInAsync(user!, request.Password!,false);
             if(!result.Succeeded)
             {
-                return BadRequest<JwtAuthResponse>(_localizer[ShareResourcesKey.Incorrect_password]);
+                return BadRequest<JwtAuthResult>(_localizer[ShareResourcesKey.Incorrect_password]);
             }
+           
             var accesstoken=await _authenticationService.GetJWTTokenBySignInUserAsync(user!);
+          
             return Success(accesstoken);
         }
 
         //RefreshToken
-        public async Task<Response<JwtAuthResponse>> Handle(RefreshTokenCommand request, CancellationToken cancellationToken)
+        public async Task<Response<JwtAuthResult>> Handle(RefreshTokenCommand request, CancellationToken cancellationToken)
         {
-         
-            var (ReadjwtSecurityToken,Notvalid) = _authenticationService.ReadJWTToken(request.AccessToken);
+
+            //var v1 = new Claim("aa", "bb");
+            //var lis = new List<Claim>();
+            //lis.Add(v1);
+            //var v2 = new ClaimsIdentity(lis);
+            //var v3 = new ClaimsPrincipal(v2);
+           
+            var (ReadjwtSecurityToken,messageReadtoken) = _authenticationService.ReadJWTToken(request.AccessToken);
             if (ReadjwtSecurityToken == null) 
-                return Unauthorized<JwtAuthResponse>("Read Token is Null : " + Notvalid);
+                return Unauthorized<JwtAuthResult>("Read Token is Null : " + messageReadtoken);
 
             var (message,user,userRefreshToken) = await _authenticationService.ValidateDeatails(ReadjwtSecurityToken, request.AccessToken, request.RefreshTokenString);
 
             if(message== "success")
             {
-                JwtAuthResponse response = await _authenticationService.GetRefreshTokenAsync(user,userRefreshToken);
+                JwtAuthResult response = await _authenticationService.GetRefreshTokenAsync(user!,userRefreshToken);
                 if (response.message == "success")
                     return Success(response);
-                else return Unauthorized<JwtAuthResponse>(response?.message!);
+                else 
+                    return Unauthorized<JwtAuthResult>(response?.message!);
             }
-            return Unauthorized<JwtAuthResponse>(message);
+            return Unauthorized<JwtAuthResult>(message);
 
             
         }

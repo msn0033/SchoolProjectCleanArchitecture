@@ -28,9 +28,9 @@ namespace SchoolProject.Service.Services
             return result!;   
         }
 
-        public Task<Department> GetDepartmentIdAsync(int id)
+        public async Task<Department> GetDepartmentIdAsync(int id)
         {
-            Task<Department> department = _departmentsRepository.GetByIdAsync(id);
+            var department =await _departmentsRepository.GetByIdAsync(id);
 
             return department;
         }

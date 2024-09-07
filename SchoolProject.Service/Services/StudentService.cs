@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SchoolProject.Data.Entities;
-using SchoolProject.Helper.Enums;
+using SchoolProject.Data.ModelsHelper.Enums;
 using SchoolProject.Infrustructure.Interface;
 using SchoolProject.Service.Interface;
 
@@ -97,7 +97,9 @@ namespace SchoolProject.Service.Services
         {
             var querable = _repositoryStudent.GetTableNoTracking().Include(x => x.Department).AsQueryable();
             if (!string.IsNullOrEmpty(search))
-                querable = querable.Where(x => x.Localize(x.NameAr,x.NameEn).Contains(search) || x.Address!.Contains(search) || x.Phone!.Contains(search) || x.Department.Localize(x.NameAr,x.NameEn).Contains(search));
+                querable = querable.Where(x => x.NameAr.Contains(search) || x.NameEn.Contains(search) || x.Address.Contains(search) || x.Phone.Contains(search) || x.Department.NameAr!.Contains(search) || x.Department.NameEn!.Contains(search));
+
+           // querable = querable.Where(x => x.Localize(x.NameAr,x.NameEn).Contains(search) || x.Address!.Contains(search) || x.Phone!.Contains(search) || x.Department.Localize(x.NameAr,x.NameEn).Contains(search));
 
             switch (order)
             {

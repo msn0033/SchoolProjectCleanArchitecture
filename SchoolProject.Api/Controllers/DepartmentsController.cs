@@ -12,7 +12,7 @@ namespace SchoolProject.Api.Controllers
 {
   //  [Route("api/[controller]")]
     [ApiController]
-   // [Authorize]
+    [Authorize]
     public class DepartmentsController : AppControllersBase
     {
 
@@ -23,6 +23,7 @@ namespace SchoolProject.Api.Controllers
             var re =new StringBuilder( "test Departments");
             return Ok(re);
         }
+        
         [HttpGet("/Departments/GetById/Id")]
         public async Task<IActionResult> GetDepartmentByIdAsync([FromQuery]GetDepartmentByIdQuery query)
         {

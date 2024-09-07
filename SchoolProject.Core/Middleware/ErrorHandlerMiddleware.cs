@@ -2,8 +2,6 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
-
-using SchoolProject.Helper.Resources;
 using SchoolProject.Helper.ResponseHelper;
 using System.Net;
 using System.Text.Json;
@@ -13,12 +11,12 @@ namespace SchoolProject.Core.Middleware
     public class ErrorHandlerMiddleware
     {
         private readonly RequestDelegate _next;
-        private readonly IStringLocalizer<ShareResources> _localizer;
+        private readonly IStringLocalizer<ErrorHandlerMiddleware> _localizer;
 
-        public ErrorHandlerMiddleware(RequestDelegate next, IStringLocalizer<ShareResources> localizer)
+        public ErrorHandlerMiddleware(RequestDelegate next, IStringLocalizer<ErrorHandlerMiddleware> localizer)
         {
             _next = next;
-            this._localizer = localizer;
+            _localizer = localizer;
         }
 
         public async Task Invoke(HttpContext context)

@@ -1,7 +1,8 @@
 ﻿using FluentValidation;
+using LocalizationLanguage;
 using Microsoft.Extensions.Localization;
 using SchoolProject.Core.Features.Students.Commands.Models;
-using SchoolProject.Helper.Resources;
+
 using SchoolProject.Service.Interface;
 
 namespace SchoolProject.Core.Features.Students.Commands.Validators
@@ -10,9 +11,9 @@ namespace SchoolProject.Core.Features.Students.Commands.Validators
     {
         private readonly IStudentService _studentService;
         private readonly IDepartmentsService _departmentsService;
-        private readonly IStringLocalizer<ShareResources> _localizer;
+        private readonly IStringLocalizer<AddStudentCommandValidation> _localizer;
 
-        public AddStudentCommandValidation(IStudentService studentService, IDepartmentsService departmentsService, IStringLocalizer<ShareResources> localizer)
+        public AddStudentCommandValidation(IStudentService studentService, IDepartmentsService departmentsService, IStringLocalizer<AddStudentCommandValidation> localizer)
         {
             this._studentService = studentService;
             this._departmentsService = departmentsService;

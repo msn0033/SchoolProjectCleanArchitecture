@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using SchoolProject.Helper.ModelsHelper;
+using SchoolProject.Data.Result;
 using SchoolProject.Helper.ResponseHelper;
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SchoolProject.Core.Features.Authentication.Commands.Models
 {
-    public class SignInUserCommand:IRequest<Response<JwtAuthResponse>>
+    public class SignInUserCommand:IRequest<Response<JwtAuthResult>>
     {
         public required string UserName { get; set; }
         public required string Password { get; set; }

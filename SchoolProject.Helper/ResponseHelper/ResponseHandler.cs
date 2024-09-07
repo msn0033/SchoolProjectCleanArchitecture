@@ -1,5 +1,6 @@
-﻿using Microsoft.Extensions.Localization;
-using SchoolProject.Helper.Resources;
+﻿using LocalizationLanguage;
+using Microsoft.Extensions.Localization;
+
 
 namespace SchoolProject.Helper.ResponseHelper;
 
@@ -59,8 +60,6 @@ public class ResponseHandler
             Message = Message == null ? _localizer[ShareResourcesKey.Failed] : Message
         };
     }
-
-
     public Response<T> NotFound<T>(string message = null!)
     {
         return new Response<T>()
@@ -70,7 +69,6 @@ public class ResponseHandler
             Message = message == null ? _localizer[ShareResourcesKey.NotFound] : message
         };
     }
-
     public Response<T> UnprocessableEntity<T>(string message = null!)
     {
         return new Response<T>()
@@ -80,7 +78,6 @@ public class ResponseHandler
             Message = message == null ? _localizer[ShareResourcesKey.Unprocessab_leEntity]: message
         };
     }
-
     public Response<T> Created<T>(T entity, object Meta = null!, string message = null!)
     {
         return new Response<T>()

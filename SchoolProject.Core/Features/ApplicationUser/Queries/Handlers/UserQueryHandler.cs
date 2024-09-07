@@ -6,7 +6,6 @@ using SchoolProject.Core.Features.ApplicationUser.Queries.Models;
 using SchoolProject.Core.Features.ApplicationUser.Queries.Responses;
 using SchoolProject.Data.Entities.Identity;
 using SchoolProject.Helper.Extension;
-using SchoolProject.Helper.Resources;
 using SchoolProject.Helper.ResponseHelper;
 using SchoolProject.Helper.Wrappers;
 using System;
@@ -39,7 +38,8 @@ namespace SchoolProject.Core.Features.ApplicationUser.Queries.Handlers
             var users = _userManager.Users.AsQueryable();
 
             //mapper & Paginated
-            var result=await _mapper.ProjectTo<GetUsersPaginatedListResponse>(users).ToPaginatedListAsync(request.pageNumber, request.pageSize);
+            var result=await _mapper.ProjectTo<GetUsersPaginatedListResponse>(users)
+                                    .ToPaginatedListAsync(request.pageNumber, request.pageSize);
           
             return Success(result);
 

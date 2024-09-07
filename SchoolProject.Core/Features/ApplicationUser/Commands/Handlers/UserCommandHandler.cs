@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
+using LocalizationLanguage;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Localization;
 using SchoolProject.Core.Features.ApplicationUser.Commands.Models;
 using SchoolProject.Data.Entities.Identity;
-using SchoolProject.Helper.Resources;
 using SchoolProject.Helper.ResponseHelper;
 
 
@@ -41,9 +41,17 @@ namespace SchoolProject.Core.Features.ApplicationUser.Commands.Handlers
             if (!result.Succeeded)
                 return Failed<string>(_localizer[ShareResourcesKey.Failed]);
 
-            //Success
+            // add user to role
+            await _userManager.AddToRoleAsync(user, "Basic");
+           //Success
             return Created<string>(_localizer[ShareResourcesKey.Created]);
  
         }
+
+        //ُEdit User
+
+        //Delete User
+
+        //Details User
     }
 }

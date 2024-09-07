@@ -1,8 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc.DataAnnotations;
+﻿
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.DependencyInjection;
-using SchoolProject.Infrustructure.Interface;
 using SchoolProject.Service.Interface;
 using SchoolProject.Service.Services;
+
 
 namespace SchoolProject.Service
 {
@@ -13,6 +14,10 @@ namespace SchoolProject.Service
             services.AddTransient<IStudentService, StudentService>();
             services.AddTransient<IDepartmentsService, DepartmentsService>();
             services.AddTransient<IAuthenticationService, AuthenticationService>();
+            services.AddTransient<Interface.IAuthorizationService, AuthorizationService>();
+            services.AddTransient<ICurrentUserService, CurrentUserService>();
+
+          
             return services;
         }
     }

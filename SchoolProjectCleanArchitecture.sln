@@ -15,7 +15,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchoolProject.Api", "School
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchoolProject.Helper", "SchoolProject.Helper\SchoolProject.Helper.csproj", "{1B7252C2-981F-497C-8202-15A536138514}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocalizationLanguage", "LocalizationLanguage\LocalizationLanguage.csproj", "{2D077E58-3AEB-47BF-9736-BE5C15954322}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocalizationLanguage", "LocalizationLanguage\LocalizationLanguage.csproj", "{2D077E58-3AEB-47BF-9736-BE5C15954322}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{99EBEACE-84BB-4EAA-A0ED-20E37AB6F9AD}"
+	ProjectSection(SolutionItems) = preProject
+		TextFile1.txt = TextFile1.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

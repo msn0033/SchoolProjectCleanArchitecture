@@ -1,18 +1,19 @@
 ﻿using FluentValidation;
+using LocalizationLanguage;
 using Microsoft.Extensions.Localization;
 using SchoolProject.Core.Features.ApplicationUser.Commands.Models;
-using SchoolProject.Helper.Resources;
+
 
 
 namespace SchoolProject.Core.Features.ApplicationUser.Commands.Validators
 {
     public class AddUserCommandValidation:AbstractValidator<AddUserCommand>
     {
-        private readonly IStringLocalizer<ShareResources> _localizer;
+        private readonly IStringLocalizer<AddUserCommandValidation> _localizer;
 
-        public AddUserCommandValidation(IStringLocalizer<ShareResources> localizer)
+        public AddUserCommandValidation(IStringLocalizer<AddUserCommandValidation> localizer)
         {
-            this._localizer = localizer;
+            _localizer = localizer;
             ApplyValidationRule();
             //ApplyCustomValidationRule();
            

@@ -18,8 +18,8 @@ namespace SchoolProject.Infrustructure.Context.Config
             builder.Property(x => x.Id).ValueGeneratedNever();
 
             builder.Property(x => x.AccessToken)
-              .HasColumnType("nvarchar")
-              .HasMaxLength(500)
+              .HasColumnType("NvarChar(Max)")
+              
                .IsRequired();
 
             builder.Property(x => x.RefreshTokenString)

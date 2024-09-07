@@ -12,12 +12,19 @@ using SchoolProject.Service;
 using JsonBasedLocalization.Web.Middlewares;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.OpenApi.Models;
+using SchoolProject.Infrustructure.Seeding;
+using SchoolProject.Core.Filters;
+using Microsoft.AspNetCore.Authorization;
+using SchoolProject.Core.policy;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(op =>
+{
+    op.Filters.Add<PermissionBasedAuthorizationFilter>();
+});
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -28,10 +35,15 @@ builder.Services.AddDbContext<AppDbContext>(option =>
     option.UseSqlServer(builder.Configuration.GetConnectionString("dbcontext"))
     .LogTo(Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Information);
 });
-builder.Services.AddIdentity<User, IdentityRole<int>>(o => { }).AddEntityFrameworkStores<AppDbContext>();
+
+builder.Services.AddIdentity<User, Role>(o => { }).AddEntityFrameworkStores<AppDbContext>();
+
+//Register Filter
+//builder.Services.AddTransient<AuthRolesFilter>();
+
 
 //Dependency injection
-builder.Services.AddInfrustructureDependencyInjection()
+ builder.Services.AddInfrustructureDependencyInjectionAsync().Result
                 .AddServiceDependencyInjection()
                 .AddModuleCoreDependencyInjection()
                 .AddServiceRegisteration(builder.Configuration)
@@ -51,6 +63,7 @@ builder.Services.AddCors(opt =>
 //AddSwaggerGen
 builder.Services.AddSwaggerGen(opt =>
 {
+    opt.EnableAnnotations();
     opt.SwaggerDoc("v1", new OpenApiInfo { Title = "School", Version = "v1" });
     opt.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
@@ -77,8 +90,21 @@ builder.Services.AddSwaggerGen(opt =>
         }
     });
 });
-//
+
+
+
 var app = builder.Build();
+
+////Data Seeding
+//using(var scop=app.Services.CreateScope())
+//{
+//    var rolemanager = scop.ServiceProvider.GetRequiredService<RoleManager<Role>>();
+//    var usermanager=scop.ServiceProvider.GetRequiredService<UserManager<User>>();
+//    var dbcontext = scop.ServiceProvider.GetRequiredService<AppDbContext>();
+//    //var dbcontext2 = scop.ServiceProvider.GetService<AppDbContext>();
+//    await RoleSeeding.SeedRoleAddAsync(rolemanager);
+//    await  UserSeeding.SeedSuperAdminUserAsync(usermanager,rolemanager, dbcontext);
+//}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -86,6 +112,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
 
 #region localization
 //localization
@@ -103,11 +130,5 @@ app.UseAuthorization();
 
 
 app.MapControllers();
-app.UseMiddleware<ErrorHandlerMiddleware>();
-
-
-
-
-
-
+app.UseMiddleware<ErrorHandlerMiddleware>();//global Exception
 app.Run();

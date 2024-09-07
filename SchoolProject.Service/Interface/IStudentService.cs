@@ -1,5 +1,6 @@
 ﻿using SchoolProject.Data.Entities;
-using SchoolProject.Helper.Enums;
+using SchoolProject.Data.ModelsHelper.Enums;
+
 
 namespace SchoolProject.Service.Interface
 {

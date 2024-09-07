@@ -6,7 +6,7 @@ using SchoolProject.Core.Features.Students.Queries.Responses;
 
 using SchoolProject.Data.Entities;
 using SchoolProject.Helper.Extension;
-using SchoolProject.Helper.Resources;
+
 using SchoolProject.Helper.ResponseHelper;
 using SchoolProject.Helper.Wrappers;
 using SchoolProject.Service.Interface;
@@ -15,9 +15,9 @@ using System.Linq.Expressions;
 namespace SchoolProject.Core.Features.Students.Queries.Handlers
 {
     public class StudentQueryHandler : ResponseHandler,
-         IRequestHandler<StudentsListQuery, Response<IEnumerable<GetStudentsListQueryResponse>>>
-        , IRequestHandler<StudentByIdQuery, Response<GetStudentsListQueryResponse>>
-        , IRequestHandler<GetStudentPaginatedListQuery, PaginatedResult<GetStudentPaginatedListResponse>>
+         IRequestHandler<StudentsListQueryRequest, Response<IEnumerable<GetStudentsListQueryResponse>>>
+        , IRequestHandler<StudentByIdQueryRequest, Response<GetStudentByIdQueryResponse>>
+        , IRequestHandler<GetStudentPaginatedListQueryRequest, PaginatedResult<GetStudentPaginatedListResponse>>
 
     {
         private readonly IStudentService _studentService;
@@ -34,7 +34,7 @@ namespace SchoolProject.Core.Features.Students.Queries.Handlers
         }
 
         //GetStudents_List_withIncludeAsync
-        public async Task<Response<IEnumerable<GetStudentsListQueryResponse>>> Handle(StudentsListQuery request, CancellationToken cancellationToken)
+        public async Task<Response<IEnumerable<GetStudentsListQueryResponse>>> Handle(StudentsListQueryRequest request, CancellationToken cancellationToken)
         {
             var students = await _studentService.GetStudentsListwithIncludeAsync();
 
@@ -47,18 +47,18 @@ namespace SchoolProject.Core.Features.Students.Queries.Handlers
         }
 
         //GetStudentByIdWithIncludeAsync
-        public async Task<Response<GetStudentsListQueryResponse>> Handle(StudentByIdQuery request, CancellationToken cancellationToken)
+        public async Task<Response<GetStudentByIdQueryResponse>> Handle(StudentByIdQueryRequest request, CancellationToken cancellationToken)
         {
             var student = await _studentService.GetStudentByIdWithIncludeAsync(request.id);
             if (student == null)
-                return NotFound<GetStudentsListQueryResponse>(_localizer["welcome"]);
-            var result = _mapper.Map<GetStudentsListQueryResponse>(student);
+                return NotFound<GetStudentByIdQueryResponse>(_localizer["welcome"]);
+            var result = _mapper.Map<GetStudentByIdQueryResponse>(student);
             return Success(result);
 
         }
 
         //paginatedResult_Include_ASQuerable_Search_Or_OrderBy
-        public async Task<PaginatedResult<GetStudentPaginatedListResponse>> Handle(GetStudentPaginatedListQuery request, CancellationToken cancellationToken)
+        public async Task<PaginatedResult<GetStudentPaginatedListResponse>> Handle(GetStudentPaginatedListQueryRequest request, CancellationToken cancellationToken)
         {
             //Expression<Func<Student, GetStudentPaginatedListResponse>> expression = e => new GetStudentPaginatedListResponse(e.Id, e.Localize(e.NameAr!, e.NameEn!), e.Address!, e.Phone!, e.Department.Localize(e.NameAr!, e.NameEn!));
             
