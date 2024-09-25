@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SchoolProject.Data.Entities;
 using SchoolProject.Data.Entities.Identity;
+using SchoolProject.Data.Entities.Views;
 
 namespace SchoolProject.Infrustructure.Context
 {
@@ -26,6 +27,8 @@ namespace SchoolProject.Infrustructure.Context
 
         public DbSet<UserPermission> UserPermissions { get; set; }
 
+        //view
+        public DbSet<ViewDepartment> ViewDepartments { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {

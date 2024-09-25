@@ -15,7 +15,7 @@ using System.Linq.Expressions;
 namespace SchoolProject.Core.Features.Students.Queries.Handlers
 {
     public class StudentQueryHandler : ResponseHandler,
-         IRequestHandler<StudentsListQueryRequest, Response<IEnumerable<GetStudentsListQueryResponse>>>
+         IRequestHandler<StudentsListQueryRequest, Response<List<GetStudentsListQueryResponse>>>
         , IRequestHandler<StudentByIdQueryRequest, Response<GetStudentByIdQueryResponse>>
         , IRequestHandler<GetStudentPaginatedListQueryRequest, PaginatedResult<GetStudentPaginatedListResponse>>
 
@@ -34,11 +34,11 @@ namespace SchoolProject.Core.Features.Students.Queries.Handlers
         }
 
         //GetStudents_List_withIncludeAsync
-        public async Task<Response<IEnumerable<GetStudentsListQueryResponse>>> Handle(StudentsListQueryRequest request, CancellationToken cancellationToken)
+        public async Task<Response<List<GetStudentsListQueryResponse>>> Handle(StudentsListQueryRequest request, CancellationToken cancellationToken)
         {
             var students = await _studentService.GetStudentsListwithIncludeAsync();
 
-            var studentsResponseMapping = _mapper.Map<IEnumerable<GetStudentsListQueryResponse>>(students);
+            var studentsResponseMapping = _mapper.Map<List<GetStudentsListQueryResponse>>(students);
 
 
             var plusMeta = Success(studentsResponseMapping);

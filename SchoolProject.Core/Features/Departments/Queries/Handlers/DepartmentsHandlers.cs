@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using LocalizationLanguage;
 using MediatR;
 using Microsoft.Extensions.Localization;
 using SchoolProject.Core.Features.Departments.Queries.Models;
@@ -18,7 +19,9 @@ using System.Threading.Tasks;
 
 namespace SchoolProject.Core.Features.Departments.Queries.Handlers
 {
-    public class DepartmentsHandlers :ResponseHandler, IRequestHandler<GetDepartmentByIdQuery, Response<GetDepartmentByIdResponse>>
+    public class DepartmentsHandlers :ResponseHandler, 
+        IRequestHandler<GetDepartmentByIdQuery, Response<GetDepartmentByIdResponse>>,
+        IRequestHandler<GetDepartmentStudentCountQuery,Response<List<GetDepartmentStudentCountResponse>>>
     {
         private readonly IMapper _mapper;
         private readonly IDepartmentsService _departmentservice;
@@ -47,5 +50,16 @@ namespace SchoolProject.Core.Features.Departments.Queries.Handlers
            
 
         }
+        //View
+        public async Task<Response<List<GetDepartmentStudentCountResponse>>> Handle(GetDepartmentStudentCountQuery request, CancellationToken cancellationToken)
+        {
+            var viewDepartment=await _departmentservice.GetDepartmentsViewStudentQountAsync();
+            if (viewDepartment == null) return NotFound<List<GetDepartmentStudentCountResponse>>(_localizer[ShareResourcesKey.NotFound]);
+            var maper=_mapper.Map<List<GetDepartmentStudentCountResponse>>(viewDepartment);
+            var x=Success(maper);
+            x.Meta = new { count = maper.Count() };
+            return x;
+        }
     }
 }
+

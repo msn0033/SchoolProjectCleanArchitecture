@@ -12,6 +12,7 @@ namespace SchoolProject.Core.Mapping.DepartmentsMapping
         public DepartmentsProfile()
         {
             DepartmentsDetailsQueryMapping();
+            GetDepartmentStudentCountMapping();
         }
     }
 }

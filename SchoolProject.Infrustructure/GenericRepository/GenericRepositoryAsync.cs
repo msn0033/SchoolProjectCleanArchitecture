@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using SchoolProject.Infrustructure.Context;
+using SchoolProject.Infrustructure.GenericRepository;
 
 namespace SchoolProject.Infrustructure.GenericRepository
 {
@@ -114,3 +115,5 @@ namespace SchoolProject.Infrustructure.GenericRepository
         #endregion
     }
 }
+
+

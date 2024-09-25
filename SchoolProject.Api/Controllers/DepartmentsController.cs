@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using SchoolProject.Api.Base;
 using SchoolProject.Core.Features.Departments.Queries.Models;
 using SchoolProject.Core.Features.Students.Queries.Models;
+using SchoolProject.Data.AppMetaData;
 using System.Net;
 using System.Text;
 
@@ -16,7 +17,7 @@ namespace SchoolProject.Api.Controllers
     public class DepartmentsController : AppControllersBase
     {
 
-        [HttpGet("/Departments/List")]
+        [HttpGet(PathRoute.DepartmentRoute.List)]
         public  IActionResult GetDepartments()
         {
         
@@ -24,10 +25,17 @@ namespace SchoolProject.Api.Controllers
             return Ok(re);
         }
         
-        [HttpGet("/Departments/GetById/Id")]
+        [HttpGet(PathRoute.DepartmentRoute.GetById)]
         public async Task<IActionResult> GetDepartmentByIdAsync([FromQuery]GetDepartmentByIdQuery query)
         {
             var response =await _mediator.Send(query);
+            return Ok(response);
+        }
+
+        [HttpGet(PathRoute.DepartmentRoute.GetViewDepartmentwithStudentCount)]
+        public async Task<IActionResult> GetViewDepartmentwithStudentCount()
+        {
+           var response=await  _mediator.Send(new GetDepartmentStudentCountQuery());
             return Ok(response);
         }
     }

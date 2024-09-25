@@ -16,8 +16,7 @@ namespace SchoolProject.Data.Entities
         public string? NameEn { get; set; }
 
         // 1 to 1 Department & Instructor
-
-        public int? InstructorManagerId { get; set; }
+        public int InstructorManagerId { get; set; }
         public Instructor? InstructorManager { get; set; }
 
         // m to 1 Department & Instructor

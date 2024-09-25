@@ -9,3 +9,22 @@
         #region method
 
         #endregion
+
+        ============================
+        #region Vars / Props
+
+        #endregion
+
+        #region Constructor(s)
+
+
+        #endregion
+
+
+        #region Methods
+
+        #endregion
+
+        #region Actions
+
+        #endregion

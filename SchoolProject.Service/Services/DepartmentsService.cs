@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SchoolProject.Data.Entities;
+using SchoolProject.Data.Entities.Views;
 using SchoolProject.Infrustructure.Interface;
+using SchoolProject.Infrustructure.Interface.Views;
 using SchoolProject.Infrustructure.Repositories;
 using SchoolProject.Service.Interface;
 using System;
@@ -14,10 +16,12 @@ namespace SchoolProject.Service.Services
     public class DepartmentsService : IDepartmentsService
     {
         private readonly IDepartmentsRepository _departmentsRepository;
+        private readonly IViewRepository<ViewDepartment> _viewDepartmentRepository;
 
-        public DepartmentsService(IDepartmentsRepository departmentsRepository)
+        public DepartmentsService(IDepartmentsRepository departmentsRepository,IViewRepository<ViewDepartment> viewRepository)
         {
             this._departmentsRepository = departmentsRepository;
+            this._viewDepartmentRepository = viewRepository;
         }
         public async Task<Department> GetDepartmentById_Include_Async(int id)
         {
@@ -39,5 +43,12 @@ namespace SchoolProject.Service.Services
         {
            return await _departmentsRepository.GetTableNoTracking().AnyAsync(x=>x.Id== departmentId);
         }
+
+        // view Department
+        public Task<List<ViewDepartment>> GetDepartmentsViewStudentQountAsync()
+        {
+            return _viewDepartmentRepository.GetTableNoTracking().ToListAsync();
+        }
+
     }
 }

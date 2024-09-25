@@ -1,4 +1,7 @@
-﻿namespace SchoolProject.Data.AppMetaData
+﻿using SchoolProject.Data.Entities;
+using System.Net.NetworkInformation;
+
+namespace SchoolProject.Data.AppMetaData
 {
     public static class PathRoute
     {
@@ -47,6 +50,18 @@
             public const string Claims = prefix + "Claims/";
             public const string Get_Manage_Claims_By_UserId = Claims + "Get_Manage_Claims_By_UserId/" + id;
             public const string Update_Manage_Claims_By_UserId = Claims + "Update_Manage_Claims_By_UserId/";
+
+
+        }
+
+        public static class DepartmentRoute
+        {
+            public const string prefix = Rule + "Dapartments/";
+            public const string Dapartment = prefix;
+            public const string List = Dapartment + "List/";
+            public const string GetById = Dapartment + "GetById/"+id;
+            public const string GetViewDepartmentwithStudentCount = Dapartment + "GetViewDepartmentwithStudentCount";
+
 
 
         }

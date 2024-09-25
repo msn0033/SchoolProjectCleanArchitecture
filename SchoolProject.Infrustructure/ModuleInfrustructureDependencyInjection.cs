@@ -1,9 +1,13 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using SchoolProject.Data.Entities.Identity;
+using SchoolProject.Data.Entities.Views;
 using SchoolProject.Infrustructure.Context;
+using SchoolProject.Infrustructure.GenericRepository;
 using SchoolProject.Infrustructure.Interface;
+using SchoolProject.Infrustructure.Interface.Views;
 using SchoolProject.Infrustructure.Repositories;
+using SchoolProject.Infrustructure.Repositories.Views;
 using SchoolProject.Infrustructure.Seeding;
 using System.Runtime.CompilerServices;
 
@@ -13,9 +17,14 @@ namespace SchoolProject.Infrustructure
     {
         public static async Task<IServiceCollection> AddInfrustructureDependencyInjectionAsync(this IServiceCollection services)
         {
-             services.AddTransient<IStudentRepository, StudentRepository>();
-             services.AddTransient<IDepartmentsRepository, DepartmentsRepository>();
+            //generic
+            services.AddTransient(typeof(IGenericRepositoryAsync<>),typeof(GenericRepositoryAsync<>));
+            //class
+            services.AddTransient<IStudentRepository, StudentRepository>();
+            services.AddTransient<IDepartmentsRepository, DepartmentsRepository>();
             services.AddTransient<IRefreshTokenRepository, RefreshTokenRepository>();
+            //view
+            services.AddTransient<IViewRepository<ViewDepartment>, ViewDepartmentRepository>();
 
             //Data Seeding
             using (var scop = services.BuildServiceProvider().CreateScope())
@@ -30,5 +39,6 @@ namespace SchoolProject.Infrustructure
             return services;
         }
 
+     
     }
 }
