@@ -47,7 +47,7 @@ builder.Services.AddIdentity<User, Role>(o => { }).AddEntityFrameworkStores<AppD
                 .AddServiceDependencyInjection()
                 .AddModuleCoreDependencyInjection()
                 .AddServiceRegisteration(builder.Configuration)
-                .AddLocalizationLanguageDependencyInjection();
+                .AddLocalizationLanguageDependencyInjection();//localization
 
 //Cors service
 builder.Services.AddCors(opt =>

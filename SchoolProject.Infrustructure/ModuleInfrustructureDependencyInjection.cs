@@ -5,8 +5,10 @@ using SchoolProject.Data.Entities.Views;
 using SchoolProject.Infrustructure.Context;
 using SchoolProject.Infrustructure.GenericRepository;
 using SchoolProject.Infrustructure.Interface;
+using SchoolProject.Infrustructure.Interface.Procedures;
 using SchoolProject.Infrustructure.Interface.Views;
 using SchoolProject.Infrustructure.Repositories;
+using SchoolProject.Infrustructure.Repositories.Procedures;
 using SchoolProject.Infrustructure.Repositories.Views;
 using SchoolProject.Infrustructure.Seeding;
 using System.Runtime.CompilerServices;
@@ -23,8 +25,11 @@ namespace SchoolProject.Infrustructure
             services.AddTransient<IStudentRepository, StudentRepository>();
             services.AddTransient<IDepartmentsRepository, DepartmentsRepository>();
             services.AddTransient<IRefreshTokenRepository, RefreshTokenRepository>();
-            //view
-            services.AddTransient<IViewRepository<ViewDepartment>, ViewDepartmentRepository>();
+            //view generic
+            services.AddTransient<IViewRepository<DepartmentStudentCountView>, ViewDepartmentRepository>();
+
+            //procedure
+            services.AddTransient<IDepartmentStudentCountProcRepository, DepartmentStudentCountProcRepository>();
 
             //Data Seeding
             using (var scop = services.BuildServiceProvider().CreateScope())

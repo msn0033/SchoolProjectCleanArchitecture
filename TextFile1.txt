@@ -1,17 +1,6 @@
-        #region field
+  
 
-        #endregion
-
-        #region ctor
-
-        #endregion
-
-        #region method
-
-        #endregion
-
-        ============================
-        #region Vars / Props
+        #region Vars / Props / field
 
         #endregion
 

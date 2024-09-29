@@ -6,12 +6,14 @@ using SchoolProject.Core.Features.Departments.Queries.Models;
 using SchoolProject.Core.Features.Departments.Queries.Responses;
 using SchoolProject.Core.Features.Students.Commands.Handlers;
 using SchoolProject.Data.Entities;
+using SchoolProject.Data.Entities.Procedures;
 using SchoolProject.Helper.Extension;
 
 using SchoolProject.Helper.ResponseHelper;
 using SchoolProject.Service.Interface;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -21,7 +23,8 @@ namespace SchoolProject.Core.Features.Departments.Queries.Handlers
 {
     public class DepartmentsHandlers :ResponseHandler, 
         IRequestHandler<GetDepartmentByIdQuery, Response<GetDepartmentByIdResponse>>,
-        IRequestHandler<GetDepartmentStudentCountQuery,Response<List<GetDepartmentStudentCountResponse>>>
+        IRequestHandler<GetDepartmentStudentCountViewQuery,Response<List<GetDepartmentStudentCountViewResponse>>>,
+        IRequestHandler<GetDepartment_ById_StudentCountProcQuery, Response<GetDepartment_ById_StudentCountProcResponse>>
     {
         private readonly IMapper _mapper;
         private readonly IDepartmentsService _departmentservice;
@@ -51,14 +54,23 @@ namespace SchoolProject.Core.Features.Departments.Queries.Handlers
 
         }
         //View
-        public async Task<Response<List<GetDepartmentStudentCountResponse>>> Handle(GetDepartmentStudentCountQuery request, CancellationToken cancellationToken)
+        public async Task<Response<List<GetDepartmentStudentCountViewResponse>>> Handle(GetDepartmentStudentCountViewQuery request, CancellationToken cancellationToken)
         {
-            var viewDepartment=await _departmentservice.GetDepartmentsViewStudentQountAsync();
-            if (viewDepartment == null) return NotFound<List<GetDepartmentStudentCountResponse>>(_localizer[ShareResourcesKey.NotFound]);
-            var maper=_mapper.Map<List<GetDepartmentStudentCountResponse>>(viewDepartment);
+            var viewDepartment=await _departmentservice.GetDepartmentStudentCountViewAsync();
+            if (viewDepartment == null) return NotFound<List<GetDepartmentStudentCountViewResponse>>(_localizer[ShareResourcesKey.NotFound]);
+            var maper=_mapper.Map<List<GetDepartmentStudentCountViewResponse>>(viewDepartment);
             var x=Success(maper);
             x.Meta = new { count = maper.Count() };
             return x;
+        }
+        //Procedure 
+        public async Task<Response<GetDepartment_ById_StudentCountProcResponse>> Handle(GetDepartment_ById_StudentCountProcQuery request, CancellationToken cancellationToken)
+        {
+            var paramater = _mapper.Map<DepartmentStudentCountProcParamater>(request);
+            var department=await _departmentservice.GetDepartmentStudentCountProcAsync(paramater);
+            var mapper=_mapper.Map<GetDepartment_ById_StudentCountProcResponse>(department.FirstOrDefault());
+            return Success(mapper);
+           
         }
     }
 }

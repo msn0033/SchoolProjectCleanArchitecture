@@ -17,7 +17,7 @@ namespace SchoolProject.Data.Entities.Views
         group by d.Id ,d.NameEn , d.NameAr 
      * */
 
-    public class ViewDepartment: GeneralLocalizableEntity
+    public class DepartmentStudentCountView: GeneralLocalizableEntity
     {
         public int Id { get; set; }
         public string NameAr { get; set; }

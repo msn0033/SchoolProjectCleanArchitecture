@@ -32,10 +32,16 @@ namespace SchoolProject.Api.Controllers
             return Ok(response);
         }
 
-        [HttpGet(PathRoute.DepartmentRoute.GetViewDepartmentwithStudentCount)]
-        public async Task<IActionResult> GetViewDepartmentwithStudentCount()
+        [HttpGet(PathRoute.DepartmentRoute.GetViewDepartmentwithStudentCountView)]
+        public async Task<IActionResult> GetViewDepartmentwithStudentCountView()
         {
-           var response=await  _mediator.Send(new GetDepartmentStudentCountQuery());
+           var response=await  _mediator.Send(new GetDepartmentStudentCountViewQuery());
+            return Ok(response);
+        }
+        [HttpGet(PathRoute.DepartmentRoute.GetDepartment_ById_StudentCountProc)]
+        public async Task<IActionResult> GetDepartment_ById_StudentCountProc( [FromRoute]GetDepartment_ById_StudentCountProcQuery request)
+        {
+            var response = await _mediator.Send(request);
             return Ok(response);
         }
     }

@@ -59,8 +59,9 @@ namespace SchoolProject.Data.AppMetaData
             public const string prefix = Rule + "Dapartments/";
             public const string Dapartment = prefix;
             public const string List = Dapartment + "List/";
-            public const string GetById = Dapartment + "GetById/"+id;
-            public const string GetViewDepartmentwithStudentCount = Dapartment + "GetViewDepartmentwithStudentCount";
+            public const string GetById = Dapartment + "GetById/" + id;
+            public const string GetViewDepartmentwithStudentCountView = Dapartment + "GetViewDepartmentwithStudentCountView";
+            public const string GetDepartment_ById_StudentCountProc = Dapartment + "GetDepartment_ById_StudentCountProc/{DepartmentId}";
 
 
 

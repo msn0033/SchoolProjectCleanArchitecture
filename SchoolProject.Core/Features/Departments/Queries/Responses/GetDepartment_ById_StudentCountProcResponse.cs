@@ -6,9 +6,7 @@ using System.Threading.Tasks;
 
 namespace SchoolProject.Core.Features.Departments.Queries.Responses
 {
-    public class GetDepartmentStudentCountResponse
+    public class GetDepartment_ById_StudentCountProcResponse: GetDepartmentStudentCountViewResponse
     {
-        public string Name { get; set; }
-        public int StudentCount { get; set; }
     }
 }
