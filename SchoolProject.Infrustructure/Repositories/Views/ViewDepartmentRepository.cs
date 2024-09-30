@@ -11,12 +11,12 @@ using System.Threading.Tasks;
 
 namespace SchoolProject.Infrustructure.Repositories.Views
 {
-    public class ViewDepartmentRepository : GenericRepositoryAsync<ViewDepartment>, IViewRepository<ViewDepartment>
+    public class ViewDepartmentRepository : GenericRepositoryAsync<DepartmentStudentCountView>, IViewRepository<DepartmentStudentCountView>
     {
-        public DbSet<ViewDepartment> _ViewDepartments;
+        public DbSet<DepartmentStudentCountView> _ViewDepartments;
         public ViewDepartmentRepository(AppDbContext dbContext) : base(dbContext)
         {
-            _ViewDepartments=dbContext.Set<ViewDepartment>();
+            _ViewDepartments=dbContext.Set<DepartmentStudentCountView>();
         }
     }
 }

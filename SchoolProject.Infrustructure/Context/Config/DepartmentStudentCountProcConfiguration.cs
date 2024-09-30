@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using SchoolProject.Data.Entities.Procedures;
 using SchoolProject.Data.Entities.Views;
 using System;
 using System.Collections.Generic;
@@ -9,12 +10,11 @@ using System.Threading.Tasks;
 
 namespace SchoolProject.Infrustructure.Context.Config
 {
-    public class ViewDepartmentConfiguration : IEntityTypeConfiguration<ViewDepartment>
+    public class DepartmentStudentCountProcConfiguration : IEntityTypeConfiguration<DepartmentStudentCountProc>
     {
-        public void Configure(EntityTypeBuilder<ViewDepartment> builder)
+        public void Configure(EntityTypeBuilder<DepartmentStudentCountProc> builder)
         {
-            builder.ToView("ViewDepartment", schema: "dbo")
-                   .HasNoKey();
+            builder.HasNoKey();
         }
     }
 }

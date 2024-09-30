@@ -13,6 +13,8 @@ namespace SchoolProject.Core.Mapping.DepartmentsMapping
         {
             DepartmentsDetailsQueryMapping();
             GetDepartmentStudentCountMapping();
+
+            GetDepartment_ById_StudentCountProcQueryMapping();
         }
     }
 }

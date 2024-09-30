@@ -13,7 +13,7 @@ namespace SchoolProject.Core.Mapping.DepartmentsMapping
         public void GetDepartmentStudentCountMapping()
         {
 
-            CreateMap<ViewDepartment,GetDepartmentStudentCountResponse>()
+            CreateMap<DepartmentStudentCountView,GetDepartmentStudentCountViewResponse>()
                 .ForMember(des=>des.Name,opt=>opt.MapFrom(sour=>sour.Localize(sour.NameAr,sour.NameEn)))
                 .ForMember(des=>des.StudentCount,opt=>opt.MapFrom(sour=>sour.StudentCount));
             

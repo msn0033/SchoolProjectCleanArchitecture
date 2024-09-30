@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 
 namespace SchoolProject.Core.Features.Departments.Queries.Models
 {
-    public class GetDepartmentStudentCountQuery:IRequest<Response<List<GetDepartmentStudentCountResponse>>>
+    public class GetDepartment_ById_StudentCountProcQuery:IRequest<Response<GetDepartment_ById_StudentCountProcResponse>>
     {
+        public int DepartmentId { get; set; }
     }
 }
