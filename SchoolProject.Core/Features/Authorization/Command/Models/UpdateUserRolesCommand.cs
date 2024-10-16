@@ -1,6 +1,6 @@
 ﻿using MediatR;
+using SchoolProject.Core.Base.ApiResponse;
 using SchoolProject.Data.Request;
-using SchoolProject.Helper.ResponseHelper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SchoolProject.Core.Features.Authorization.Command.Models
 {
-    public class UpdateUserRolesCommand: UpdateUserRolesRequest, IRequest<Response<string>>
+    public class UpdateUserRolesCommand: UpdateUserRolesRequest, IRequest<ApiResponse<string>>
     {
     }
 }

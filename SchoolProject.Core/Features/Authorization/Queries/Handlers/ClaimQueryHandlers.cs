@@ -4,11 +4,11 @@ using MediatR;
 
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Localization;
+using SchoolProject.Core.Base.ApiResponse;
 using SchoolProject.Core.Features.Authorization.Queries.Models;
 using SchoolProject.Core.Features.Authorization.Queries.Responses;
 using SchoolProject.Data.Entities.Identity;
 using SchoolProject.Data.Result;
-using SchoolProject.Helper.ResponseHelper;
 using SchoolProject.Service.Interface;
 using System;
 using System.Collections.Generic;
@@ -18,8 +18,8 @@ using System.Threading.Tasks;
 
 namespace SchoolProject.Core.Features.Authorization.Queries.Handlers
 {
-    public  class ClaimQueryHandlers : ResponseHandler
-        , IRequestHandler<ManageUserClaimQuery,Response<ManageUserClaimsResult>>
+    public  class ClaimQueryHandlers : ApiResponseHandler
+        , IRequestHandler<ManageUserClaimQuery,ApiResponse<ManageUserClaimsResult>>
     {
         private readonly IAuthorizationService _authorization;
         private readonly IMapper _mapper;
@@ -37,7 +37,7 @@ namespace SchoolProject.Core.Features.Authorization.Queries.Handlers
             this._localizer = localizer;
         }
 
-        public async Task<Response<ManageUserClaimsResult>> Handle(ManageUserClaimQuery request, CancellationToken cancellationToken)
+        public async Task<ApiResponse<ManageUserClaimsResult>> Handle(ManageUserClaimQuery request, CancellationToken cancellationToken)
         {
             var user = await _userManager.FindByIdAsync(request.UserId.ToString());
             if (user == null) 

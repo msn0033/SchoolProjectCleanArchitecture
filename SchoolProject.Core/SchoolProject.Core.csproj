@@ -14,21 +14,32 @@
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Localization" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Localization" Version="8.0.0" />
+    <PackageReference Include="Serilog.AspNetCore" Version="8.0.2" />
+    <PackageReference Include="Serilog.Settings.Configuration" Version="8.0.2" />
+    <PackageReference Include="Serilog.Sinks.File" Version="6.0.0" />
+    <PackageReference Include="Serilog.Sinks.MSSqlServer" Version="7.0.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\LocalizationLanguage\LocalizationLanguage.csproj" />
     <ProjectReference Include="..\SchoolProject.Data\SchoolProject.Data.csproj" />
-    <ProjectReference Include="..\SchoolProject.Helper\SchoolProject.Helper.csproj" />
+
     <ProjectReference Include="..\SchoolProject.Service\SchoolProject.Service.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Features\Instructors\Queries\Get_Salary_sum_InstructorsAll\" />
+    <Folder Include="test\Commands\Create\" />
+    <Folder Include="test\Commands\Delete\" />
+    <Folder Include="test\Commands\Update\" />
+    <Folder Include="test\Queries\GetBy\" />
+    <Folder Include="test\Queries\GetById\" />
     <Folder Include="Features\Authentication\Commands\Responses\" />
     <Folder Include="Features\Authentication\Queries\Handlers\" />
     <Folder Include="Features\Authentication\Queries\Models\" />
     <Folder Include="Features\Authentication\Queries\Responses\" />
     <Folder Include="Features\Departments\Commands\Validators\" />
+    <Folder Include="Features\Instructors\Commands\" />
     <Folder Include="Mapping\AuthorizationMapping\CommandMapping\" />
     <Folder Include="Mapping\DepartmentsMapping\CommandsMapping\" />
   </ItemGroup>

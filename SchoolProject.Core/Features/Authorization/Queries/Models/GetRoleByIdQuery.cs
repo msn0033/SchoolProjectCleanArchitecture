@@ -1,6 +1,6 @@
 ﻿using MediatR;
+using SchoolProject.Core.Base.ApiResponse;
 using SchoolProject.Core.Features.Authorization.Queries.Responses;
-using SchoolProject.Helper.ResponseHelper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SchoolProject.Core.Features.Authorization.Queries.Models
 {
-    public class GetRoleByIdQuery : IRequest<Response<GetRoleByIdQueryResponse>>
+    public class GetRoleByIdQuery : IRequest<ApiResponse<GetRoleByIdQueryResponse>>
     {
         public int Id { get; set; }
     }

@@ -1,6 +1,6 @@
 ﻿using MediatR;
+using SchoolProject.Core.Base.ApiResponse;
 using SchoolProject.Core.Features.Departments.Queries.Responses;
-using SchoolProject.Helper.ResponseHelper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SchoolProject.Core.Features.Departments.Queries.Models
 {
-    public class GetDepartmentStudentCountViewQuery:IRequest<Response<List<GetDepartmentStudentCountViewResponse>>>
+    public class GetDepartmentStudentCountViewQuery:IRequest<ApiResponse<List<GetDepartmentStudentCountViewResponse>>>
     {
     }
 }

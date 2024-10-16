@@ -3,11 +3,13 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using SchoolProject.Core.Behaviors;
-using SchoolProject.Core.Features.Students.Commands.Models;
+using SchoolProject.Core.Base.MiddleWare;
+using SchoolProject.Core.Features.Students.Commands.Create;
 using SchoolProject.Core.Filters;
 using SchoolProject.Core.policy;
+using Serilog;
 using System.Globalization;
 using System.Reflection;
 
@@ -26,10 +28,23 @@ namespace SchoolProject.Core
 
             //Configuration  Flent Validation
 
-            services.AddValidatorsFromAssembly(typeof(AddStudentCommand).Assembly);
+            services.AddValidatorsFromAssembly(typeof(CreateStudentCommand).Assembly);
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
-           //add filters
+            // Configuration Logger
+            var config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+            Log.Logger = new LoggerConfiguration().ReadFrom.Configuration(config).CreateLogger();
+
+
+
+            //Log.Logger = new LoggerConfiguration()
+            //    .WriteTo.Console()
+            //    .WriteTo.File("D:\\Activator\\msn00.txt",
+            //        rollingInterval: RollingInterval.Day,
+            //        rollOnFileSizeLimit: true)
+            //    .CreateLogger();
+
+            //add filters
             services.AddControllers(op => 
             {
                 op.Filters.Add<PermissionBasedAuthorizationFilter>();

@@ -1,8 +1,8 @@
 ﻿using LocalizationLanguage;
 using MediatR;
 using Microsoft.Extensions.Localization;
+using SchoolProject.Core.Base.ApiResponse;
 using SchoolProject.Core.Features.Authorization.Command.Models;
-using SchoolProject.Helper.ResponseHelper;
 using SchoolProject.Service.Interface;
 using System;
 using System.Collections.Generic;
@@ -12,8 +12,8 @@ using System.Threading.Tasks;
 
 namespace SchoolProject.Core.Features.Authorization.Command.Handlers
 {
-    public class ClaimCommandHandlers : ResponseHandler
-        , IRequestHandler<UpdateUserClaimsCommand, Response<string>>
+    public class ClaimCommandHandlers : ApiResponseHandler
+        , IRequestHandler<UpdateUserClaimsCommand, ApiResponse<string>>
     {
         private readonly IAuthorizationService _authorization;
         private readonly IStringLocalizer<ClaimCommandHandlers> _localizer;
@@ -24,7 +24,7 @@ namespace SchoolProject.Core.Features.Authorization.Command.Handlers
             this._localizer = localizer;
         }
 
-        public async Task<Response<string>> Handle(UpdateUserClaimsCommand request, CancellationToken cancellationToken)
+        public async Task<ApiResponse<string>> Handle(UpdateUserClaimsCommand request, CancellationToken cancellationToken)
         {
             var response = await _authorization.UpdateUserClaimsAsync(request);
             switch (response)

@@ -2,14 +2,15 @@
 using LocalizationLanguage;
 using MediatR;
 using Microsoft.Extensions.Localization;
+using SchoolProject.Core.Base.ApiResponse;
+using SchoolProject.Core.Base.PaginatedList;
 using SchoolProject.Core.Features.Departments.Queries.Models;
 using SchoolProject.Core.Features.Departments.Queries.Responses;
-using SchoolProject.Core.Features.Students.Commands.Handlers;
+
 using SchoolProject.Data.Entities;
 using SchoolProject.Data.Entities.Procedures;
-using SchoolProject.Helper.Extension;
 
-using SchoolProject.Helper.ResponseHelper;
+
 using SchoolProject.Service.Interface;
 using System;
 using System.Collections.Generic;
@@ -21,10 +22,10 @@ using System.Threading.Tasks;
 
 namespace SchoolProject.Core.Features.Departments.Queries.Handlers
 {
-    public class DepartmentsHandlers :ResponseHandler, 
-        IRequestHandler<GetDepartmentByIdQuery, Response<GetDepartmentByIdResponse>>,
-        IRequestHandler<GetDepartmentStudentCountViewQuery,Response<List<GetDepartmentStudentCountViewResponse>>>,
-        IRequestHandler<GetDepartment_ById_StudentCountProcQuery, Response<GetDepartment_ById_StudentCountProcResponse>>
+    public class DepartmentsHandlers :ApiResponseHandler, 
+        IRequestHandler<GetDepartmentByIdQuery, ApiResponse<GetDepartmentByIdResponse>>,
+        IRequestHandler<GetDepartmentStudentCountViewQuery,ApiResponse<List<GetDepartmentStudentCountViewResponse>>>,
+        IRequestHandler<GetDepartment_ById_StudentCountProcQuery, ApiResponse<GetDepartment_ById_StudentCountProcResponse>>
     {
         private readonly IMapper _mapper;
         private readonly IDepartmentsService _departmentservice;
@@ -39,7 +40,7 @@ namespace SchoolProject.Core.Features.Departments.Queries.Handlers
             this._localizer = localizer;
         }
         //ById
-        public async Task<Response<GetDepartmentByIdResponse>> Handle(GetDepartmentByIdQuery request, CancellationToken cancellationToken)
+        public async Task<ApiResponse<GetDepartmentByIdResponse>> Handle(GetDepartmentByIdQuery request, CancellationToken cancellationToken)
         {
             Department DepartmentById = await _departmentservice.GetDepartmentById_Include_Async(request.Id);
             if (DepartmentById == null) return NotFound<GetDepartmentByIdResponse>("Not Found Item");
@@ -54,7 +55,7 @@ namespace SchoolProject.Core.Features.Departments.Queries.Handlers
 
         }
         //View
-        public async Task<Response<List<GetDepartmentStudentCountViewResponse>>> Handle(GetDepartmentStudentCountViewQuery request, CancellationToken cancellationToken)
+        public async Task<ApiResponse<List<GetDepartmentStudentCountViewResponse>>> Handle(GetDepartmentStudentCountViewQuery request, CancellationToken cancellationToken)
         {
             var viewDepartment=await _departmentservice.GetDepartmentStudentCountViewAsync();
             if (viewDepartment == null) return NotFound<List<GetDepartmentStudentCountViewResponse>>(_localizer[ShareResourcesKey.NotFound]);
@@ -64,7 +65,7 @@ namespace SchoolProject.Core.Features.Departments.Queries.Handlers
             return x;
         }
         //Procedure 
-        public async Task<Response<GetDepartment_ById_StudentCountProcResponse>> Handle(GetDepartment_ById_StudentCountProcQuery request, CancellationToken cancellationToken)
+        public async Task<ApiResponse<GetDepartment_ById_StudentCountProcResponse>> Handle(GetDepartment_ById_StudentCountProcQuery request, CancellationToken cancellationToken)
         {
             var paramater = _mapper.Map<DepartmentStudentCountProcParamater>(request);
             var department=await _departmentservice.GetDepartmentStudentCountProcAsync(paramater);

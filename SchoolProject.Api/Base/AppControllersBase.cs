@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using SchoolProject.Helper.ResponseHelper;
+using SchoolProject.Core.Base.ApiResponse;
 using System.Net;
 
 namespace SchoolProject.Api.Base
@@ -15,7 +15,7 @@ namespace SchoolProject.Api.Base
         #region Actions
         // List يعمل مع جميع الحالات ماعدا
         // يعمل مع اي شي يرجع قيمة وحدة -  
-        public ObjectResult NewResult<T>(Response<T> response)
+        public ObjectResult NewResult<T>(ApiResponse<T> response)
         {
             switch (response.StatusCode)
             {

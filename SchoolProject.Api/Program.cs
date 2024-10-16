@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using SchoolProject.Core;
-using SchoolProject.Core.Middleware;
 using SchoolProject.Data.Entities.Identity;
 using SchoolProject.Infrustructure;
 using SchoolProject.Infrustructure.Context;
@@ -16,6 +15,7 @@ using SchoolProject.Infrustructure.Seeding;
 using SchoolProject.Core.Filters;
 using Microsoft.AspNetCore.Authorization;
 using SchoolProject.Core.policy;
+using SchoolProject.Core.Base.MiddleWare;
 
 var builder = WebApplication.CreateBuilder(args);
 

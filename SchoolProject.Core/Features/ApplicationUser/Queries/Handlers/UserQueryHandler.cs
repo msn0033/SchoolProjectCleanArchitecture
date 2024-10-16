@@ -2,12 +2,12 @@
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Localization;
+using SchoolProject.Core.Base.ApiResponse;
+using SchoolProject.Core.Base.PaginatedList;
 using SchoolProject.Core.Features.ApplicationUser.Queries.Models;
 using SchoolProject.Core.Features.ApplicationUser.Queries.Responses;
 using SchoolProject.Data.Entities.Identity;
-using SchoolProject.Helper.Extension;
-using SchoolProject.Helper.ResponseHelper;
-using SchoolProject.Helper.Wrappers;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,8 +16,8 @@ using System.Threading.Tasks;
 
 namespace SchoolProject.Core.Features.ApplicationUser.Queries.Handlers
 {
-    public class UserQueryHandler : ResponseHandler, 
-        IRequestHandler<GetUsersPaginatedListQuery,Response<PaginatedResult<GetUsersPaginatedListResponse>>>
+    public class UserQueryHandler : ApiResponseHandler, 
+        IRequestHandler<GetUsersPaginatedListQuery,ApiResponse<PaginatedList<GetUsersPaginatedListResponse>>>
     {
         private readonly UserManager<User> _userManager;
         private readonly IStringLocalizer<UserQueryHandler> _localizer;
@@ -32,7 +32,7 @@ namespace SchoolProject.Core.Features.ApplicationUser.Queries.Handlers
 
        
         //Get-users-paginated
-        public async Task<Response< PaginatedResult<GetUsersPaginatedListResponse>>> Handle(GetUsersPaginatedListQuery request, CancellationToken cancellationToken)
+        public async Task<ApiResponse<PaginatedList<GetUsersPaginatedListResponse>>> Handle(GetUsersPaginatedListQuery request, CancellationToken cancellationToken)
         {
             //query Queryable
             var users = _userManager.Users.AsQueryable();

@@ -1,0 +1,176 @@
+2024-10-13 16:31:04.490 [Error] - Message An unhandled exception has occurred.
+System.NotImplementedException: The method or operation is not implemented.
+   at SchoolProject.Infrustructure.Context.AppDbContext.Get_Salary_summation_of_Instructor() in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Infrustructure\Context\AppDbContext.cs:line 65
+   at SchoolProject.Service.Services.InstructorService.Get_Salary_summation_of_Instructor() in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Service\Services\InstructorService.cs:line 24
+   at SchoolProject.Core.Features.Instructors.Get_Salary_summation_of_Instructor.Handler.Get_Salary_summation_of_InstructorHandlers.Handle(Get_Salary_summation_of_InstructorQuery request, CancellationToken cancellationToken) in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Core\Features\Instructors\Get_Salary_summation_of_Instructor\Handler\Get_Salary_summation_of_InstructorHandlers.cs:line 29
+   at SchoolProject.Core.Behaviors.ValidationBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Core\Behaviors\ValidationBehavior.cs:line 32
+   at SchoolProject.Api.Controllers.InstructorsController.GetSalary() in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Api\Controllers\InstructorsController.cs:line 15
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at SchoolProject.Core.Middleware.ErrorHandlerMiddleware.Invoke(HttpContext context) in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Core\Middleware\ErrorHandlerMiddleware.cs:line 31
+2024-10-13 16:33:59.319 [Error] - Message An unhandled exception has occurred.
+System.NotImplementedException: The method or operation is not implemented.
+   at SchoolProject.Infrustructure.Context.AppDbContext.Get_Salary_summation_of_Instructor() in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Infrustructure\Context\AppDbContext.cs:line 65
+   at SchoolProject.Service.Services.InstructorService.Get_Salary_summation_of_Instructor() in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Service\Services\InstructorService.cs:line 24
+   at SchoolProject.Core.Features.Instructors.Get_Salary_summation_of_Instructor.Handler.Get_Salary_summation_of_InstructorHandlers.Handle(Get_Salary_summation_of_InstructorQuery request, CancellationToken cancellationToken) in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Core\Features\Instructors\Get_Salary_summation_of_Instructor\Handler\Get_Salary_summation_of_InstructorHandlers.cs:line 29
+   at SchoolProject.Core.Behaviors.ValidationBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Core\Behaviors\ValidationBehavior.cs:line 32
+   at SchoolProject.Api.Controllers.InstructorsController.GetSalary() in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Api\Controllers\InstructorsController.cs:line 15
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at SchoolProject.Core.Middleware.ErrorHandlerMiddleware.Invoke(HttpContext context) in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Core\Middleware\ErrorHandlerMiddleware.cs:line 31
+2024-10-13 16:35:52.009 [Error] - Message An unhandled exception has occurred.
+System.NotImplementedException: The method or operation is not implemented.
+   at SchoolProject.Infrustructure.Context.AppDbContext.Get_Salary_summation_of_Instructor() in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Infrustructure\Context\AppDbContext.cs:line 66
+   at SchoolProject.Service.Services.InstructorService.Get_Salary_summation_of_Instructor() in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Service\Services\InstructorService.cs:line 24
+   at SchoolProject.Core.Features.Instructors.Get_Salary_summation_of_Instructor.Handler.Get_Salary_summation_of_InstructorHandlers.Handle(Get_Salary_summation_of_InstructorQuery request, CancellationToken cancellationToken) in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Core\Features\Instructors\Get_Salary_summation_of_Instructor\Handler\Get_Salary_summation_of_InstructorHandlers.cs:line 29
+   at SchoolProject.Core.Behaviors.ValidationBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Core\Behaviors\ValidationBehavior.cs:line 32
+   at SchoolProject.Api.Controllers.InstructorsController.GetSalary() in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Api\Controllers\InstructorsController.cs:line 15
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at SchoolProject.Core.Middleware.ErrorHandlerMiddleware.Invoke(HttpContext context) in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Core\Middleware\ErrorHandlerMiddleware.cs:line 31
+2024-10-13 16:37:05.253 [Error] - Message An unhandled exception has occurred.
+System.NotImplementedException: The method or operation is not implemented.
+   at SchoolProject.Infrustructure.Context.AppDbContext.Get_Salary_summation_of_Instructor() in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Infrustructure\Context\AppDbContext.cs:line 66
+   at SchoolProject.Service.Services.InstructorService.Get_Salary_summation_of_Instructor() in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Service\Services\InstructorService.cs:line 23
+   at SchoolProject.Core.Features.Instructors.Get_Salary_summation_of_Instructor.Handler.Get_Salary_summation_of_InstructorHandlers.Handle(Get_Salary_summation_of_InstructorQuery request, CancellationToken cancellationToken) in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Core\Features\Instructors\Get_Salary_summation_of_Instructor\Handler\Get_Salary_summation_of_InstructorHandlers.cs:line 29
+   at SchoolProject.Core.Behaviors.ValidationBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Core\Behaviors\ValidationBehavior.cs:line 32
+   at SchoolProject.Api.Controllers.InstructorsController.GetSalary() in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Api\Controllers\InstructorsController.cs:line 15
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at SchoolProject.Core.Middleware.ErrorHandlerMiddleware.Invoke(HttpContext context) in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Core\Middleware\ErrorHandlerMiddleware.cs:line 31
+2024-10-13 16:39:48.797 [Error] - Message An unhandled exception has occurred.
+System.NotImplementedException: The method or operation is not implemented.
+   at SchoolProject.Infrustructure.Context.AppDbContext.Get_Salary_summation_of_Instructor() in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Infrustructure\Context\AppDbContext.cs:line 66
+   at SchoolProject.Service.Services.InstructorService.Get_Salary_summation_of_Instructor() in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Service\Services\InstructorService.cs:line 23
+   at SchoolProject.Core.Features.Instructors.Get_Salary_summation_of_Instructor.Handler.Get_Salary_summation_of_InstructorHandlers.Handle(Get_Salary_summation_of_InstructorQuery request, CancellationToken cancellationToken) in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Core\Features\Instructors\Get_Salary_summation_of_Instructor\Handler\Get_Salary_summation_of_InstructorHandlers.cs:line 29
+   at SchoolProject.Core.Behaviors.ValidationBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Core\Behaviors\ValidationBehavior.cs:line 32
+   at SchoolProject.Api.Controllers.InstructorsController.GetSalary() in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Api\Controllers\InstructorsController.cs:line 15
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at SchoolProject.Core.Middleware.ErrorHandlerMiddleware.Invoke(HttpContext context) in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Core\Middleware\ErrorHandlerMiddleware.cs:line 31
+2024-10-13 17:21:38.719 [Error] - Message An unhandled exception has occurred.
+System.NotImplementedException: The method or operation is not implemented.
+   at SchoolProject.Infrustructure.Context.AppDbContext.Get_Salary_summation_of_Instructor() in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Infrustructure\Context\AppDbContext.cs:line 67
+   at SchoolProject.Service.Services.InstructorService.Get_Salary_summation_of_Instructor() in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Service\Services\InstructorService.cs:line 23
+   at SchoolProject.Core.Features.Instructors.Get_Salary_summation_of_Instructor.Handler.Get_Salary_summation_of_InstructorHandlers.Handle(Get_Salary_summation_of_InstructorQuery request, CancellationToken cancellationToken) in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Core\Features\Instructors\Get_Salary_summation_of_Instructor\Handler\Get_Salary_summation_of_InstructorHandlers.cs:line 29
+   at SchoolProject.Core.Behaviors.ValidationBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Core\Behaviors\ValidationBehavior.cs:line 32
+   at SchoolProject.Api.Controllers.InstructorsController.GetSalary() in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Api\Controllers\InstructorsController.cs:line 15
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at SchoolProject.Core.Middleware.ErrorHandlerMiddleware.Invoke(HttpContext context) in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Core\Middleware\ErrorHandlerMiddleware.cs:line 31
+2024-10-13 17:23:28.571 [Error] - Message An unhandled exception has occurred.
+System.NotImplementedException: The method or operation is not implemented.
+   at SchoolProject.Infrustructure.Context.AppDbContext.Get_Salary_summation_of_Instructor() in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Infrustructure\Context\AppDbContext.cs:line 67
+   at SchoolProject.Service.Services.InstructorService.Get_Salary_summation_of_Instructor() in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Service\Services\InstructorService.cs:line 23
+   at SchoolProject.Core.Features.Instructors.Get_Salary_summation_of_Instructor.Handler.Get_Salary_summation_of_InstructorHandlers.Handle(Get_Salary_summation_of_InstructorQuery request, CancellationToken cancellationToken) in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Core\Features\Instructors\Get_Salary_summation_of_Instructor\Handler\Get_Salary_summation_of_InstructorHandlers.cs:line 29
+   at SchoolProject.Core.Behaviors.ValidationBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Core\Behaviors\ValidationBehavior.cs:line 32
+   at SchoolProject.Api.Controllers.InstructorsController.GetSalary() in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Api\Controllers\InstructorsController.cs:line 15
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at SchoolProject.Core.Middleware.ErrorHandlerMiddleware.Invoke(HttpContext context) in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Core\Middleware\ErrorHandlerMiddleware.cs:line 31
+2024-10-13 17:45:38.990 [Error] - Message An unhandled exception has occurred.
+System.NotImplementedException: The method or operation is not implemented.
+   at SchoolProject.Infrustructure.Context.AppDbContext.Get_Salary_summation_of_Instructor(Int32 id) in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Infrustructure\Context\AppDbContext.cs:line 74
+   at SchoolProject.Service.Services.InstructorService.Get_Salary_summation_of_Instructor() in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Service\Services\InstructorService.cs:line 23
+   at SchoolProject.Core.Features.Instructors.Get_Salary_summation_of_Instructor.Handler.Get_Salary_summation_of_InstructorHandlers.Handle(Get_Salary_summation_of_InstructorQuery request, CancellationToken cancellationToken) in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Core\Features\Instructors\Get_Salary_summation_of_Instructor\Handler\Get_Salary_summation_of_InstructorHandlers.cs:line 29
+   at SchoolProject.Core.Behaviors.ValidationBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Core\Behaviors\ValidationBehavior.cs:line 32
+   at SchoolProject.Api.Controllers.InstructorsController.GetSalary() in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Api\Controllers\InstructorsController.cs:line 15
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at SchoolProject.Core.Middleware.ErrorHandlerMiddleware.Invoke(HttpContext context) in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Core\Middleware\ErrorHandlerMiddleware.cs:line 31

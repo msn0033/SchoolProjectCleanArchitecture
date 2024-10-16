@@ -9,16 +9,16 @@ namespace SchoolProject.Infrustructure.GenericRepository
 {
     public interface IGenericRepositoryAsync<T> where T:class
     {
-        Task DeleteRangeAsync(ICollection<T> entities);
+        IQueryable<T> GetTableNoTracking();
+        IQueryable<T> GetTableAsTracking();
         Task<T> GetByIdAsync(int id);
+        Task<T> AddAsync(T entity);
+        Task AddRangeAsync(ICollection<T> entities);
+        Task DeleteRangeAsync(ICollection<T> entities);
         Task SaveChangesAsync();
         IDbContextTransaction BeginTransaction();
         void Commit();
         void RollBack();
-        IQueryable<T> GetTableNoTracking();
-        IQueryable<T> GetTableAsTracking();
-        Task<T> AddAsync(T entity);
-        Task AddRangeAsync(ICollection<T> entities);
         Task UpdateAsync(T entity);
         Task UpdateRangeAsync(ICollection<T> entities);
         Task DeleteAsync(T entity);
