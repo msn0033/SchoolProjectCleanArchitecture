@@ -1,5 +1,5 @@
-﻿using SchoolProject.Data.Entities;
-using SchoolProject.Helper.Wrappers;
+﻿using SchoolProject.Core.Base.PaginatedList;
+using SchoolProject.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +13,7 @@ namespace SchoolProject.Core.Features.Departments.Queries.Responses
         public int? Id { get; set; }
         public string? Name { get; set; }
         public string? NameManger { get; set; }
-        public PaginatedResult<StudentResponse>? StudentList { get; set; }//expression in DeparementsHandlers
+        public PaginatedList<StudentResponse>? StudentList { get; set; }//expression in DeparementsHandlers
         public List<SubjectResponse> ?SubjecttList { get; set; }//mapper
         public List<InstructorResponse> ?InstructorList { get; set; }//mapper
 

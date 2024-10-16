@@ -5,7 +5,6 @@ using SchoolProject.Core.Features.ApplicationUser.Commands.Models;
 using SchoolProject.Core.Features.ApplicationUser.Queries.Models;
 using SchoolProject.Core.Features.ApplicationUser.Queries.Responses;
 using SchoolProject.Data.AppMetaData;
-using SchoolProject.Helper.Wrappers;
 
 namespace SchoolProject.Api.Controllers
 {

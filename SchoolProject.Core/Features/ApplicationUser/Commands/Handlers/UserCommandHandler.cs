@@ -3,14 +3,15 @@ using LocalizationLanguage;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Localization;
+using SchoolProject.Core.Base.ApiResponse;
 using SchoolProject.Core.Features.ApplicationUser.Commands.Models;
 using SchoolProject.Data.Entities.Identity;
-using SchoolProject.Helper.ResponseHelper;
+
 
 
 namespace SchoolProject.Core.Features.ApplicationUser.Commands.Handlers
 {
-    public class UserCommandHandler :ResponseHandler, IRequestHandler<AddUserCommand, Response<string>>
+    public class UserCommandHandler :ApiResponseHandler, IRequestHandler<AddUserCommand, ApiResponse<string>>
     {
         private readonly IMapper _mapper;
         private readonly UserManager<User> _userManager;
@@ -23,7 +24,7 @@ namespace SchoolProject.Core.Features.ApplicationUser.Commands.Handlers
             this._localizer = localizer;
         }
         //add user
-        public async Task<Response<string>> Handle(AddUserCommand request, CancellationToken cancellationToken)
+        public async Task<ApiResponse<string>> Handle(AddUserCommand request, CancellationToken cancellationToken)
         {
 
             // user  or email exist

@@ -31,6 +31,8 @@ namespace SchoolProject.Infrustructure.Context
         //view
         public DbSet<DepartmentStudentCountView> DepartmentStudentCountView { get; set; }
 
+        //procedure
+        public DbSet<DepartmentStudentCountProc> DepartmentStudentCountProc { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
@@ -40,6 +42,35 @@ namespace SchoolProject.Infrustructure.Context
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
+
+
+            //// Function parmater int
+            //modelBuilder.HasDbFunction(typeof(AppDbContext).GetMethod(nameof(Get_Salary_summation_of_Instructor),
+            //    new[] { typeof(int) })!)
+            //    .HasName(nameof(Get_Salary_summation_of_Instructor));
+
+
+            //  modelBuilder.HasDbFunction(() => Get_Salary_summation_of_Instructor()).HasName("Get_Salary_summation_of_Instructor").HasSchema("dbo");
+
+            //  modelBuilder.HasDbFunction(
+            //typeof(AppDbContext).GetMethod(nameof(Get_Salary_summation_of_Instructor))!)
+            //      .HasName("Get_Salary_summation_of_Instructor");
+
+
+            //modelBuilder
+            //.HasDbFunction(
+            //    typeof(AppDbContext).GetMethod(nameof(Get_Salary_summation_of_Instructor),
+            //        new[] { typeof(int)})!)
+            //.HasName("Get_Salary_summation_of_Instructorr");
         }
+
+       
+       [DbFunction("Get_Salary_summation_of_Instructor", Schema ="dbo")]
+       public static decimal Get_Salary_summation_of_Instructor()
+        {
+            throw new NotImplementedException();
+        }
+
+
     }
 }

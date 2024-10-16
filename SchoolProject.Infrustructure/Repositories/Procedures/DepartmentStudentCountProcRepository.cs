@@ -1,4 +1,5 @@
-﻿using SchoolProject.Data.Entities.Procedures;
+﻿using Microsoft.EntityFrameworkCore;
+using SchoolProject.Data.Entities.Procedures;
 using SchoolProject.Infrustructure.Context;
 using SchoolProject.Infrustructure.Interface.Procedures;
 using StoredProcedureEFCore;
@@ -32,9 +33,10 @@ namespace SchoolProject.Infrustructure.Repositories.Procedures
         public async Task<IReadOnlyList<DepartmentStudentCountProc>> GetDepartmentStudentCountProcRepositoryAsync(DepartmentStudentCountProcParamater paramater)
         {
             var raws =new  List<DepartmentStudentCountProc>();
-            await _appDbContext.LoadStoredProc(nameof(DepartmentStudentCountProc))
-                .AddParam(nameof(DepartmentStudentCountProcParamater.DepartmentId), paramater.DepartmentId)
-                .ExecAsync(async r => raws = await r.ToListAsync<DepartmentStudentCountProc>());
+            //await _appDbContext.LoadStoredProc(nameof(DepartmentStudentCountProc))
+            //    .AddParam(nameof(DepartmentStudentCountProcParamater.DepartmentId), paramater.DepartmentId)
+            //    .ExecAsync(async r => raws = await r.ToListAsync<DepartmentStudentCountProc>());
+           raws= await _appDbContext.DepartmentStudentCountProc.FromSql($"exec [dbo].[DepartmentStudentCountProc]{paramater.DepartmentId},{2}").ToListAsync();
             return raws;
         }
         #endregion

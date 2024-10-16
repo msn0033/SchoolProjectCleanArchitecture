@@ -1,0 +1,216 @@
+2024-10-12 15:52:30.710 [Error] - Message An unhandled exception has occurred.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Must declare the scalar variable "@p0@p1".
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at SchoolProject.Infrustructure.Repositories.Procedures.DepartmentStudentCountProcRepository.GetDepartmentStudentCountProcRepositoryAsync(DepartmentStudentCountProcParamater paramater)
+   at SchoolProject.Service.Services.DepartmentsService.GetDepartmentStudentCountProcAsync(DepartmentStudentCountProcParamater paramater) in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Service\Services\DepartmentsService.cs:line 73
+   at SchoolProject.Core.Features.Departments.Queries.Handlers.DepartmentsHandlers.Handle(GetDepartment_ById_StudentCountProcQuery request, CancellationToken cancellationToken) in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Core\Features\Departments\Queries\Handlers\DepartmentsHandlers.cs:line 70
+   at SchoolProject.Core.Behaviors.ValidationBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Core\Behaviors\ValidationBehavior.cs:line 32
+   at SchoolProject.Api.Controllers.DepartmentsController.GetDepartment_ById_StudentCountProc(GetDepartment_ById_StudentCountProcQuery request) in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Api\Controllers\DepartmentsController.cs:line 44
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at SchoolProject.Core.Middleware.ErrorHandlerMiddleware.Invoke(HttpContext context) in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Core\Middleware\ErrorHandlerMiddleware.cs:line 31
+ClientConnectionId:5bfdc5a1-f2d0-4512-8e06-c314d7cce3ea
+Error Number:137,State:2,Class:15
+2024-10-12 15:52:46.635 [Error] - Message An unhandled exception has occurred.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Must declare the scalar variable "@p0@p1".
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at SchoolProject.Infrustructure.Repositories.Procedures.DepartmentStudentCountProcRepository.GetDepartmentStudentCountProcRepositoryAsync(DepartmentStudentCountProcParamater paramater)
+   at SchoolProject.Service.Services.DepartmentsService.GetDepartmentStudentCountProcAsync(DepartmentStudentCountProcParamater paramater) in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Service\Services\DepartmentsService.cs:line 73
+   at SchoolProject.Core.Features.Departments.Queries.Handlers.DepartmentsHandlers.Handle(GetDepartment_ById_StudentCountProcQuery request, CancellationToken cancellationToken) in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Core\Features\Departments\Queries\Handlers\DepartmentsHandlers.cs:line 70
+   at SchoolProject.Core.Behaviors.ValidationBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Core\Behaviors\ValidationBehavior.cs:line 32
+   at SchoolProject.Api.Controllers.DepartmentsController.GetDepartment_ById_StudentCountProc(GetDepartment_ById_StudentCountProcQuery request) in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Api\Controllers\DepartmentsController.cs:line 44
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at SchoolProject.Core.Middleware.ErrorHandlerMiddleware.Invoke(HttpContext context) in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Core\Middleware\ErrorHandlerMiddleware.cs:line 31
+ClientConnectionId:5bfdc5a1-f2d0-4512-8e06-c314d7cce3ea
+Error Number:137,State:2,Class:15
+2024-10-12 15:54:06.560 [Error] - Message An unhandled exception has occurred.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Procedure or function DepartmentStudentCountProc has too many arguments specified.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at SchoolProject.Infrustructure.Repositories.Procedures.DepartmentStudentCountProcRepository.GetDepartmentStudentCountProcRepositoryAsync(DepartmentStudentCountProcParamater paramater) in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Infrustructure\Repositories\Procedures\DepartmentStudentCountProcRepository.cs:line 39
+   at SchoolProject.Service.Services.DepartmentsService.GetDepartmentStudentCountProcAsync(DepartmentStudentCountProcParamater paramater) in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Service\Services\DepartmentsService.cs:line 73
+   at SchoolProject.Core.Features.Departments.Queries.Handlers.DepartmentsHandlers.Handle(GetDepartment_ById_StudentCountProcQuery request, CancellationToken cancellationToken) in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Core\Features\Departments\Queries\Handlers\DepartmentsHandlers.cs:line 70
+   at SchoolProject.Core.Behaviors.ValidationBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Core\Behaviors\ValidationBehavior.cs:line 32
+   at SchoolProject.Api.Controllers.DepartmentsController.GetDepartment_ById_StudentCountProc(GetDepartment_ById_StudentCountProcQuery request) in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Api\Controllers\DepartmentsController.cs:line 44
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at SchoolProject.Core.Middleware.ErrorHandlerMiddleware.Invoke(HttpContext context) in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Core\Middleware\ErrorHandlerMiddleware.cs:line 31
+ClientConnectionId:85ae7d85-3ee2-4504-980b-e5b2839e3f6b
+Error Number:8144,State:2,Class:16
+2024-10-12 15:55:14.607 [Error] - Message An unhandled exception has occurred.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Procedure or function DepartmentStudentCountProc has too many arguments specified.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at SchoolProject.Infrustructure.Repositories.Procedures.DepartmentStudentCountProcRepository.GetDepartmentStudentCountProcRepositoryAsync(DepartmentStudentCountProcParamater paramater) in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Infrustructure\Repositories\Procedures\DepartmentStudentCountProcRepository.cs:line 39
+   at SchoolProject.Service.Services.DepartmentsService.GetDepartmentStudentCountProcAsync(DepartmentStudentCountProcParamater paramater) in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Service\Services\DepartmentsService.cs:line 73
+   at SchoolProject.Core.Features.Departments.Queries.Handlers.DepartmentsHandlers.Handle(GetDepartment_ById_StudentCountProcQuery request, CancellationToken cancellationToken) in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Core\Features\Departments\Queries\Handlers\DepartmentsHandlers.cs:line 70
+   at SchoolProject.Core.Behaviors.ValidationBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Core\Behaviors\ValidationBehavior.cs:line 32
+   at SchoolProject.Api.Controllers.DepartmentsController.GetDepartment_ById_StudentCountProc(GetDepartment_ById_StudentCountProcQuery request) in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Api\Controllers\DepartmentsController.cs:line 44
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at SchoolProject.Core.Middleware.ErrorHandlerMiddleware.Invoke(HttpContext context) in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Core\Middleware\ErrorHandlerMiddleware.cs:line 31
+ClientConnectionId:85ae7d85-3ee2-4504-980b-e5b2839e3f6b
+Error Number:8144,State:2,Class:16
+2024-10-12 15:59:27.044 [Error] - Message An unhandled exception has occurred.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Procedure or function DepartmentStudentCountProc has too many arguments specified.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at SchoolProject.Infrustructure.Repositories.Procedures.DepartmentStudentCountProcRepository.GetDepartmentStudentCountProcRepositoryAsync(DepartmentStudentCountProcParamater paramater) in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Infrustructure\Repositories\Procedures\DepartmentStudentCountProcRepository.cs:line 39
+   at SchoolProject.Service.Services.DepartmentsService.GetDepartmentStudentCountProcAsync(DepartmentStudentCountProcParamater paramater) in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Service\Services\DepartmentsService.cs:line 73
+   at SchoolProject.Core.Features.Departments.Queries.Handlers.DepartmentsHandlers.Handle(GetDepartment_ById_StudentCountProcQuery request, CancellationToken cancellationToken) in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Core\Features\Departments\Queries\Handlers\DepartmentsHandlers.cs:line 70
+   at SchoolProject.Core.Behaviors.ValidationBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Core\Behaviors\ValidationBehavior.cs:line 32
+   at SchoolProject.Api.Controllers.DepartmentsController.GetDepartment_ById_StudentCountProc(GetDepartment_ById_StudentCountProcQuery request) in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Api\Controllers\DepartmentsController.cs:line 44
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at SchoolProject.Core.Middleware.ErrorHandlerMiddleware.Invoke(HttpContext context) in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Core\Middleware\ErrorHandlerMiddleware.cs:line 31
+ClientConnectionId:ee92ddf6-90e6-4104-9fd9-a04c0fe34037
+Error Number:8144,State:2,Class:16
+2024-10-12 16:04:45.563 [Error] - Message An unhandled exception has occurred.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Procedure or function DepartmentStudentCountProc has too many arguments specified.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at SchoolProject.Infrustructure.Repositories.Procedures.DepartmentStudentCountProcRepository.GetDepartmentStudentCountProcRepositoryAsync(DepartmentStudentCountProcParamater paramater) in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Infrustructure\Repositories\Procedures\DepartmentStudentCountProcRepository.cs:line 39
+   at SchoolProject.Service.Services.DepartmentsService.GetDepartmentStudentCountProcAsync(DepartmentStudentCountProcParamater paramater) in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Service\Services\DepartmentsService.cs:line 73
+   at SchoolProject.Core.Features.Departments.Queries.Handlers.DepartmentsHandlers.Handle(GetDepartment_ById_StudentCountProcQuery request, CancellationToken cancellationToken) in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Core\Features\Departments\Queries\Handlers\DepartmentsHandlers.cs:line 70
+   at SchoolProject.Core.Behaviors.ValidationBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Core\Behaviors\ValidationBehavior.cs:line 32
+   at SchoolProject.Api.Controllers.DepartmentsController.GetDepartment_ById_StudentCountProc(GetDepartment_ById_StudentCountProcQuery request) in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Api\Controllers\DepartmentsController.cs:line 44
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at SchoolProject.Core.Middleware.ErrorHandlerMiddleware.Invoke(HttpContext context) in C:\Users\Murad3D\Source\Repos\msn0033\SchoolProjectCleanArchitecture\SchoolProject.Core\Middleware\ErrorHandlerMiddleware.cs:line 31
+ClientConnectionId:bfac8b3b-acae-46ff-97fd-941b2c45b563
+Error Number:8144,State:2,Class:16

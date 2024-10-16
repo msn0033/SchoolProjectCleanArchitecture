@@ -2,10 +2,11 @@
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Localization;
+using SchoolProject.Core.Base.ApiResponse;
 using SchoolProject.Core.Features.Authentication.Commands.Models;
 using SchoolProject.Data.Entities.Identity;
 using SchoolProject.Data.Result;
-using SchoolProject.Helper.ResponseHelper;
+
 using SchoolProject.Service.Interface;
 using System;
 using System.Collections.Generic;
@@ -16,9 +17,9 @@ using System.Threading.Tasks;
 
 namespace SchoolProject.Core.Features.Authentication.Commands.Handlers
 {
-    public class AuthenticationCommandHandler : ResponseHandler,
-        IRequestHandler<SignInUserCommand, Response<JwtAuthResult>>,
-        IRequestHandler<RefreshTokenCommand, Response<JwtAuthResult>>
+    public class AuthenticationCommandHandler : ApiResponseHandler,
+        IRequestHandler<SignInUserCommand, ApiResponse<JwtAuthResult>>,
+        IRequestHandler<RefreshTokenCommand, ApiResponse<JwtAuthResult>>
     {
         private readonly IStringLocalizer<AuthenticationCommandHandler> _localizer;
         private readonly SignInManager<User> _signInManager;
@@ -35,7 +36,7 @@ namespace SchoolProject.Core.Features.Authentication.Commands.Handlers
             this._authenticationService = authenticationService;
         }
         //SignInUser
-        public async Task<Response<JwtAuthResult>> Handle(SignInUserCommand request, CancellationToken cancellationToken)
+        public async Task<ApiResponse<JwtAuthResult>> Handle(SignInUserCommand request, CancellationToken cancellationToken)
         {
         
             User? user=(await _signInManager.UserManager.FindByNameAsync(request.UserName!));
@@ -57,7 +58,7 @@ namespace SchoolProject.Core.Features.Authentication.Commands.Handlers
         }
 
         //RefreshToken
-        public async Task<Response<JwtAuthResult>> Handle(RefreshTokenCommand request, CancellationToken cancellationToken)
+        public async Task<ApiResponse<JwtAuthResult>> Handle(RefreshTokenCommand request, CancellationToken cancellationToken)
         {
 
             //var v1 = new Claim("aa", "bb");

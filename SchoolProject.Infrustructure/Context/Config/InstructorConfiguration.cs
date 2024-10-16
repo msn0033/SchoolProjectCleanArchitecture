@@ -31,6 +31,8 @@ namespace SchoolProject.Infrustructure.Context.Config
             builder.Property(x => x.Salary)
              .HasPrecision(15, 2);
 
+          
+
             #region RelationShip
 
             #region m to 1 Instructor & Instructor

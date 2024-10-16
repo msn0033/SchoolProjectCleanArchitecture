@@ -1,14 +1,9 @@
 ﻿using MediatR;
-using SchoolProject.Helper.ResponseHelper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SchoolProject.Core.Base.ApiResponse;
 
 namespace SchoolProject.Core.Features.ApplicationUser.Commands.Models
 {
-    public class AddUserCommand:IRequest<Response<string>>
+    public class AddUserCommand:IRequest<ApiResponse<string>>
     {
         public required  string FullName { get; set; }
         public required string UserName { get; set; }
