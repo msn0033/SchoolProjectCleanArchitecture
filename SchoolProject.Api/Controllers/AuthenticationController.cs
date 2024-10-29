@@ -4,10 +4,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Net.Http.Headers;
 using SchoolProject.Api.Base;
-using SchoolProject.Core.Features.Authentication.Commands.Models;
 using SchoolProject.Data.AppMetaData;
 using System.Linq;
 using System.Security.Claims;
+using SchoolProject.Core.Features.Authentication.Commands.SignIn;
+using SchoolProject.Core.Features.Authentication.Commands.RefreshToken;
 
 namespace SchoolProject.Api.Controllers
 {
@@ -20,12 +21,12 @@ namespace SchoolProject.Api.Controllers
         {
 
             var result = await _mediator.Send(request);
-            if (result?.Data?.AccessToken != null)
+            if (result?.Data?.Token != null)
             {
                 HttpContext
                     .Response
                     .Cookies
-                    .Append("token", result.Data.AccessToken, new CookieOptions { HttpOnly = true });
+                    .Append("token", result.Data.Token, new CookieOptions { HttpOnly = true });
             }
             return NewResult(result!);
         }

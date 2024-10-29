@@ -1,6 +1,7 @@
 ﻿using SchoolProject.Data.Entities.Identity;
-using SchoolProject.Data.Request;
-using SchoolProject.Data.Result;
+
+using SchoolProject.Service.Base;
+using SchoolProject.Service.Base.Request;
 using System;
 using System.Collections.Generic;
 using System.Linq;

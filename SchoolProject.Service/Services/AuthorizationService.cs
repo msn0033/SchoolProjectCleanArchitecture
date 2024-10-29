@@ -3,9 +3,10 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SchoolProject.Data.Entities.Identity;
 using SchoolProject.Data.ModelsHelper;
-using SchoolProject.Data.Request;
-using SchoolProject.Data.Result;
+
 using SchoolProject.Infrustructure.Context;
+using SchoolProject.Service.Base;
+using SchoolProject.Service.Base.Request;
 using SchoolProject.Service.Interface;
 using System;
 using System.Collections.Generic;
@@ -108,7 +109,10 @@ namespace SchoolProject.Service.Services
                     newroleslist.Add(userrole);
                 }
             }
+            
             respons.UserId = user.Id;
+            respons.UserName = user.UserName;
+            respons.Email = user.Email;
             respons.UserRoles = newroleslist;
 
             return respons;

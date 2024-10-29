@@ -1,5 +1,6 @@
 ﻿using SchoolProject.Data.Entities.Identity;
-using SchoolProject.Data.Result;
+
+using SchoolProject.Service.Base;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -11,8 +12,8 @@ namespace SchoolProject.Service.Interface
 {
     public interface IAuthenticationService
     {
-        Task<JwtAuthResult> GetJWTTokenBySignInUserAsync(User user);
-        Task<JwtAuthResult> GetRefreshTokenAsync(User user,UserRefreshToken? userRefreshToken);
+        Task<AuthResult> GetJWTTokenBySignInUserAsync(User user);
+        Task<AuthResult> GetRefreshTokenAsync(User user,UserRefreshToken? userRefreshToken);
         (JwtSecurityToken?,string) ReadJWTToken(string accesstoken);
         (string,bool) ValidateToken(string accesstoken);
 

@@ -16,6 +16,8 @@ using SchoolProject.Core.Filters;
 using Microsoft.AspNetCore.Authorization;
 using SchoolProject.Core.policy;
 using SchoolProject.Core.Base.MiddleWare;
+using Serilog;
+using SchoolProject.Data.Permission;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -131,4 +133,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 app.UseMiddleware<ErrorHandlerMiddleware>();//global Exception
+
+Log.Information("Start App");
 app.Run();

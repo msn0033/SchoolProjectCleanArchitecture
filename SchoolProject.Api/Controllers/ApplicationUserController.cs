@@ -1,9 +1,9 @@
 ﻿
 using Microsoft.AspNetCore.Mvc;
 using SchoolProject.Api.Base;
-using SchoolProject.Core.Features.ApplicationUser.Commands.Models;
-using SchoolProject.Core.Features.ApplicationUser.Queries.Models;
-using SchoolProject.Core.Features.ApplicationUser.Queries.Responses;
+using SchoolProject.Core.Features.ApplicationUser.Commands.Create;
+using SchoolProject.Core.Features.ApplicationUser.Queries.GetUsersPaginatedList;
+
 using SchoolProject.Data.AppMetaData;
 
 namespace SchoolProject.Api.Controllers
@@ -14,7 +14,7 @@ namespace SchoolProject.Api.Controllers
     {
       
         [HttpPost(PathRoute.ApplicationUsersRoute.Create)]
-        public async Task<IActionResult> Create([FromBody] AddUserCommand request)
+        public async Task<IActionResult> Create([FromBody] CreateUserCommand request)
         {
             var result =await _mediator.Send(request);
             return NewResult(result);

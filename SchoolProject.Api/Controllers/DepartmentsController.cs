@@ -3,15 +3,16 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using SchoolProject.Api.Base;
-using SchoolProject.Core.Features.Departments.Queries.Models;
-
+using SchoolProject.Core.Features.Departments.Queries.GetById_By_StudentCountProc;
+using SchoolProject.Core.Features.Departments.Queries.GetDepartmentById;
+using SchoolProject.Core.Features.Departments.Queries.GetDepartmentStudentCountView;
 using SchoolProject.Data.AppMetaData;
 using System.Net;
 using System.Text;
 
 namespace SchoolProject.Api.Controllers
 {
-  //  [Route("api/[controller]")]
+    //  [Route("api/[controller]")]
     [ApiController]
     [Authorize]
     public class DepartmentsController : AppControllersBase

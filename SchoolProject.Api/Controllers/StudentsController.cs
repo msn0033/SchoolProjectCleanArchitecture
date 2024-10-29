@@ -43,7 +43,7 @@ namespace SchoolProject.Api.Controllers
             return NewResult(responsestudent!);
         }
 
-        [CheckPermission(Permission.Students.Create+"2")]
+        [CheckPermission(Permission.Students.Create)]
         [HttpPost(PathRoute.StudentsRoute.Create)]
         public async Task<IActionResult> CreateStudent([FromBody] CreateStudentCommand command)
         {

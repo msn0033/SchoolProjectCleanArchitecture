@@ -43,7 +43,9 @@ namespace SchoolProject.Infrustructure
                 var dbcontext = scop.ServiceProvider.GetRequiredService<AppDbContext>();
                 //var dbcontext2 = scop.ServiceProvider.GetService<AppDbContext>();
                 await RoleSeeding.SeedRoleAddAsync(rolemanager);
+                await UserSeeding.SeedBaiscUserAsync(usermanager, rolemanager, dbcontext);
                 await UserSeeding.SeedSuperAdminUserAsync(usermanager, rolemanager, dbcontext);
+              
             }
             return services;
         }

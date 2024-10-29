@@ -4,9 +4,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using SchoolProject.Data.Entities.Identity;
 using SchoolProject.Data.ModelsHelper;
-using SchoolProject.Data.Result;
+
 using SchoolProject.Infrustructure.Interface;
 using SchoolProject.Infrustructure.Migrations;
+using SchoolProject.Service.Base;
 using SchoolProject.Service.Interface;
 using System;
 using System.Collections.Concurrent;
@@ -45,21 +46,21 @@ namespace SchoolProject.Service.Services
         #region method
 
 
-        public async Task<JwtAuthResult> GetJWTTokenBySignInUserAsync(User user)
+        public async Task<AuthResult> GetJWTTokenBySignInUserAsync(User user)
         {
             if (user == null)
             {
-                JwtAuthResult jwtAuthResponse_ = new JwtAuthResult();
-                jwtAuthResponse_.message = "user is not found";
+                AuthResult jwtAuthResponse_ = new AuthResult();
+                jwtAuthResponse_.Message = "user is not found";
                 return jwtAuthResponse_;
             }
             var (accessToken, jwtSecurityToken) = await GenerateAccessTokenAsync(user);
-            var refreshtoken = GetRandomRefreshToken(user);
+            var authResult = GetRandomRefreshToken(user);
 
             var usertoken = new UserRefreshToken
             {
                 AccessToken = accessToken,
-                RefreshTokenString = refreshtoken.RefreshTokenString,
+                RefreshTokenString = authResult.RefreshToken,
                 AddTime = DateTime.Now,
                 ExpireAt = DateTime.Now.AddDays(_jwtsettings.RefreshTokenExpire),
                 UserId = user?.Id,
@@ -91,9 +92,9 @@ namespace SchoolProject.Service.Services
                 await _refreshTokenRepository.UpdateAsync(userrefreshtoken);
             }
 
-            JwtAuthResult jwtAuthResponse = new JwtAuthResult();
-            jwtAuthResponse.AccessToken = accessToken;
-            jwtAuthResponse.RefreshToken = refreshtoken;
+            AuthResult jwtAuthResponse = new AuthResult();
+            jwtAuthResponse.Token = accessToken;
+            jwtAuthResponse.RefreshToken = authResult.RefreshToken;
             return jwtAuthResponse;
 
         }
@@ -167,21 +168,21 @@ namespace SchoolProject.Service.Services
             randomNumberGenerate.GetBytes(randomNumber);
             return Convert.ToBase64String(randomNumber);
         }
-        private RefreshToken GetRandomRefreshToken(User? user)
+        private AuthResult GetRandomRefreshToken(User? user)
         {
             // var userRefreshToken = new ConcurrentDictionary<string, RefreshToken>();
-            var refreshtoken = new RefreshToken
+            var AuthResult = new AuthResult
             {
-                UserName = user?.UserName,
-                RefreshTokenString = GetRandomNumberGenerate(),
-                ExpaireAt = DateTime.Now.AddDays(_jwtsettings.RefreshTokenExpire)
+               // UserName = user?.UserName,
+                RefreshToken = GetRandomNumberGenerate(),
+                TokenExpiration = DateTime.Now.AddDays(_jwtsettings.RefreshTokenExpire)
 
             };
 
             //var x=userRefreshToken.
             //    AddOrUpdate(refreshtoken.TokenString, refreshtoken,
             //                (s, r) => refreshtoken);
-            return refreshtoken;
+            return AuthResult;
         }
         #endregion
         //
@@ -260,6 +261,7 @@ namespace SchoolProject.Service.Services
             try
             {
                 var handler = new JwtSecurityTokenHandler();
+                
                 var validator = handler.ValidateToken(accesstoken, paramaters, out SecurityToken validateToken);
 
                 if (validator == null)
@@ -276,34 +278,34 @@ namespace SchoolProject.Service.Services
             }
         }
         
-        public async Task<JwtAuthResult> GetRefreshTokenAsync(User user, UserRefreshToken? userRefreshToken)
+        public async Task<AuthResult> GetRefreshTokenAsync(User user, UserRefreshToken? userRefreshToken)
         {
             var (NewAccessToken, jwtsecurityToken) = await GenerateAccessTokenAsync(user);
 
 
             if (user == null)
             {
-                return new JwtAuthResult { message = "user is null" };
+                return new AuthResult { Message = "user is null" };
             }
             if (userRefreshToken == null)
             {
-                return new JwtAuthResult { message = "userRefreshToken is null" };
+                return new AuthResult { Message = "userRefreshToken is null" };
             }
 
             userRefreshToken.AccessToken = NewAccessToken;
             await _refreshTokenRepository.UpdateAsync(userRefreshToken);
 
-            var refreshtoken = new RefreshToken
+            var AuthResult = new AuthResult
             {
-                RefreshTokenString = userRefreshToken.RefreshTokenString,
-                UserName = jwtsecurityToken?.Claims?.FirstOrDefault(x =>x.Type == nameof(UserClaimModel.UserName))?.Value,
-                ExpaireAt = userRefreshToken.ExpireAt
+                RefreshToken = userRefreshToken.RefreshTokenString,
+                //username=jwtsecurityToken?.Claims?.FirstOrDefault(x =>x.Type == nameof(UserClaimModel.UserName))?.Value,
+                TokenExpiration = userRefreshToken.ExpireAt
             };
-            var response = new JwtAuthResult
+            var response = new AuthResult
             {
-                AccessToken = NewAccessToken,
-                RefreshToken = refreshtoken,
-                message = "success"
+                Token = NewAccessToken,
+                RefreshToken = AuthResult.RefreshToken,
+                Message = "success"
             };
             return response;
         }
